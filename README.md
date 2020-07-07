@@ -7,3 +7,12 @@ An Instance Module Engine
    - Module: all basic functions of Engine
      - Instance: Main focus of Engine. Everything invole with Effect -> Instance -> Effect
      - Util
+
+Workflow for instance:
+
+```***Factory```: A class that will modify the assigned ```BaseValue``` base on the field path of input object
+
+Each ```Instance``` and bound with:
+ - ```ValueFactory``` that will change value based on If that Instance was triggered.
+ - ```Trigger``` triggered if match ```Condition``` and return an the ```Effect``` created by the assigned ```EffectFactory```
+
