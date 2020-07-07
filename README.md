@@ -14,5 +14,5 @@ Workflow for instance:
 
 Each ```Instance``` and bound with:
  - ```ValueFactory``` that will change value based on If that Instance was triggered.
- - ```Trigger``` triggered if match ```Condition``` and return an the ```Effect``` created by the assigned ```EffectFactory```
+ - ```Trigger``` triggered if the input Effect match Trigger's ```Condition``` and return an the ```Effect``` created by the assigned ```EffectFactory```
 
