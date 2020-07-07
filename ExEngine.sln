@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExtiliaEngine", "ExtiliaEngine\ExtiliaEngine.csproj", "{CC44720E-EED4-44B3-AE5B-3266A91423E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EngineTest", "EngineTest\EngineTest.csproj", "{CD967CDB-665A-46F2-983D-B33875DD5B50}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CC44720E-EED4-44B3-AE5B-3266A91423E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC44720E-EED4-44B3-AE5B-3266A91423E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC44720E-EED4-44B3-AE5B-3266A91423E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC44720E-EED4-44B3-AE5B-3266A91423E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD967CDB-665A-46F2-983D-B33875DD5B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD967CDB-665A-46F2-983D-B33875DD5B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD967CDB-665A-46F2-983D-B33875DD5B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD967CDB-665A-46F2-983D-B33875DD5B50}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5A157AB9-6B1C-4BCE-9EED-4D650E1408AD}
+	EndGlobalSection
+EndGlobal
