@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Radical\\source\\repos\\ExEngine\\ExtiliaEngine\\ExtiliaEngine.csproj",
+      "projectUniqueName": "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\ExtiliaEngine\\ExtiliaEngine.csproj",
       "projectName": "ExtiliaEngine",
-      "projectPath": "C:\\Users\\Radical\\source\\repos\\ExEngine\\ExtiliaEngine\\ExtiliaEngine.csproj",
+      "projectPath": "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\ExtiliaEngine\\ExtiliaEngine.csproj",
       "packagesPath": "C:\\Users\\Radical\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Radical\\source\\repos\\ExEngine\\ExtiliaEngine\\obj\\",
+      "outputPath": "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\ExtiliaEngine\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Radical\\AppData\\Roaming\\NuGet\\NuGet.Config",

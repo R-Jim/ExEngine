@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using ExtiliaEngine;
+
 namespace EngineTest.ScenarioTest.WallTest
 {
     class WallTest

@@ -4649,11 +4649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Radical\\source\\repos\\ExEngine\\EngineTest\\EngineTest.csproj",
+      "projectUniqueName": "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\EngineTest\\EngineTest.csproj",
       "projectName": "EngineTest",
-      "projectPath": "C:\\Users\\Radical\\source\\repos\\ExEngine\\EngineTest\\EngineTest.csproj",
+      "projectPath": "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\EngineTest\\EngineTest.csproj",
       "packagesPath": "C:\\Users\\Radical\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Radical\\source\\repos\\ExEngine\\EngineTest\\obj\\",
+      "outputPath": "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\EngineTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Radical\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -4669,8 +4669,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "C:\\Users\\Radical\\source\\repos\\ExEngine\\ExtiliaEngine\\ExtiliaEngine.csproj": {
-              "projectPath": "C:\\Users\\Radical\\source\\repos\\ExEngine\\ExtiliaEngine\\ExtiliaEngine.csproj"
+            "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\ExtiliaEngine\\ExtiliaEngine.csproj": {
+              "projectPath": "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\ExtiliaEngine\\ExtiliaEngine.csproj"
             }
           }
         }

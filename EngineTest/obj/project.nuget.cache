@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "sFGHUzF+5CIgfq0RYMcr3DWp0VKlgIWfpql7MWOumJeQpNpf2BGpQRqIHDz2Ed9S1bqfkyuMtVBpwzRWLZrsWw==",
+  "dgSpecHash": "pw7dzbv4rsI9yZuW6NVPG/L+QyegQuYEnQRGB34dFXQIPSq1edyGNsnj22pevjevMcs4beQVghEfFdzFEChIeQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Radical\\source\\repos\\ExEngine\\EngineTest\\EngineTest.csproj",
+  "projectFilePath": "C:\\Users\\Radical\\source\\repos\\New folder\\ExEngine\\EngineTest\\EngineTest.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Radical\\.nuget\\packages\\microsoft.codecoverage\\16.4.0\\microsoft.codecoverage.16.4.0.nupkg.sha512",
     "C:\\Users\\Radical\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",

@@ -1,4 +1,5 @@
 ﻿
+using ExtiliaEngine;
 using NUnit.Framework;
 
 namespace EngineTest.FactoryTest

@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-
+using ExtiliaEngine;
 namespace EngineTest.TriggerTest.ConditionTest
 {
     class EffectCoordinationValueTest

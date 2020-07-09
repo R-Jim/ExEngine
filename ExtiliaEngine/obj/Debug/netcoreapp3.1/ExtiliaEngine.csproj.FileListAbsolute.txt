@@ -7,3 +7,11 @@ C:\Users\Radical\source\repos\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\Ext
 C:\Users\Radical\source\repos\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\ExtiliaEngine.csproj.CoreCompileInputs.cache
 C:\Users\Radical\source\repos\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\ExtiliaEngine.dll
 C:\Users\Radical\source\repos\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\ExtiliaEngine.pdb
+C:\Users\Radical\source\repos\New folder\ExEngine\ExtiliaEngine\bin\Debug\netcoreapp3.1\ExtiliaEngine.deps.json
+C:\Users\Radical\source\repos\New folder\ExEngine\ExtiliaEngine\bin\Debug\netcoreapp3.1\ExtiliaEngine.dll
+C:\Users\Radical\source\repos\New folder\ExEngine\ExtiliaEngine\bin\Debug\netcoreapp3.1\ExtiliaEngine.pdb
+C:\Users\Radical\source\repos\New folder\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\ExtiliaEngine.AssemblyInfoInputs.cache
+C:\Users\Radical\source\repos\New folder\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\ExtiliaEngine.AssemblyInfo.cs
+C:\Users\Radical\source\repos\New folder\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\ExtiliaEngine.csproj.CoreCompileInputs.cache
+C:\Users\Radical\source\repos\New folder\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\ExtiliaEngine.dll
+C:\Users\Radical\source\repos\New folder\ExEngine\ExtiliaEngine\obj\Debug\netcoreapp3.1\ExtiliaEngine.pdb
