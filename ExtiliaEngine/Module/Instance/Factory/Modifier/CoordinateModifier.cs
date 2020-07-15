@@ -17,6 +17,8 @@
             Coordinate inputCoordinate = (Coordinate)inputValue;
             switch (Operator)
             {
+                case "=":
+                    return new Coordinate(inputCoordinate.X, inputCoordinate.Y);
                 case "+":
                     return new Coordinate(baseCoordinate.X + inputCoordinate.X, baseCoordinate.Y + inputCoordinate.Y);
                 case "*":

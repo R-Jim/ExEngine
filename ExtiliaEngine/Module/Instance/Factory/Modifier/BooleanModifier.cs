@@ -14,6 +14,8 @@
                 bool inputBool = (bool)inputValue;
                 switch (Operator)
                 {
+                    case "=":
+                        return inputBool;
                     case "==":
                         return baseBool == inputBool;
                     case "!=":

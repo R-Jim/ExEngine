@@ -14,6 +14,8 @@
                 double inputDouble = (double)inputValue;
                 switch (Operator)
                 {
+                    case "=":
+                        return inputDouble;
                     case "+":
                         return baseDouble + inputDouble;
                     case "*":
