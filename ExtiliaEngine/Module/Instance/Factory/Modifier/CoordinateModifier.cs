@@ -20,12 +20,15 @@
                 case "=":
                     return new Coordinate(inputCoordinate.X, inputCoordinate.Y);
                 case "+":
-                    return new Coordinate(baseCoordinate.X + inputCoordinate.X, baseCoordinate.Y + inputCoordinate.Y);
+                    baseCoordinate.X += inputCoordinate.X;
+                    baseCoordinate.Y += inputCoordinate.Y;
+                    break;
                 case "*":
-                    return new Coordinate(baseCoordinate.X * inputCoordinate.X, baseCoordinate.Y * inputCoordinate.Y);
-                default:
-                    return baseValue;
+                    baseCoordinate.X *= inputCoordinate.X;
+                    baseCoordinate.Y *= inputCoordinate.Y;
+                    break;
             }
+            return baseValue;
         }
     }
 }

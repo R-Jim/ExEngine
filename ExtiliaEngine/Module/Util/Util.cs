@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+
 namespace ExtiliaEngine
 {
     public class Util
@@ -11,7 +13,9 @@ namespace ExtiliaEngine
                 object transferObject = inputObject;
                 foreach (string path in paths)
                 {
-                    transferObject = transferObject.GetType().GetProperty(path).GetValue(transferObject, null);
+                    Type type = transferObject.GetType();
+                    PropertyInfo pI = type.GetProperty(path);
+                    transferObject = pI.GetValue(transferObject, null);
                 }
                 return transferObject;
             }

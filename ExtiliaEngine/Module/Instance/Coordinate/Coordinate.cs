@@ -1,29 +1,30 @@
-﻿using System;
-
-public class Coordinate
+﻿namespace ExtiliaEngine
 {
-    public double X { get; }
-    public double Y { get; }
-
-    public Coordinate(double x, double y)
+    public class Coordinate
     {
-        X = x;
-        Y = y;
-    }
+        public double X { get; set; }
+        public double Y { get; set; }
 
-    public override bool Equals(object obj)
-    {
-        if (obj == null || GetType() != obj.GetType())
+        public Coordinate(double x, double y)
         {
-            return false;
+            X = x;
+            Y = y;
         }
 
-        Coordinate cmpObj = (Coordinate)obj;
-        return X == cmpObj.X && Y == cmpObj.Y;
-    }
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
 
-    public override int GetHashCode()
-    {
-        return base.GetHashCode();
+            Coordinate cmpObj = (Coordinate)obj;
+            return X == cmpObj.X && Y == cmpObj.Y;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
