@@ -18,9 +18,22 @@ namespace ExtiliaEngine.Module.Instance.Factory.Modifier
             {
                 return new BooleanModifier(operatorString);
             }
-            else if (baseValue is List<object>)
+            else if (baseValue is List<ExtiliaEngine.Instance>)
             {
-                return new ListModifier(operatorString);
+                return new InstanceListModifier(operatorString);
+            }
+            else if (baseValue is List<double>)
+            {
+                return new DoubleListModifier(operatorString);
+            }
+            else if (baseValue is List<Coordinate>)
+            {
+                return new CoordinateListModifier(operatorString);
+            }
+
+            else if (baseValue is List<bool>)
+            {
+                return new BooleanListModifier(operatorString);
             }
             return null;
         }

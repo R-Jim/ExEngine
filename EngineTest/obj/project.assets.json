@@ -1228,7 +1228,7 @@
       },
       "ExtiliaEngine/1.0.0": {
         "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
+        "framework": ".NETStandard,Version=v2.0",
         "compile": {
           "bin/placeholder/ExtiliaEngine.dll": {}
         },

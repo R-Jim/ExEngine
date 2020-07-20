@@ -1,4 +1,5 @@
-﻿namespace ExtiliaEngine {
+﻿namespace ExtiliaEngine
+{
     public class Instance
     {
         public string Id { get; }
@@ -22,8 +23,12 @@
         {
             if (Trigger.IsTriggered(effect))
             {
-                ValueFactory.GetValue(effect);
-                return Trigger.GetEffect(effect);
+                Effect targetedEffect = effect.NewEffectWithTarget(this);
+                if (ValueFactory != null)
+                {
+                    ValueFactory.GetValue(targetedEffect);
+                }
+                return Trigger.GetEffect(targetedEffect);
             }
             return null;
         }

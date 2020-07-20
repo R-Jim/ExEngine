@@ -2,30 +2,30 @@
 
 namespace ExtiliaEngine.Module.Instance.Factory.Modifier
 {
-    class ListModifier : Modifier
+    class DoubleListModifier : Modifier
     {
-        public ListModifier(string operatorString) : base(operatorString)
+        public DoubleListModifier(string operatorString) : base(operatorString)
         {
         }
 
         public override object GetModifiedValue(object baseValue, object inputValue)
         {
-            List<object> baseList = (List<object>) baseValue;
-            double inputDouble = (double)inputValue;
+            List<double> baseList = (List<double>)baseValue;
+            double inputInstance = (double)inputValue;
             switch (Operator)
             {
                 case "Add":
-                    baseList.Add(inputValue);
+                    baseList.Add(inputInstance);
                     break;
                 case "Remove":
-                    baseList.Remove(inputDouble);
+                    baseList.Remove(inputInstance);
                     break;
                 default:
-                    List<object> modifiedList = new List<object>();
-                    foreach(object item in baseList)
+                    List<double> modifiedList = new List<double>();
+                    foreach (double item in baseList)
                     {
                         Modifier modifier = ModifierController.GetModifier(Operator, baseValue);
-                        modifiedList.Add(modifier.GetModifiedValue(item, inputValue));
+                        modifiedList.Add((double)modifier.GetModifiedValue(item, inputInstance));
                     }
                     return modifiedList;
             }

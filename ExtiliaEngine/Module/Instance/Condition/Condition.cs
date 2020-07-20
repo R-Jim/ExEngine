@@ -74,7 +74,7 @@ namespace ExtiliaEngine
         private bool CompareCoordinate(Coordinate coordinate)
         {
             // Operator should be "X,="
-            string[] OperatorWithField = Operator.Split(",");
+            string[] OperatorWithField = Operator.Split(',');
             if (OperatorWithField.Length < 2 || !(BaseValue is Coordinate))
             {
                 return false;

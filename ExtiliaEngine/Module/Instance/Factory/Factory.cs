@@ -29,12 +29,16 @@ namespace ExtiliaEngine
 
         public object GetValue(Effect effect)
         {
-            object fieldValue = Util.GetFieldValue(FieldPath, effect);
-            if(BaseValue == null)
+            if (FieldPath != null)
             {
+                object fieldValue = Util.GetFieldValue(FieldPath, effect);
+                if (Modifier != null)
+                {
+                    return Modifier.GetModifiedValue(BaseValue, fieldValue);
+                }
                 return fieldValue;
             }
-            return Modifier.GetModifiedValue(BaseValue, fieldValue);
+            return BaseValue;
         }
     }
 }

@@ -19,6 +19,10 @@ namespace ExtiliaEngine
 
         public Effect GetEffect(Effect effect)
         {
+            if(EffectFactory == null)
+            {
+                return null;
+            }
             return EffectFactory.GetEffect(effect);
         }
     }

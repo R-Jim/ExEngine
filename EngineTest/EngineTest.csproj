@@ -16,4 +16,9 @@
     <ProjectReference Include="..\ExtiliaEngine\ExtiliaEngine.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ScenarioTest\SampleInstances\" />
+    <Folder Include="ScenarioTest\Presets\" />
+  </ItemGroup>
+
 </Project>
