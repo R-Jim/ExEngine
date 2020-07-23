@@ -46,6 +46,6 @@ public class Invoker
 
     private Instance GetWeaponInstance(Instance CoordinateInstance)
     {
-        return Weapon.Get(Id, 10, CoordinateInstance);
+        return Weapon.Get(Id, 10, CoordinateInstance, null);
     }
 }

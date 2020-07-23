@@ -15,7 +15,7 @@ namespace ExtiliaEngine
             BaseValue = baseValue;
         }
 
-        public bool IsMatchCondition(object inputObject)
+        public virtual bool IsMatchCondition(object inputObject)
         {
             object inputValue = Util.GetFieldValue(FieldPath, inputObject);
             switch (Operator)
@@ -32,12 +32,16 @@ namespace ExtiliaEngine
                         return false;
                     }
                     return IsObjectInArray(BaseValue, (Array)inputValue);
-                case "=":
+                case "==":
                     return BaseValue.Equals(inputValue);
                 case "!=":
                     return !BaseValue.Equals(inputValue);
                 default:
-                    if (inputValue is double)
+                    if (inputValue is int)
+                    {
+                        return CompareInt((int)inputValue);
+                    }
+                    else if (inputValue is double)
                     {
                         return CompareDouble((double)inputValue);
                     }
@@ -59,6 +63,16 @@ namespace ExtiliaEngine
                 }
             }
             return false;
+        }
+
+        private bool CompareInt(int value)
+        {
+            if (!(BaseValue is int))
+            {
+                return false;
+            }
+            double baseInt= (int)BaseValue;
+            return Convert.ToBoolean(new DataTable().Compute(baseInt + Operator + value, "false"));
         }
 
         private bool CompareDouble(double value)

@@ -13,7 +13,7 @@
             ObjectFieldPath = objectFieldPath;
         }
 
-        public new bool IsMatchCondition(object inputObject)
+        public override bool IsMatchCondition(object inputObject)
         {
             BaseValue = Util.GetFieldValue(ObjectFieldPath, BaseObject);
             return base.IsMatchCondition(inputObject);

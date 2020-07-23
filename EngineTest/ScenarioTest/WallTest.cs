@@ -32,11 +32,11 @@ namespace EngineTest.ScenarioTest.WallTest
             Effect damageEffect = new Effect(
                 new string[] { "Damage", "Hp" },
                 new Coordinate(1, 1),
-                20.0
+                -20.0
                 );
             double initialValue = (double)WallHpInstance.Value;
             WallHpInstance.OnEffect(damageEffect);
-            Assert.AreEqual(initialValue, (double)WallHpInstance.Value);
+            Assert.AreEqual(initialValue, (double)WallHpInstance.Value - (double)damageEffect.Value);
         }
     }
 }

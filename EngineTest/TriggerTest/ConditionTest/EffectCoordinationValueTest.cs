@@ -15,7 +15,7 @@ namespace EngineTest.TriggerTest.ConditionTest
         [Test]
         public void EqualTest()
         {
-            Condition condition = new Condition("Value", "=", EffectWithCoordinateValue.Value);
+            Condition condition = new Condition("Value", "==", EffectWithCoordinateValue.Value);
             Assert.IsTrue(condition.IsMatchCondition(EffectWithCoordinateValue));
         }
 

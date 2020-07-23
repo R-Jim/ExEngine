@@ -1,21 +1,35 @@
 ﻿namespace ExtiliaEngine
 {
-    public class BindedObjectCondition : ObjectCondition
+    public class BindedObjectCondition : Condition
     {
         public object ValueObject { get; }
+        public object BaseObject { get; }
+        public string ObjectFieldPath { get; }
 
         public BindedObjectCondition(object valueObject, string fieldPath, string conditionOperator,
-            object baseObject, string objectFieldPath)
-            : base(fieldPath, conditionOperator, baseObject, objectFieldPath)
+        object baseValue)
+            : base(fieldPath, conditionOperator, baseValue)
         {
             ValueObject = valueObject;
         }
 
-        public new bool IsMatchCondition(object inputObject)
+        public BindedObjectCondition(object valueObject, string fieldPath, string conditionOperator,
+            object baseObject, string objectFieldPath)
+            : base(fieldPath, conditionOperator, null)
         {
-            BaseValue = Util.GetFieldValue(ObjectFieldPath, BaseObject);
-            object fieldValue = Util.GetFieldValue(FieldPath, ValueObject);
-            return base.IsMatchCondition(fieldValue);
+            ValueObject = valueObject;
+            BaseObject = baseObject;
+            ObjectFieldPath = objectFieldPath;
+        }
+
+        public override bool IsMatchCondition(object inputObject)
+        {
+            if (ObjectFieldPath != null && BaseObject != null)
+            {
+                BaseValue = Util.GetFieldValue(ObjectFieldPath, BaseObject);
+
+            }
+            return base.IsMatchCondition(ValueObject);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace EngineTest.ScenarioTest.MonitorTest
             MonitorInstance = new Instance("MONITOR", new string[] { "MONITOR" },
             new DynamicValueFactory("Value", new List<Instance>(), "Add"),
             new Trigger(new List<Condition> {
-                new Condition("Types", "=", AddInstanceTypes)
+                new Condition("Types", "==", AddInstanceTypes)
             }, null)); ;
         }
 
