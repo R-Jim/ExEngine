@@ -7,7 +7,8 @@
         private DynamicValueFactory ValueFactory;
         public object Value { get { return ValueFactory.GetValue(); } }
 
-        private Trigger Trigger { get; }
+        private Trigger TriggerEffect;
+        public Trigger TriggerRemoval;
 
         public Instance(string id, string[] tags,
             DynamicValueFactory valueFactory, Trigger trigger
@@ -16,19 +17,19 @@
             Id = id;
             Tags = tags;
             ValueFactory = valueFactory;
-            Trigger = trigger;
+            TriggerEffect = trigger;
         }
 
         public Effect OnEffect(Effect effect)
         {
-            if (Trigger.IsTriggered(effect))
+            if (TriggerEffect.IsTriggered(effect))
             {
                 Effect targetedEffect = effect.NewEffectWithTarget(this);
                 if (ValueFactory != null)
                 {
                     ValueFactory.GetValue(targetedEffect);
                 }
-                return Trigger.GetEffect(targetedEffect);
+                return TriggerEffect.GetEffect(targetedEffect);
             }
             return null;
         }

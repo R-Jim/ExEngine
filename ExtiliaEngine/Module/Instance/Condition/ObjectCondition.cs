@@ -13,10 +13,10 @@
             ObjectFieldPath = objectFieldPath;
         }
 
-        public new bool IsMatchCondition(Effect effect)
+        public new bool IsMatchCondition(object inputObject)
         {
             BaseValue = Util.GetFieldValue(ObjectFieldPath, BaseObject);
-            return base.IsMatchCondition(effect);
+            return base.IsMatchCondition(inputObject);
         }
     }
 }

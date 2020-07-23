@@ -6,7 +6,7 @@ public class Weapon
     public static Instance Get(string id, double baseValue, Instance coordinateInstance)
     {
         DynamicValueFactory valueFactory = new DynamicValueFactory(null, baseValue, null);
-        Condition typeCondition = new Condition("Types", "in", "Attact");
+        Condition typeCondition = new Condition("Types", "in", "Attack");
         Condition idCondition = new Condition("Types", "in", id);
 
         Trigger trigger = new Trigger(

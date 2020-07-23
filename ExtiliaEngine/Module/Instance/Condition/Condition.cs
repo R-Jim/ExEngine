@@ -15,9 +15,9 @@ namespace ExtiliaEngine
             BaseValue = baseValue;
         }
 
-        public bool IsMatchCondition(Effect effect)
+        public bool IsMatchCondition(object inputObject)
         {
-            object effectValue = Util.GetFieldValue(FieldPath, effect);
+            object inputValue = Util.GetFieldValue(FieldPath, inputObject);
             switch (Operator)
             {
                 case "has":
@@ -25,25 +25,25 @@ namespace ExtiliaEngine
                     {
                         return false;
                     }
-                    return IsObjectInArray(effectValue, (Array)BaseValue);
+                    return IsObjectInArray(inputValue, (Array)BaseValue);
                 case "in":
-                    if (!(effectValue is Array))
+                    if (!(inputValue is Array))
                     {
                         return false;
                     }
-                    return IsObjectInArray(BaseValue, (Array)effectValue);
+                    return IsObjectInArray(BaseValue, (Array)inputValue);
                 case "=":
-                    return BaseValue.Equals(effectValue);
+                    return BaseValue.Equals(inputValue);
                 case "!=":
-                    return !BaseValue.Equals(effectValue);
+                    return !BaseValue.Equals(inputValue);
                 default:
-                    if (effectValue is double)
+                    if (inputValue is double)
                     {
-                        return CompareDouble((double)effectValue);
+                        return CompareDouble((double)inputValue);
                     }
-                    else if (effectValue is Coordinate)
+                    else if (inputValue is Coordinate)
                     {
-                        return CompareCoordinate((Coordinate)effectValue);
+                        return CompareCoordinate((Coordinate)inputValue);
                     }
                     return false;
             }

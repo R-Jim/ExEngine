@@ -23,8 +23,8 @@ namespace ExtiliaEngine
 
         public Effect GetEffect(Effect effect)
         {
-            return new Effect(Types, (Coordinate)CoordinateFactory.GetValue(effect),
-                ValueFactory.GetValue(effect), (Instance)SourceFactory.GetValue(effect));
+            return new Effect(Types, (Coordinate)CoordinateFactory?.GetValue(effect),
+                ValueFactory?.GetValue(effect), (Instance)SourceFactory?.GetValue(effect));
         }
     }
 }

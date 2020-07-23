@@ -5,7 +5,7 @@ public class Lock
 {
     public static Instance Get(string id, string instanceType)
     {
-        DynamicValueFactory valueFactory = new DynamicValueFactory("Value", false, "=");
+        DynamicValueFactory valueFactory = new DynamicValueFactory("Value", 0, "+");
         Condition typeCondition = new Condition("Types", "in", "Lock");
         Condition instanceTypeCondition = new Condition("Types", "in", instanceType);
         Trigger trigger = new Trigger(

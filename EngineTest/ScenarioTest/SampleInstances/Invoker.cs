@@ -36,7 +36,7 @@ public class Invoker
 
     private Instance GetCoordinateInstance()
     {
-        return CoordinateInstance.Get(Id, Coordinate);
+        return CoordinateInstance.Get(Id, Coordinate, null);
     }
 
     private Instance GetHpInstance(Instance CoordinateInstance)

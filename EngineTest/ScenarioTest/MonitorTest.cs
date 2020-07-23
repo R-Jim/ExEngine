@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using ExtiliaEngine;
 
-namespace EngineTest.ScenarioTest.WallTest
+namespace EngineTest.ScenarioTest.MonitorTest
 {
     class MonitorTest
     {
