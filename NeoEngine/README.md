@@ -6,3 +6,8 @@
 - Hex grid map
 - Skills system
 - HUD system
+
+## Progress
+
+[] Setting up project
+[] Build levels and basic entities 
