@@ -9,5 +9,5 @@
 
 ## Progress
 
-[] Setting up project
-[] Build levels and basic entities 
+- [ ] Setting up project
+- [ ] Build levels and basic entities 
