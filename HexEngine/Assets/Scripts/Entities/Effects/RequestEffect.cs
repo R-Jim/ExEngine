@@ -11,7 +11,7 @@ public class RequestEffect : Effect
         RequireValue = requireValue;
     }
 
-    public new void Activate(Model unusedModel)
+    public override void Activate(Model unusedModel)
     {
         Storage storage = (Storage)TargetList[0];
         if (RequestTrigger.IsTriggered(storage, RequireValue))
@@ -20,9 +20,14 @@ public class RequestEffect : Effect
         }
     }
 
-    public new void Execute(Queue<Effect> pendingEffectQueue)
+    public override void Execute(Queue<Effect> pendingEffectQueue)
     {
         pendingEffectQueue.Enqueue((Effect)Value);
         Status = EffectStatus.Finished;
+    }
+
+    public override Effect Clone()
+    {
+        return new RequestEffect(Source, (Storage)TargetList[0], RequireValue, Coordinate, (Effect)Value);
     }
 }

@@ -1,4 +1,6 @@
-﻿public class SpawnEffect : Effect
+﻿using System.Collections.Generic;
+
+public class SpawnEffect : Effect
 {
     public const string TYPE = "spawn";
 
@@ -6,5 +8,18 @@
     {
     }
 
-    //TODO: implement rest of Spawn activate, execute functions
+    public override void Activate(Model target)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override void Execute(Queue<Effect> pendingEffectQueue)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public override Effect Clone()
+    {
+        throw new System.NotImplementedException();
+    }
 }

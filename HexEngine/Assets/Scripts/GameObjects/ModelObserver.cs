@@ -6,7 +6,6 @@ public class ModelObserver : MonoBehaviour
     public static List<Model> ModelList = new List<Model>();
     void Start()
     {
-        
     }
 
     // Update is called once per frame

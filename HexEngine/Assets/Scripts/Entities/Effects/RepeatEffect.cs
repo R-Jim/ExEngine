@@ -1,38 +1,55 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class RepeatEffect : Effect
 {
     public const string TYPE = "repeat";
+    public IRepeater Repeater { get; }
 
     RepeaterProperties TickProperties { get; }
 
-    public RepeatEffect(Model source, Model repeater, RepeaterProperties repeaterProperties, Effect repeatEffect) : base(source, null, TYPE, repeatEffect)
+    public RepeatEffect(Model source, IRepeater repeater, RepeaterProperties repeaterProperties, Effect repeatEffect) : base(source, null, TYPE, repeatEffect)
     {
         TickProperties = repeaterProperties;
-        TargetList.Add(repeater);
+        Repeater = repeater;
     }
 
-    new public void Activate(Model unuseModel)
+    public override void Activate(Model unuseModel)
     {
-        IRepeater repeater = (IRepeater)TargetList[0];
-        if (RepeatTrigger.IsTriggered(TickProperties, repeater))
+        if (RepeatTrigger.IsTriggered(Repeater))
         {
             Status = EffectStatus.Activated;
         }
     }
 
-    new public void Execute(Queue<Effect> pendingEffectQueue)
+    public override void Execute(Queue<Effect> pendingEffectQueue)
     {
-        IRepeater repeater = (IRepeater) TargetList[0];
-        pendingEffectQueue.Enqueue((Effect)Value);
-        if (!repeater.CanRepeat())
+        int currentTick = Systemproperties.SystemProfile.SystemTick;
+        if (TickProperties.IsMatchTickRate(currentTick))
         {
-            Status = EffectStatus.Finished;
+            if (Repeater.Repeat())
+            {
+                pendingEffectQueue.Enqueue(((Effect)Value).Clone());
+            }
+            else
+            {
+                Status = EffectStatus.Finished;
+                return;
+            }
         }
+        TickProperties.LastTick = currentTick;
+        Status = EffectStatus.Pending;
+        pendingEffectQueue.Enqueue(this);
+    }
+
+    public override Effect Clone()
+    {
+        return new RepeatEffect(Source, Repeater, new RepeaterProperties(TickProperties), (Effect) Value);
     }
 
     public class RepeaterProperties
     {
+        public int LastTick = -1;
         public int BaseTick { get; }
         public int Step { get; }
         public int OffSet { get; }
@@ -47,8 +64,19 @@ public class RepeatEffect : Effect
             OffSet = offSet;
         }
 
+        public RepeaterProperties(RepeaterProperties repeaterProperties)
+        {
+            BaseTick = repeaterProperties.BaseTick;
+            Step = repeaterProperties.Step;
+            OffSet = repeaterProperties.OffSet;
+        }
+
         public bool IsMatchTickRate(int CurrentTick)
         {
+            if(CurrentTick == LastTick)
+            {
+                return false;
+            }
             int startTick = CurrentTick - OffSet - BaseTick;
             if (startTick < 0)
             {

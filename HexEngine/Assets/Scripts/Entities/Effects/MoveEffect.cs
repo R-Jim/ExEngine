@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class MoveEffect : Effect
 {
@@ -8,7 +9,7 @@ public class MoveEffect : Effect
     {
     }
 
-    new public void Activate(Model target)
+    public override void Activate(Model target)
     {
         if (MoveTrigger.IsTriggered(target, this))
         {
@@ -17,13 +18,19 @@ public class MoveEffect : Effect
         }
     }
 
-    new public void Execute(Queue<Effect> pendingEffectQueue)
+    public override void Execute(Queue<Effect> pendingEffectQueue)
     {
         foreach (Model model in TargetList)
         {
             Coordinate moveCoordinateValue = (Coordinate)Value;
             model.CommonPropertySet.Coordinate.Add(moveCoordinateValue);
+            Debug.Log(model.CommonPropertySet.Coordinate.ToString());
         }
         Status = EffectStatus.Finished;
+    }
+
+    public override Effect Clone()
+    {
+        return new MoveEffect(Source, Coordinate, (Coordinate)Value);
     }
 }

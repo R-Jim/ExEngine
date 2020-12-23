@@ -18,21 +18,16 @@ public abstract class Effect
         TargetList = new List<Model>();
     }
 
-    public void Activate(Model target)
-    {
-        Status = EffectStatus.Activated;
-    }
+    public abstract void Activate(Model target);
 
-    public void Execute(Queue<Effect> pendingEffectQueue)
-    {
-
-    }
+    public abstract void Execute(Queue<Effect> pendingEffectQueue);
 
     public enum EffectStatus
     {
         Pending,
         Activated,
-        Executing,
         Finished,
     }
+
+    public abstract Effect Clone();
 }

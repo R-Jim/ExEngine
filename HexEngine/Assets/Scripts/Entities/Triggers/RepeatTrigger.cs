@@ -1,7 +1,7 @@
 ﻿public class RepeatTrigger
 {
-    public static bool IsTriggered(RepeatEffect.RepeaterProperties repeaterProperties, IRepeater repeater)
+    public static bool IsTriggered(IRepeater repeater)
     {
-        return repeaterProperties.IsMatchTickRate(0) && repeater.CanRepeat();
+        return repeater.CanRepeat();
     }
 }

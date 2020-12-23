@@ -11,4 +11,9 @@
     {
         return !MomentumStorage.IsEmpty();
     }
+
+    public bool Repeat()
+    {
+        return MomentumStorage.Get(1) == 1;
+    }
 }

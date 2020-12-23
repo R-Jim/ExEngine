@@ -8,7 +8,7 @@
 
     }
 
-    public Storage(int max, int current)
+    public Storage(int max, int current) : base(null)
     {
         Max = max;
         Current = current;
