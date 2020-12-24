@@ -1,0 +1,35 @@
+Models <=> Assigned game object
+-------------------------------------------------
+*Assigned game object:
+1) Change animation (state machine) based on the Model properties.
+2) Create/Spawn move animation
+3) Create/Spawn status effect animation
+-------------------------------------------------
+Scenario 1: Beam cannon
+1)
+- Charging => 			|
+- Firing =>				} =>	State machine
+- After firing => 		|
+2)
+-X not required
+3)
+- Beam gate effect //Ex: (O) Based on the firing direction of the beam
+
+
+Scenario 2: Beam projectile
+1)
+-X not required
+2)
+- Beam trails
+3)
+- Hit other model
+-------------------------------------------------
+*State machine
+Trees,
+
+	statusA
+	/  |  \
+   B   C   D
+   ----> Piority
+   
+- Status decided by the implementation of the state machine based on the observer of model properties

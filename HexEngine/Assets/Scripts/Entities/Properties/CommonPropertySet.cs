@@ -3,6 +3,7 @@
     public int HpMax { get; }
     public int HpCurrent { get; }
     public Coordinate Coordinate { get; }
+	public string GroupId;
 
     public CommonPropertySet(int hpMax, Coordinate coordinate) : this(hpMax, hpMax, coordinate)
     {

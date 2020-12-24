@@ -1,0 +1,14 @@
+*Hit Effect
+"Hit effect will alter the Model(s)? property based on the Coordinate"
+---------------End------------------
+*After Effect
+"After the stored(Value) effect is executed(finished) the after effect will be append to the pending Effect Queue
+---------------End------------------
+*Group owner ID for models
+- Total HP for all models with same group ID
+- Divide Damage for all models with same group ID
+
+boolean bind() => true -> binded, false -> not binded
+bind sockets:
+- "for mainframe to bind other models"
+- Introducing new property: socket type "Model can only be binded with the mainframe if the sock type is available"
