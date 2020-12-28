@@ -1,0 +1,31 @@
+*Chain effect
+
+Head effect
+
+Tail effect
+
++ continueIfHeadFailed
+
+--------------------------------------
+
+Chain (move, damage effect) for explosive projective
+
+move effect finished ->  damage effect -> pendingQueue
+
+--------------------------------------
+
+* Animation Value for Effect
+- AnimationTagSets: [AnimationTagSet]
+- AnimationTagSet:
++ AnimationTags [Tag1: Value, Tag2: Value]
++ Tick
+
+- GetAnimationProperty(FinishedEffect) { return AnimationProperty }
+
++ AnimationTag:
+++ Tag
+++ Value
+++ DefaultValue
+
+- After the new value is set, SystemProfile will add a Animation/Tick to run after each tick. If the tick value is run out, 
+default value will be set to the animation tag

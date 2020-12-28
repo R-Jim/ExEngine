@@ -33,3 +33,8 @@ Trees,
    ----> Piority
    
 - Status decided by the implementation of the state machine based on the observer of model properties
+
+- For statuses that are changed by performing/effected by a certain effect: 
+
+ Finished Effect -> animation effect
+

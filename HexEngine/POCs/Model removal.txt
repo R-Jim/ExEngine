@@ -1,0 +1,11 @@
+* Model removal
++ afterRemovalEffect<Effect>
+
+---------------------------------
+* Model observer:
+update(): loop model list to check if a model is ready for removal if afterRemovalEffect is present,
+Add the effect to the pendingEffectQueue.
+
+- If a model is ready for removal it only be removoed from the list and "must" not removed by the
+garbage collector
+
