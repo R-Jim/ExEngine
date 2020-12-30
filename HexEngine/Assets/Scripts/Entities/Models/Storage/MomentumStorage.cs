@@ -2,15 +2,23 @@
 {
     public Axis AxisMomentum;
 
-    public MomentumStorage(Axis axis, int currentMomentum) : base(100, currentMomentum)
+    public MomentumStorage(Axis axis, int currentMomentum) : this(axis, currentMomentum, null)
+    {
+    }
+
+
+    public MomentumStorage(Axis axis, int currentMomentum, CommonPropertySet commonPropertySet) : base(100, currentMomentum, commonPropertySet)
     {
         AxisMomentum = axis;
     }
 
     public enum Axis
     {
-        X,
-        Y,
-        Z
+        XY,
+        YX,
+        XZ,
+        ZX,
+        YZ,
+        ZY,
     }
 }

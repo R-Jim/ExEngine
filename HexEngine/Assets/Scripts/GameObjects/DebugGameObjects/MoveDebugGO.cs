@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 
-public class DebugGO : MonoBehaviour
+public class MoveDebugGO : MonoBehaviour
 {
     SystemProfile SystemProfile = new SystemProfile();
     EngineFramework EngineFramework;
+    public MomentumStorage.Axis AxisPreset;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         SystemProfile.SystemTick = 0;
         Systemproperties.SystemProfile = SystemProfile;
-        EngineFramework = new EngineFramework();
+        EngineFramework = new EngineFramework(AxisPreset);
         ModelObserver.ModelList.Add(EngineFramework.AnchorModel);
     }
 
@@ -23,7 +24,7 @@ public class DebugGO : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Space))
         {
-            EngineFramework.Ignite();
+            EngineFramework.Activate(PendingEffectObserver.PendingEffectQueue);
             Debug.Log("Ignite, " + PendingEffectObserver.PendingEffectQueue.Count);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))

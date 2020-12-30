@@ -24,6 +24,10 @@ public class PendingEffectObserver : MonoBehaviour
             Effect pendingEfect = PendingEffectQueue.Dequeue();
             foreach (Model model in ModelList)
             {
+                if(pendingEfect.Status == Effect.EffectStatus.Activated)
+                {
+                    continue;
+                }
                 pendingEfect.Activate(model);
             }
             if (pendingEfect.Status == Effect.EffectStatus.Activated)

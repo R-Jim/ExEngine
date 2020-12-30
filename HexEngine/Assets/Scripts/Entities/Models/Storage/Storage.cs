@@ -8,7 +8,12 @@
 
     }
 
-    public Storage(int max, int current) : base(null)
+    public Storage(int max, int current) : this(max, current, null)
+    {
+
+    }
+
+    public Storage(int max, int current, CommonPropertySet commonPropertySet) : base(commonPropertySet)
     {
         Max = max;
         Current = current;

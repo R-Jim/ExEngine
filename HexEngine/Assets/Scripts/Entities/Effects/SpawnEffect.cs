@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class SpawnEffect : Effect
 {
@@ -10,12 +11,13 @@ public class SpawnEffect : Effect
 
     public override void Activate(Model target)
     {
-        throw new System.NotImplementedException();
+        Status = EffectStatus.Activated;
     }
 
     public override void Execute(Queue<Effect> pendingEffectQueue)
     {
-        throw new System.NotImplementedException();
+        Status = EffectStatus.Finished;
+        ModelObserver.SpawnNewModel((Model)Value);
     }
 
     public override Effect Clone()

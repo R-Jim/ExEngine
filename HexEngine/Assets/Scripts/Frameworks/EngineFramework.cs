@@ -1,24 +1,35 @@
-﻿public class EngineFramework : Framework
-{
-    public Storage Storage;
-    public Model AnchorModel;
+﻿using System.Collections.Generic;
 
-    public EngineFramework()
+public class EngineFramework : IFramework
+{
+    public Storage Storage { get; }
+    public Model AnchorModel { get; }
+    public Coordinate MoveCoordinate { get; }
+    public MomentumStorage.Axis Axis { get; }
+
+    public EngineFramework(MomentumStorage.Axis axis)
     {
         CommonPropertySet commonPropertySet = new CommonPropertySet(100, new Coordinate(0, 0, 0));
         AnchorModel = new Model(commonPropertySet);
+        MoveCoordinate = CoordinateUtil.GetCoordinate(axis);
+        Axis = axis;
     }
 
-    public void Ignite()
+    public void Init(Queue<Effect> pendingEffectQueue)
     {
-        MomentumStorage momentumStorage = new MomentumStorage(MomentumStorage.Axis.X, 5);
-        MomentumRepeater momentumRepeater = new MomentumRepeater(momentumStorage);
-        RepeatEffect.RepeaterProperties repeaterProperties = new RepeatEffect.RepeaterProperties(1, 1, 0);
 
-        MoveEffect moveEffect = new MoveEffect(null, AnchorModel.CommonPropertySet.Coordinate, new Coordinate(1, 0, 0));
+    }
+
+    public void Activate(Queue<Effect> pendingEffectQueue)
+    {
+        MomentumStorage momentumStorage = new MomentumStorage(Axis, 5);
+        MomentumRepeater momentumRepeater = new MomentumRepeater(momentumStorage);
+        RepeatEffect.RepeaterProperties repeaterProperties = new RepeatEffect.RepeaterProperties(1, 1, 1);
+
+        MoveEffect moveEffect = new MoveEffect(null, AnchorModel.CommonPropertySet.Coordinate, MoveCoordinate);
 
         RepeatEffect repeatEffect = new RepeatEffect(null, momentumRepeater, repeaterProperties, moveEffect);
 
-        PendingEffectObserver.PendingEffectQueue.Enqueue(repeatEffect);
+        pendingEffectQueue.Enqueue(repeatEffect);
     }
 }

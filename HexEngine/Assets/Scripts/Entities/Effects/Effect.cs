@@ -16,6 +16,7 @@ public abstract class Effect
         Type = type;
         Value = value;
         TargetList = new List<Model>();
+        Status = EffectStatus.Pending;
     }
 
     public abstract void Activate(Model target);
