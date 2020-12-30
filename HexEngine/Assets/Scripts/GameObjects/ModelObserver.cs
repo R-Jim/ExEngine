@@ -18,7 +18,12 @@ public class ModelObserver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        RemoveModel();
+    }
+
+    private void RemoveModel()
+    {
+        ModelList.RemoveAll(Model => Model.IsRemovable());
     }
 
     public static void SpawnNewModel(Model model)

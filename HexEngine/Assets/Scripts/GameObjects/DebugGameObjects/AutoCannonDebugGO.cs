@@ -26,14 +26,10 @@ public class AutoCannonDebugGO : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log("Ammo, " + AutoCannon.Current);
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             PendingEffectObserver.PendingEffectQueue.Enqueue(GetChainSpawnProjectileEffect());
-            Debug.Log("Bang, " + PendingEffectObserver.PendingEffectQueue.Count);
+            Debug.Log("Bang, " + PendingEffectObserver.PendingEffectQueue.Count + " Ammo, " + (AutoCannon.Current - 1));
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -62,9 +58,13 @@ public class AutoCannonDebugGO : MonoBehaviour
 
     private Effect GetChainSpawnProjectileEffect()
     {
-        Model projectile = GetProjectileModel();
+        Projectile projectile = GetProjectileModel();
 
-        ChainEffect chainEffect = new ChainEffect(AutoCannon, GetSpawnProjectileEffect(projectile), GetProjectTileRepeatMoveEffect(projectile), Effect.EffectStatus.Activated);
+        ChainEffect chainEffect = new ChainEffect(
+            AutoCannon,
+            GetSpawnProjectileEffect(projectile),
+            GetProjectTileRepeatMoveEffect(projectile),
+            Effect.EffectStatus.Activated);
         return chainEffect;
     }
 
@@ -75,10 +75,9 @@ public class AutoCannonDebugGO : MonoBehaviour
         return requestEffect;
     }
 
-    private Effect GetProjectTileRepeatMoveEffect(Model projectile)
+    private Effect GetProjectTileRepeatMoveEffect(Projectile projectile)
     {
-        MomentumStorage momentumStorage = new MomentumStorage(FiringAxisPreset, 5);
-        MomentumRepeater momentumRepeater = new MomentumRepeater(momentumStorage);
+        MomentumRepeater momentumRepeater = new MomentumRepeater(projectile.MomentumStorage);
         RepeatEffect.RepeaterProperties repeaterProperties = new RepeatEffect.RepeaterProperties(1, 1, 1);
         MoveEffect moveEffect = new MoveEffect(null, projectile.CommonPropertySet.Coordinate, CoordinateUtil.GetCoordinate(FiringAxisPreset));
 
@@ -86,8 +85,10 @@ public class AutoCannonDebugGO : MonoBehaviour
         return repeatEffect;
     }
 
-    private Model GetProjectileModel()
+    private Projectile GetProjectileModel()
     {
-        return new Model(new CommonPropertySet(10, CoordinateUtil.GetCoordinate(FiringAxisPreset)));
+        MomentumStorage momentumStorage = new MomentumStorage(FiringAxisPreset, 5, null);
+        Projectile projectile = new Projectile(momentumStorage, new CommonPropertySet(10, new Coordinate(0, 0, 0)));
+        return projectile;
     }
 }

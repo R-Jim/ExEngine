@@ -6,4 +6,8 @@
     {
         CommonPropertySet = commonPropertySet;
     }
+
+    public virtual bool IsRemovable() {
+        return CommonPropertySet.HpCurrent == 0;
+    }
 }

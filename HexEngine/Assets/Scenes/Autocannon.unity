@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c88a777b3841604d9de3060f30923d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FiringAxisPreset: 1
+  FiringAxisPreset: 3
   Ammo: 5
 --- !u!4 &1225821240
 Transform:

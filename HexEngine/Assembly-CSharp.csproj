@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Entities\Effects\RequestEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\SpawnEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Model.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Projectile.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Storage\MomentumStorage.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Storage\Storage.cs" />
     <Compile Include="Assets\Scripts\Entities\Properties\CommonPropertySet.cs" />
