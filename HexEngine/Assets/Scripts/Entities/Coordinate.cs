@@ -35,4 +35,14 @@
     {
         return "X:" + X + ", Y:" + Y + ", Z:" + Z;
     }
+
+    public new bool Equals(object obj)
+    {
+        if (obj.GetType() != this.GetType())
+        {
+            return false;
+        }
+        Coordinate coordinate = (Coordinate) obj;
+        return coordinate.X == X && coordinate.Y == Y && coordinate.Z == Z;
+    }
 }

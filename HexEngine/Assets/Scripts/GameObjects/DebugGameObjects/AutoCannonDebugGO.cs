@@ -79,10 +79,15 @@ public class AutoCannonDebugGO : MonoBehaviour
     {
         MomentumRepeater momentumRepeater = new MomentumRepeater(projectile.MomentumStorage);
         RepeatEffect.RepeaterProperties repeaterProperties = new RepeatEffect.RepeaterProperties(1, 1, 1);
-        MoveEffect moveEffect = new MoveEffect(null, projectile.CommonPropertySet.Coordinate, CoordinateUtil.GetCoordinate(FiringAxisPreset));
 
-        RepeatEffect repeatEffect = new RepeatEffect(null, momentumRepeater, repeaterProperties, moveEffect);
-        return repeatEffect;
+        MoveEffect moveEffect = new MoveEffect(projectile, projectile, CoordinateUtil.GetCoordinate(FiringAxisPreset));
+        CollisionEffect collisionEffect = new CollisionEffect(projectile, projectile.CommonPropertySet.Coordinate);
+
+        ChainEffect chainEffect = new ChainEffect(projectile, collisionEffect, moveEffect.Clone(), Effect.EffectStatus.Pending);
+
+        RepeatEffect repeatEffect = new RepeatEffect(projectile, momentumRepeater, repeaterProperties, chainEffect);
+
+        return new ChainEffect(projectile, moveEffect, repeatEffect, Effect.EffectStatus.Activated);
     }
 
     private Projectile GetProjectileModel()

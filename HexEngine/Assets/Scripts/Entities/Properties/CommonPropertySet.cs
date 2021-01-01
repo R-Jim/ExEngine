@@ -1,7 +1,7 @@
 ﻿public class CommonPropertySet
 {
     public int HpMax { get; }
-    public int HpCurrent { get; }
+    public int HpCurrent;
     public Coordinate Coordinate { get; }
 	public string GroupId;
 

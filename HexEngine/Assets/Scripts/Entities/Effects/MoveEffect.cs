@@ -5,6 +5,12 @@ public class MoveEffect : Effect
 {
     public const string TYPE = "move";
 
+    public MoveEffect(Model source, Model target, Coordinate coordinateValue) : this(source, target.CommonPropertySet.Coordinate, coordinateValue)
+    {
+        TargetList.Add(target);
+        Status = EffectStatus.Activated;
+    }
+
     public MoveEffect(Model source, Coordinate coordinate, Coordinate coordinateValue) : base(source, coordinate, TYPE, coordinateValue)
     {
     }
@@ -24,13 +30,17 @@ public class MoveEffect : Effect
         {
             Coordinate moveCoordinateValue = (Coordinate)Value;
             model.CommonPropertySet.Coordinate.Add(moveCoordinateValue);
-            Debug.Log(model.CommonPropertySet.Coordinate.ToString());
+            Debug.Log(model.GetType() + ", " + model.CommonPropertySet.Coordinate.ToString());
         }
         Status = EffectStatus.Finished;
     }
 
     public override Effect Clone()
     {
+        if (Status == EffectStatus.Activated)
+        {
+            return new MoveEffect(Source, TargetList[0], (Coordinate)Value);
+        }
         return new MoveEffect(Source, Coordinate, (Coordinate)Value);
     }
 }

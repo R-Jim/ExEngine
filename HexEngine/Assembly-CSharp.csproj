@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Entities\Coordinate.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\ChainEffect.cs" />
+    <Compile Include="Assets\Scripts\Entities\Effects\CollisionEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\Effect.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\MoveEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\RepeatEffect.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Assets\Scripts\Entities\Repeaters\IRepeater.cs" />
     <Compile Include="Assets\Scripts\Entities\Repeaters\MomentumRepeater.cs" />
     <Compile Include="Assets\Scripts\Entities\SystemProfile.cs" />
+    <Compile Include="Assets\Scripts\Entities\Triggers\CollisionTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\MoveTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\RepeatTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\RequestTrigger.cs" />

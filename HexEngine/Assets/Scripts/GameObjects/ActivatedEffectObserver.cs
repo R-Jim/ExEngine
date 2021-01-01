@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Unity.Jobs;
 using UnityEngine;
 
 public class ActivatedEffectObserver : MonoBehaviour
@@ -19,8 +18,6 @@ public class ActivatedEffectObserver : MonoBehaviour
         if (ActivatedEffectQueue.Count > 0)
         {
             Effect activatedEffect = ActivatedEffectQueue.Dequeue();
-            //var effectExecutionJob = new EffectExecutionJob() { Effect = activatedEffect };
-            //effectExecutionJob.Schedule(ActivatedEffectQueue.Count, 64);
             activatedEffect.Execute(PendingEffectObserver.PendingEffectQueue);
         }
     }

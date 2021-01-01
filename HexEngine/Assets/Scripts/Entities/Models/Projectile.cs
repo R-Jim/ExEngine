@@ -10,6 +10,6 @@
 
     public override bool IsRemovable()
     {
-        return MomentumStorage.IsEmpty();
+        return CommonPropertySet.HpCurrent == 0 || MomentumStorage.IsEmpty();
     }
 }

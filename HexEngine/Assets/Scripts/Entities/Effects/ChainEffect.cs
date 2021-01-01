@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class ChainEffect : Effect
 {
@@ -17,15 +18,19 @@ public class ChainEffect : Effect
 
     public override void Activate(Model target)
     {
-        HeadEffect.Activate(target);
+        if (HeadEffect.Status == EffectStatus.Pending)
+        {
+            HeadEffect.Activate(target);
+        }
         Status = EffectStatus.Activated;
     }
 
     public override void Execute(Queue<Effect> pendingEffectQueue)
     {
         pendingEffectQueue.Enqueue(HeadEffect);
-        if(HeadEffect.Status == ChainIfHeadStatus)
+        if (HeadEffect.Status == ChainIfHeadStatus)
         {
+            Debug.Log("Chain, " + HeadEffect.GetType() + "/" + TailEffect.GetType());
             pendingEffectQueue.Enqueue(TailEffect);
         }
         Status = EffectStatus.Finished;

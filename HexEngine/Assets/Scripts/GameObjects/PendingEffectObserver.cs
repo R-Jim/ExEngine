@@ -22,13 +22,12 @@ public class PendingEffectObserver : MonoBehaviour
         if (PendingEffectQueue.Count > 0)
         {
             Effect pendingEfect = PendingEffectQueue.Dequeue();
-            foreach (Model model in ModelList)
+            if (pendingEfect.Status == Effect.EffectStatus.Pending)
             {
-                if(pendingEfect.Status == Effect.EffectStatus.Activated)
+                foreach (Model model in ModelList)
                 {
-                    continue;
+                    pendingEfect.Activate(model);
                 }
-                pendingEfect.Activate(model);
             }
             if (pendingEfect.Status == Effect.EffectStatus.Activated)
             {
