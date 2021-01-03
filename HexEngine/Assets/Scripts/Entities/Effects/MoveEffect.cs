@@ -30,7 +30,7 @@ public class MoveEffect : Effect
         {
             Coordinate moveCoordinateValue = (Coordinate)Value;
             model.CommonPropertySet.Coordinate.Add(moveCoordinateValue);
-            Debug.Log(model.GetType() + ", " + model.CommonPropertySet.Coordinate.ToString());
+            Debug.LogWarning(model.GetType() + ", " + model.CommonPropertySet.Coordinate.ToString());
         }
         Status = EffectStatus.Finished;
     }

@@ -24,7 +24,7 @@ public class RepeatEffect : Effect
 
     public override void Execute(Queue<Effect> pendingEffectQueue)
     {
-        int currentTick = Systemproperties.SystemProfile.SystemTick;
+        int currentTick = SystemProperties.SystemProfile.SystemTick;
         if (TickProperties.IsMatchTickRate(currentTick))
         {
             if (Repeater.Repeat())

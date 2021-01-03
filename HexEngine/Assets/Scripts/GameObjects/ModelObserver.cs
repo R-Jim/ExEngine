@@ -4,14 +4,17 @@ using UnityEngine;
 public class ModelObserver : MonoBehaviour
 {
     public static List<Model> ModelList = new List<Model>();
-    public GameObject ProjectilePrefab;
+    public GameObject ProjectileModelPrefab;
+    public GameObject PlaceholderModelPrefab;
     public GameObject ModelLayerGameObject;
-    public static GameObject Prefab;
+    public static GameObject ProjectilePrefab;
+    public static GameObject PlaceholderPrefab;
     public static GameObject ModelLayer;
 
     void Start()
     {
-        Prefab = ProjectilePrefab;
+        ProjectilePrefab = ProjectileModelPrefab;
+        PlaceholderPrefab = PlaceholderModelPrefab;
         ModelLayer = ModelLayerGameObject;
     }
 
@@ -28,10 +31,12 @@ public class ModelObserver : MonoBehaviour
 
     public static void SpawnNewModel(Model model)
     {
+        GameObject prefab = model is Projectile ? ProjectilePrefab : PlaceholderPrefab;
+
         ModelList.Add(model);
-        GameObject projectile = Instantiate(Prefab);
+        GameObject projectile = Instantiate(prefab);
         projectile.transform.parent = ModelLayer.transform;
-        projectile.GetComponent<ModelGameObject>().Model = model;
+        projectile.GetComponent<ModelGameObject>().SetModel(model);
         Debug.Log("Spawned, " + model.CommonPropertySet.Coordinate.ToString());
     }
 }

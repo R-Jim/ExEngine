@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class Systemproperties : MonoBehaviour
+public class SystemProperties : MonoBehaviour
 {
-    public static SystemProfile SystemProfile;
+    public static SystemProfile SystemProfile = new SystemProfile();
 
     void Start()
     {

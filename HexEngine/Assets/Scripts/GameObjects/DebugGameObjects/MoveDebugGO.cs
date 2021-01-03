@@ -10,7 +10,7 @@ public class MoveDebugGO : MonoBehaviour
     void Awake()
     {
         SystemProfile.SystemTick = 0;
-        Systemproperties.SystemProfile = SystemProfile;
+        SystemProperties.SystemProfile = SystemProfile;
         EngineFramework = new EngineFramework(AxisPreset);
         ModelObserver.ModelList.Add(EngineFramework.AnchorModel);
     }

@@ -317,6 +317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FiringAxisPreset: 3
   Ammo: 5
+  ProjectileRange: 5
+  TargetSpacing: 2
 --- !u!4 &1225821240
 Transform:
   m_ObjectHideFlags: 0
@@ -3616,7 +3618,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49bf997fbcd5af84aaa9c50da47b9394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 3749879899826118019, guid: 4372d296cab68574e82da454ad347b2d,
+  ProjectileModelPrefab: {fileID: 3749879899826118019, guid: 4372d296cab68574e82da454ad347b2d,
+    type: 3}
+  PlaceholderModelPrefab: {fileID: 972159410298407701, guid: 47f2daec463191947a3bf0fd0585e09e,
     type: 3}
   ModelLayerGameObject: {fileID: 1828344293}
 --- !u!1 &1639393180
@@ -3630,6 +3634,7 @@ GameObject:
   - component: {fileID: 1639393181}
   - component: {fileID: 1639393184}
   - component: {fileID: 1639393183}
+  - component: {fileID: 1639393185}
   - component: {fileID: 1639393182}
   m_Layer: 0
   m_Name: Auto cannon
@@ -3701,6 +3706,18 @@ MonoBehaviour:
   OffSetX: 0.75
   OffSetY: 0.5
   OffSetZ: -0.5
+--- !u!114 &1639393185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1639393180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a638460044ac04194bf3ca73508c7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1828344293
 GameObject:
   m_ObjectHideFlags: 0

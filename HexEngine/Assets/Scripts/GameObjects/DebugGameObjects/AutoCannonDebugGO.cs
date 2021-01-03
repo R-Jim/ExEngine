@@ -7,13 +7,15 @@ public class AutoCannonDebugGO : MonoBehaviour
     MomentumStorage AutoCannon;
     public MomentumStorage.Axis FiringAxisPreset;
     public int Ammo = 5;
+    public int ProjectileRange = 5;
+    public int TargetSpacing = 2;
     IEnumerator SystemTickCoroutine;
 
     // Start is called before the first frame update
     void Awake()
     {
         SystemProfile.SystemTick = 0;
-        Systemproperties.SystemProfile = SystemProfile;
+        SystemProperties.SystemProfile = SystemProfile;
         AutoCannon = new MomentumStorage(FiringAxisPreset, Ammo, new CommonPropertySet(100, new Coordinate(0, 0, 0)));
         ModelObserver.ModelList.Add(AutoCannon);
     }
@@ -30,6 +32,17 @@ public class AutoCannonDebugGO : MonoBehaviour
         {
             PendingEffectObserver.PendingEffectQueue.Enqueue(GetChainSpawnProjectileEffect());
             Debug.Log("Bang, " + PendingEffectObserver.PendingEffectQueue.Count + " Ammo, " + (AutoCannon.Current - 1));
+        }
+        else if (Input.GetKeyDown(KeyCode.E))
+        {
+            Coordinate destroyableCoordinate = CoordinateUtil.GetCoordinate(FiringAxisPreset, TargetSpacing);
+            PendingEffectObserver.PendingEffectQueue.Enqueue(GetSpawnDetroyableModel(destroyableCoordinate));
+            Debug.Log("Spawn, " + destroyableCoordinate.ToString());
+        }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            AutoCannon.Fill(Ammo);
+            Debug.Log("Reload, " + AutoCannon.Current);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -60,18 +73,16 @@ public class AutoCannonDebugGO : MonoBehaviour
     {
         Projectile projectile = GetProjectileModel();
 
-        ChainEffect chainEffect = new ChainEffect(
-            AutoCannon,
-            GetSpawnProjectileEffect(projectile),
-            GetProjectTileRepeatMoveEffect(projectile),
-            Effect.EffectStatus.Activated);
-        return chainEffect;
+        return GetSpawnProjectileEffect(projectile);
     }
 
-    private Effect GetSpawnProjectileEffect(Model projectile)
+    private Effect GetSpawnProjectileEffect(Projectile projectile)
     {
         SpawnEffect spawnEffect = new SpawnEffect(AutoCannon, new Coordinate(0, 0, 0), projectile);
-        RequestEffect requestEffect = new RequestEffect(AutoCannon, AutoCannon, 1, spawnEffect);
+        ChainEffect chainEffect = new ChainEffect(AutoCannon, spawnEffect, GetProjectTileRepeatMoveEffect(projectile),
+            Effect.EffectStatus.Activated);
+
+        RequestEffect requestEffect = new RequestEffect(AutoCannon, AutoCannon, 1, chainEffect);
         return requestEffect;
     }
 
@@ -92,8 +103,14 @@ public class AutoCannonDebugGO : MonoBehaviour
 
     private Projectile GetProjectileModel()
     {
-        MomentumStorage momentumStorage = new MomentumStorage(FiringAxisPreset, 5, null);
+        MomentumStorage momentumStorage = new MomentumStorage(FiringAxisPreset, ProjectileRange, null);
         Projectile projectile = new Projectile(momentumStorage, new CommonPropertySet(10, new Coordinate(0, 0, 0)));
         return projectile;
+    }
+
+    private SpawnEffect GetSpawnDetroyableModel(Coordinate coordinate)
+    {
+        Model destroyableModel = new Model(new CommonPropertySet(10, coordinate));
+        return new SpawnEffect(null, coordinate, destroyableModel);
     }
 }

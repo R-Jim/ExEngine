@@ -2,7 +2,7 @@
 
 public class ModelGameObject : MonoBehaviour
 {
-    public Model Model;
+    public Model Model { get; private set; }
     public int DebugModelIndex = -1;
 
     // Start is called before the first frame update
@@ -13,7 +13,17 @@ public class ModelGameObject : MonoBehaviour
             return;
         }
         //Get the placeholder model for debug/design
-        Model = ModelObserver.ModelList[DebugModelIndex];
+        SetModel(ModelObserver.ModelList[DebugModelIndex]);
+    }
+
+    public void SetModel(Model model)
+    {
+        Model = model;
+        AnimationGameObject animationGameObject = gameObject.GetComponent<AnimationGameObject>();
+        if (animationGameObject != null)
+        {
+            animationGameObject.Model = model;
+        }
     }
 
     // Update is called once per frame
