@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Entities\Models\Projectile.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Storage\MomentumStorage.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Storage\Storage.cs" />
+    <Compile Include="Assets\Scripts\Entities\MountPoint.cs" />
     <Compile Include="Assets\Scripts\Entities\Properties\CommonPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Repeaters\IRepeater.cs" />
     <Compile Include="Assets\Scripts\Entities\Repeaters\MomentumRepeater.cs" />
