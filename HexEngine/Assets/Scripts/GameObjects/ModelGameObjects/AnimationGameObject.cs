@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AnimationGameObject : MonoBehaviour
 {
-    private AnimationSet AnimationSet = new AnimationSet(GetDefaultAnimationSet());
+    private readonly AnimationSet AnimationSet = new AnimationSet(GetDefaultAnimationSet());
     public Model Model;
     public AnimationPreset.Preset AnimationPresetType;
     private int LastTick = 0;

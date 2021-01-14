@@ -63,6 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Datatables\CannonDatatable.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Datatable.cs" />
+    <Compile Include="Assets\Scripts\Datatables\MappingUtils\Mapping.cs" />
+    <Compile Include="Assets\Scripts\Datatables\MappingUtils\PresetConverter.cs" />
     <Compile Include="Assets\Scripts\Entities\Animations\AnimationSet.cs" />
     <Compile Include="Assets\Scripts\Entities\Animations\AnimationTransition.cs" />
     <Compile Include="Assets\Scripts\Entities\Coordinate.cs" />
@@ -70,25 +74,18 @@
     <Compile Include="Assets\Scripts\Entities\Effects\CollisionEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\Effect.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\MoveEffect.cs" />
-    <Compile Include="Assets\Scripts\Entities\Effects\RepeatEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\RequestEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Effects\SpawnEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Model.cs" />
-    <Compile Include="Assets\Scripts\Entities\Models\Projectile.cs" />
-    <Compile Include="Assets\Scripts\Entities\Models\Storage\MomentumStorage.cs" />
-    <Compile Include="Assets\Scripts\Entities\Models\Storage\Storage.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Storage.cs" />
     <Compile Include="Assets\Scripts\Entities\MountPoint.cs" />
     <Compile Include="Assets\Scripts\Entities\Properties\CommonPropertySet.cs" />
-    <Compile Include="Assets\Scripts\Entities\Repeaters\IRepeater.cs" />
-    <Compile Include="Assets\Scripts\Entities\Repeaters\MomentumRepeater.cs" />
+    <Compile Include="Assets\Scripts\Entities\Properties\GameObjectPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\SystemProfile.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\CollisionTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\MoveTrigger.cs" />
-    <Compile Include="Assets\Scripts\Entities\Triggers\RepeatTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\RequestTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\SpawnTrigger.cs" />
-    <Compile Include="Assets\Scripts\Frameworks\EngineFramework.cs" />
-    <Compile Include="Assets\Scripts\Frameworks\IFramework.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ActivatedEffectObserver.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DebugGameObjects\AutoCannonDebugGO.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DebugGameObjects\MoveDebugGO.cs" />
@@ -98,8 +95,10 @@
     <Compile Include="Assets\Scripts\GameObjects\ModelObserver.cs" />
     <Compile Include="Assets\Scripts\GameObjects\PendingEffectObserver.cs" />
     <Compile Include="Assets\Scripts\GameObjects\SystemProperties.cs" />
-    <Compile Include="Assets\Scripts\Jobs\EffectExecutionJob.cs" />
     <Compile Include="Assets\Scripts\Presets\AnimationPreset.cs" />
+    <Compile Include="Assets\Scripts\Presets\EffectPreset.cs" />
+    <Compile Include="Assets\Scripts\Presets\ModelPreset.cs" />
+    <Compile Include="Assets\Scripts\Presets\PrefabPreset.cs" />
     <Compile Include="Assets\Scripts\Utils\CoordinateUtil.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 
 public class SpawnEffect : Effect
 {
     public const string TYPE = "spawn";
 
-    public SpawnEffect(Model source, Coordinate coordinate, object value) : base(source, coordinate, TYPE, value)
+    public SpawnEffect(Model source, Model value, int offset) : base(source, value.CommonPropertySet.Coordinate, TYPE, value, offset)
     {
     }
 
@@ -14,7 +13,7 @@ public class SpawnEffect : Effect
         Status = EffectStatus.Activated;
     }
 
-    public override void Execute(Queue<Effect> pendingEffectQueue)
+    public override void Execute()
     {
         Status = EffectStatus.Finished;
         ModelObserver.SpawnNewModel((Model)Value);
@@ -22,6 +21,6 @@ public class SpawnEffect : Effect
 
     public override Effect Clone()
     {
-        throw new System.NotImplementedException();
+        return new SpawnEffect(Source, (Model)Value, OffSet);
     }
 }

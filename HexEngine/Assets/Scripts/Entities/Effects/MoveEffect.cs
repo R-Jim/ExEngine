@@ -5,13 +5,13 @@ public class MoveEffect : Effect
 {
     public const string TYPE = "move";
 
-    public MoveEffect(Model source, Model target, Coordinate coordinateValue) : this(source, target.CommonPropertySet.Coordinate, coordinateValue)
+    public MoveEffect(Model source, Model target, Coordinate coordinateValue, int offset) : this(source, target.CommonPropertySet.Coordinate, coordinateValue, offset)
     {
         TargetList.Add(target);
         Status = EffectStatus.Activated;
     }
 
-    public MoveEffect(Model source, Coordinate coordinate, Coordinate coordinateValue) : base(source, coordinate, TYPE, coordinateValue)
+    public MoveEffect(Model source, Coordinate coordinate, Coordinate coordinateValue, int offset) : base(source, coordinate, TYPE, coordinateValue, offset)
     {
     }
 
@@ -24,7 +24,7 @@ public class MoveEffect : Effect
         }
     }
 
-    public override void Execute(Queue<Effect> pendingEffectQueue)
+    public override void Execute()
     {
         foreach (Model model in TargetList)
         {
@@ -39,8 +39,8 @@ public class MoveEffect : Effect
     {
         if (Status == EffectStatus.Activated)
         {
-            return new MoveEffect(Source, TargetList[0], (Coordinate)Value);
+            return new MoveEffect(Source, TargetList[0], (Coordinate)Value, OffSet);
         }
-        return new MoveEffect(Source, Coordinate, (Coordinate)Value);
+        return new MoveEffect(Source, Coordinate, (Coordinate)Value, OffSet);
     }
 }

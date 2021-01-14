@@ -11,7 +11,7 @@ public class ActivatedEffectObserver : MonoBehaviour
         if (ActivatedEffectQueue.Count > 0)
         {
             Effect activatedEffect = ActivatedEffectQueue.Dequeue();
-            activatedEffect.Execute(PendingEffectObserver.PendingEffectQueue);
+            activatedEffect.Execute();
             activatedEffect.Source.SourceExecutedEffect.Enqueue(activatedEffect);
             foreach (Model model in activatedEffect.TargetList)
             {

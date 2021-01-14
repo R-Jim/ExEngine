@@ -29,6 +29,10 @@ public class ModelGameObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Model == null)
+        {
+            return;
+        }
         if (Model.IsRemovable())
         {
             Destroy(gameObject);

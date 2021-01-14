@@ -22,17 +22,35 @@ public class PendingEffectObserver : MonoBehaviour
         if (PendingEffectQueue.Count > 0)
         {
             Effect pendingEfect = PendingEffectQueue.Dequeue();
-            if (pendingEfect.Status == Effect.EffectStatus.Pending)
+            if (pendingEfect.EnqueueTick + pendingEfect.OffSet <= SystemProperties.SystemProfile.SystemTick)
             {
-                foreach (Model model in ModelList)
-                {
-                    pendingEfect.Activate(model);
-                }
+                ActivateEffect(pendingEfect);
             }
-            if (pendingEfect.Status == Effect.EffectStatus.Activated)
+            else
             {
-                ActivatedEffectQueue.Enqueue(pendingEfect);
+                PendingEffectQueue.Enqueue(pendingEfect);
             }
         }
+    }
+
+    private void ActivateEffect(Effect effect)
+    {
+        if (effect.Status == Effect.EffectStatus.Pending)
+        {
+            foreach (Model model in ModelList)
+            {
+                effect.Activate(model);
+            }
+        }
+        if (effect.Status == Effect.EffectStatus.Activated)
+        {
+            ActivatedEffectQueue.Enqueue(effect);
+        }
+    }
+
+    public static void QueueEffect(Effect effect)
+    {
+        effect.EnqueueTick = SystemProperties.SystemProfile.SystemTick;
+        PendingEffectQueue.Enqueue(effect);
     }
 }

@@ -4,6 +4,7 @@ public class AnimationPreset
 {
     public enum Preset
     {
+        Placeholder,
         Cannon,
     }
 

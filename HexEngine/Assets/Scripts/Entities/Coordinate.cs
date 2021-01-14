@@ -42,7 +42,22 @@
         {
             return false;
         }
-        Coordinate coordinate = (Coordinate) obj;
+        Coordinate coordinate = (Coordinate)obj;
         return coordinate.X == X && coordinate.Y == Y && coordinate.Z == Z;
+    }
+
+    public Coordinate Clone()
+    {
+        return new Coordinate(X, Y, Z);
+    }
+
+    public enum Axis
+    {
+        XY,
+        YX,
+        XZ,
+        ZX,
+        YZ,
+        ZY,
     }
 }

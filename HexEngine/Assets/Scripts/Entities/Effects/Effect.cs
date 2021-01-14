@@ -8,8 +8,10 @@ public abstract class Effect
     public Model Source;
     public List<Model> TargetList;
     public object Value;
+    public int OffSet { get; }
+    public int EnqueueTick { get; set; }
 
-    public Effect(Model source, Coordinate coordinate, string type, object value)
+    public Effect(Model source, Coordinate coordinate, string type, object value, int offset = 0)
     {
         Source = source;
         Coordinate = coordinate;
@@ -17,11 +19,13 @@ public abstract class Effect
         Value = value;
         TargetList = new List<Model>();
         Status = EffectStatus.Pending;
+        OffSet = offset;
+        EnqueueTick = 0;
     }
 
     public abstract void Activate(Model target);
 
-    public abstract void Execute(Queue<Effect> pendingEffectQueue);
+    public abstract void Execute();
 
     public enum EffectStatus
     {

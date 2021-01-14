@@ -31,7 +31,7 @@ public class ModelObserver : MonoBehaviour
 
     public static void SpawnNewModel(Model model)
     {
-        GameObject prefab = model is Projectile ? ProjectilePrefab : PlaceholderPrefab;
+        GameObject prefab = model.GameObjectPropertySet.PrefabPreset == PrefabPreset.Preset.Projectile ? ProjectilePrefab : PlaceholderPrefab;
 
         ModelList.Add(model);
         GameObject projectile = Instantiate(prefab);

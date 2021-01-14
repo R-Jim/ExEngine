@@ -1,14 +1,18 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-
-public class ChainEffect : Effect
+﻿public class ChainEffect : Effect
 {
     public const string TYPE = "chain";
     public Effect HeadEffect { get; }
     public Effect TailEffect { get; }
     public EffectStatus ChainIfHeadStatus { get; }
 
-    public ChainEffect(Model source, Effect head, Effect tail, EffectStatus chainIfHeadStatus) : base(source, null, TYPE, null)
+    public ChainEffect(Model source, Effect head, EffectStatus chainIfHeadStatus) : base(source, null, TYPE, null, head.OffSet)
+    {
+        HeadEffect = head;
+        TailEffect = this;
+        ChainIfHeadStatus = chainIfHeadStatus;
+    }
+
+    public ChainEffect(Model source, Effect head, Effect tail, EffectStatus chainIfHeadStatus) : base(source, null, TYPE, null, head.OffSet)
     {
         HeadEffect = head;
         TailEffect = tail;
@@ -22,22 +26,25 @@ public class ChainEffect : Effect
         {
             HeadEffect.Activate(target);
         }
-        Status = EffectStatus.Activated;
-    }
-
-    public override void Execute(Queue<Effect> pendingEffectQueue)
-    {
-        pendingEffectQueue.Enqueue(HeadEffect);
         if (HeadEffect.Status == ChainIfHeadStatus)
         {
-            Debug.Log("Chain, " + HeadEffect.GetType() + "/" + TailEffect.GetType());
-            pendingEffectQueue.Enqueue(TailEffect);
+            Status = EffectStatus.Activated;
         }
+    }
+
+    public override void Execute()
+    {
+        HeadEffect.Execute();
+        PendingEffectObserver.QueueEffect(TailEffect == this ? Clone() : TailEffect);
         Status = EffectStatus.Finished;
     }
 
     public override Effect Clone()
     {
+        if (TailEffect == this)
+        {
+            return new ChainEffect(Source, HeadEffect.Clone(), ChainIfHeadStatus);
+        }
         return new ChainEffect(Source, HeadEffect.Clone(), TailEffect.Clone(), ChainIfHeadStatus);
     }
 }
