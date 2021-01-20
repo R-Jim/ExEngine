@@ -1,4 +1,4 @@
-# ExEngine (Jul 23, 2020 Deprecated), Document for HexEngine (comming soon)
+# ExEngine (Jul 23, 2020 Deprecated), HexEngine (comming soon)
 An Instance Module Engine
 
 1. EngineTest: Unit test for Engine
@@ -8,7 +8,7 @@ An Instance Module Engine
      - Instance: Main focus of Engine. Everything invole with Effect -> Instance -> Effect
      - Util
 
-Workflow for instance:
+Workflow for instance Deprecated:
 
 ```***Factory```: A class that will modify the assigned ```BaseValue``` base on the field path of input object
 
