@@ -6,16 +6,14 @@ public class MoveEffect : Effect
     {
     }
 
-    public override void Execute()
+    protected override void ExecuteProcess()
     {
-        //if (IsMoved(TargetModel))
-        //{
-        //    return;
-        //}
+        if (IsMoved(TargetModel))
+        {
+            return;
+        }
         Model model = GetUpMostModel(TargetModel);
         MoveModel(model);
-        Status = EffectStatus.Executed;
-        AssignEffectAfterExecuted();
     }
 
     private void MoveModel(Model model)

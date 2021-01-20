@@ -5,15 +5,24 @@
 
     }
 
-    public override void Execute()
+    protected override void ExecuteProcess()
     {
         ChainTrigger.ChainSet chainSet = (ChainTrigger.ChainSet)Value;
         Effect headEffect = chainSet.HeadTrigger.BaseEffect.Bind(TargetModel);
         headEffect.Execute();
 
-        TriggerObserver.QueueTrigger(chainSet.TailTrigger);
-        Status = EffectStatus.Executed;
-        AssignEffectAfterExecuted();
+        HandleTailTrigger();
+    }
+
+    private void HandleTailTrigger()
+    {
+        ChainTrigger.ChainSet chainSet = (ChainTrigger.ChainSet)Value;
+        Trigger tailTrigger = chainSet.TailTrigger;
+        if (tailTrigger is ChainTrigger && ((ChainTrigger)tailTrigger).IsSelfChain)
+        {
+            tailTrigger.Reset();
+        }
+        TriggerObserver.QueueTrigger(tailTrigger);
     }
 
     public override Effect Bind(Model model)

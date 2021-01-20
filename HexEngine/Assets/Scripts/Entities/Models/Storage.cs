@@ -26,8 +26,7 @@
 
     public override bool IsRemovable()
     {
-        return CommonPropertySet.HpCurrent == 0;
-            //|| IsEmpty();
+        return CommonPropertySet.HpStorage.IsEmpty();
     }
 
     public int Get(int value)
@@ -50,10 +49,19 @@
         {
             Current = Max;
         }
+        else if (Current <= 0)
+        {
+            Current = 0;
+        }
     }
 
     public bool IsEmpty()
     {
         return Current <= 0;
+    }
+
+    public override string ToString()
+    {
+        return "(" + Max + "/" + Current + ")";
     }
 }

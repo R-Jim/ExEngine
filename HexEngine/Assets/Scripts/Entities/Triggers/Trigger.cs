@@ -9,10 +9,10 @@ public class Trigger
     public int OffSet { get; }
     public int EnqueueTick { get; set; }
 
-    public readonly HashSet<Model> ExecutedModel = new HashSet<Model>();
+    public HashSet<Model> ExecutedModel { get; protected set; }
 
     //Placeholder
-    public Trigger()
+    public Trigger() : this(null, null, null)
     {
 
     }
@@ -23,6 +23,7 @@ public class Trigger
         Type = type;
         TriggerCoordinate = triggerCoordinate;
         OffSet = offset;
+        ExecutedModel = new HashSet<Model>();
     }
 
     public virtual Effect Hook(Model model)
@@ -32,5 +33,10 @@ public class Trigger
             return BaseEffect.Bind(model);
         }
         return null;
+    }
+
+    public virtual void Reset()
+    {
+        ExecutedModel = new HashSet<Model>();
     }
 }

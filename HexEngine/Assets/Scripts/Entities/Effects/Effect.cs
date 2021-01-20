@@ -2,8 +2,8 @@
 {
     public EffectStatus Status { get; protected set; }
     public object Value;
-    public Trigger Trigger { get; }
-    public Model TargetModel { get; set; }
+    public Trigger Trigger;
+    public Model TargetModel;
 
     public Effect(Trigger trigger, object value)
     {
@@ -20,7 +20,18 @@
         Status = EffectStatus.Pending;
     }
 
-    public virtual void Execute()
+    public void Execute()
+    {
+        ExecuteProcess();
+        PostExecute();
+    }
+
+    protected virtual void ExecuteProcess()
+    {
+
+    }
+
+    protected virtual void PostExecute()
     {
         Status = EffectStatus.Executed;
         AssignEffectAfterExecuted();

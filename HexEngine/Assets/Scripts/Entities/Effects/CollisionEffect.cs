@@ -7,14 +7,12 @@ public class CollisionEffect : Effect
 
     }
 
-    public override void Execute()
+    protected override void ExecuteProcess()
     {
-        TargetModel.CommonPropertySet.HpCurrent -= (int)Value;
-        Trigger.Source.CommonPropertySet.HpCurrent -= (int)Value;
-        Debug.Log("Hit Target, " + TargetModel.CommonPropertySet.HpMax + "/" + TargetModel.CommonPropertySet.HpCurrent
-            + "& Seft, " + Trigger.Source.CommonPropertySet.HpMax + "/" + Trigger.Source.CommonPropertySet.HpCurrent);
-        Status = EffectStatus.Executed;
-        AssignEffectAfterExecuted();
+        TargetModel.CommonPropertySet.HpStorage.Fill(-1 * (int)Value);
+        Trigger.Source.CommonPropertySet.HpStorage.Fill(-1 * (int)Value);
+        Debug.Log("Hit Target, " + TargetModel.CommonPropertySet.HpStorage.ToString()
+            + "& Seft, " + Trigger.Source.CommonPropertySet.HpStorage.ToString());
     }
 
     public override Effect Bind(Model model)

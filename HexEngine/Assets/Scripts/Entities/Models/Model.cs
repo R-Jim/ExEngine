@@ -28,6 +28,6 @@ public class Model
 
     public virtual bool IsRemovable()
     {
-        return CommonPropertySet.HpCurrent == 0;
+        return CommonPropertySet.HpStorage.IsEmpty();
     }
 }

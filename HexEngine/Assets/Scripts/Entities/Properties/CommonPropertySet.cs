@@ -1,7 +1,6 @@
 ﻿public class CommonPropertySet
 {
-    public int HpMax { get; }
-    public int HpCurrent;
+    public Storage HpStorage;
     public Coordinate Coordinate { get; }
     public string MountType { get; }
     public MountPoint MountedTo;
@@ -18,8 +17,7 @@
 
     public CommonPropertySet(int hpMax, int hpCurrent, Coordinate coordinate, string mountType)
     {
-        HpMax = hpMax;
-        HpCurrent = hpCurrent;
+        HpStorage = new Storage(hpMax, hpCurrent);
         Coordinate = coordinate;
         MountType = mountType;
     }

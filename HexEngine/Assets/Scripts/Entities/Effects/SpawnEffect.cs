@@ -4,11 +4,9 @@
     {
     }
 
-    public override void Execute()
+    protected override void ExecuteProcess()
     {
         ModelObserver.SpawnNewModel((Model)Value);
-        Status = EffectStatus.Executed;
-        AssignEffectAfterExecuted();
     }
 
     public override Effect Bind(Model model)

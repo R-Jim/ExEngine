@@ -18,15 +18,15 @@ public class AutoCannonDebugGO : MonoBehaviour
     {
         SystemProfile.SystemTick = 0;
         SystemProperties.SystemProfile = SystemProfile;
-        ModelObserver.ModelList.Add(new Model(new CommonPropertySet(100, Coordinate, "system"), null, null));
+        ModelObserver.ModelList.Add(new Model(new CommonPropertySet(100, Coordinate.Clone(), "system"), null, null));
 
         //Init mount model
         MountPoint weaponMountPoint = new MountPoint("weapon", new Coordinate(0, 0.03f, 0));
-        Model MountPlaceholderModel = new Model(new CommonPropertySet(100, Coordinate), null, new MountPoint[] { weaponMountPoint });
+        Model MountPlaceholderModel = new Model(new CommonPropertySet(100, Coordinate.Clone()), null, new MountPoint[] { weaponMountPoint });
         ModelObserver.ModelList.Add(MountPlaceholderModel);
 
         //Init Auto cannon model
-        CannonDatatable.Init(new object[] { Coordinate });
+        CannonDatatable.Init(new object[] { Coordinate.Clone() });
         AutoCannon = (Model)CannonDatatable.MainProperty();
 
         weaponMountPoint.Mount(AutoCannon);
@@ -47,6 +47,11 @@ public class AutoCannonDebugGO : MonoBehaviour
             List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(1, new object[] { CoordinateUtil.GetCoordinate(FiringAxisPreset) });
             TriggerObserver.QueueTrigger(triggerList[0]);
             Debug.Log("Bang, " + TriggerObserver.TriggerQueue.Count + " Ammo, " + (((Storage)AutoCannon).Current - 1));
+        }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(2, new object[] { CoordinateUtil.GetCoordinate(FiringAxisPreset) });
+            TriggerObserver.QueueTrigger(triggerList[0]);
         }
         //else if (Input.GetKeyDown(KeyCode.E))
         //{
