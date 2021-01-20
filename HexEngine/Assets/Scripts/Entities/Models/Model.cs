@@ -17,6 +17,13 @@ public class Model
         CommonPropertySet = commonPropertySet;
         GameObjectPropertySet = gameObjectPropertySet;
         MountPoints = mountPoints;
+        if(MountPoints != null)
+        {
+            foreach (MountPoint mountPoint in MountPoints)
+            {
+                mountPoint.SourceModel = this;
+            }
+        }
     }
 
     public virtual bool IsRemovable()

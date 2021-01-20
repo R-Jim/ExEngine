@@ -1,26 +1,22 @@
-﻿using System.Collections.Generic;
-
-public class SpawnEffect : Effect
+﻿public class SpawnEffect : Effect
 {
-    public const string TYPE = "spawn";
-
-    public SpawnEffect(Model source, Model value, int offset) : base(source, value.CommonPropertySet.Coordinate, TYPE, value, offset)
+    public SpawnEffect(Trigger trigger, Model spawnModel) : base(trigger, spawnModel)
     {
-    }
-
-    public override void Activate(Model target)
-    {
-        Status = EffectStatus.Activated;
     }
 
     public override void Execute()
     {
-        Status = EffectStatus.Finished;
         ModelObserver.SpawnNewModel((Model)Value);
+        Status = EffectStatus.Executed;
+        AssignEffectAfterExecuted();
     }
 
-    public override Effect Clone()
+    public override Effect Bind(Model model)
     {
-        return new SpawnEffect(Source, (Model)Value, OffSet);
+        Effect effect = new SpawnEffect(Trigger, (Model)Value)
+        {
+            TargetModel = model
+        };
+        return effect;
     }
 }

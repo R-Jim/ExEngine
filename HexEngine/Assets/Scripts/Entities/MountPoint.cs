@@ -1,24 +1,31 @@
-﻿public class MountPoint
-{
-    public string Type { get; }
-    public Model MountedModel { get; private set; }
-    //For rendering mounted model
-    public Coordinate Coordinate { get; }
+﻿using System.Text.RegularExpressions;
 
-    public MountPoint(string type)
+public class MountPoint
+{
+    public Model SourceModel;
+    public Regex TypeRegex { get; }
+    public Model MountedModel { get; private set; }
+    public Coordinate RenderCoordinate { get; }
+
+
+    public MountPoint(string typeRegex, Coordinate coordinate) : this(null, typeRegex, coordinate)
     {
-        Type = type;
+
     }
 
-    public MountPoint(string type, Coordinate coordinate)
+    public MountPoint(Model sourceModel, string typeRegex, Coordinate coordinate)
     {
-        Type = type;
-        Coordinate = coordinate;
+        SourceModel = sourceModel;
+        TypeRegex = new Regex(typeRegex);
+        RenderCoordinate = coordinate;
     }
 
     public void Mount(Model model)
     {
-        MountedModel = model;
-        model.CommonPropertySet.MountedTo = this;
+        if (TypeRegex.IsMatch(model.CommonPropertySet.MountType))
+        {
+            MountedModel = model;
+            model.CommonPropertySet.MountedTo = this;
+        }
     }
 }

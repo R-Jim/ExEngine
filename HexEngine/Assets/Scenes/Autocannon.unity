@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsActive: 0
-  DebugModelIndex: 1
+  DebugModelIndex: 2
 --- !u!114 &255514441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3896,7 +3896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsActive: 0
-  DebugModelIndex: 0
+  DebugModelIndex: 1
 --- !u!114 &1702551262
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,46 +1,73 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MoveEffect : Effect
 {
-    public const string TYPE = "move";
-
-    public MoveEffect(Model source, Model target, Coordinate coordinateValue, int offset) : this(source, target.CommonPropertySet.Coordinate, coordinateValue, offset)
+    public MoveEffect(Trigger trigger, Coordinate moveValue) : base(trigger, moveValue)
     {
-        TargetList.Add(target);
-        Status = EffectStatus.Activated;
-    }
-
-    public MoveEffect(Model source, Coordinate coordinate, Coordinate coordinateValue, int offset) : base(source, coordinate, TYPE, coordinateValue, offset)
-    {
-    }
-
-    public override void Activate(Model target)
-    {
-        if (MoveTrigger.IsTriggered(target, this))
-        {
-            Status = EffectStatus.Activated;
-            TargetList.Add(target);
-        }
     }
 
     public override void Execute()
     {
-        foreach (Model model in TargetList)
-        {
-            Coordinate moveCoordinateValue = (Coordinate)Value;
-            model.CommonPropertySet.Coordinate.Add(moveCoordinateValue);
-            Debug.LogWarning(model.GetType() + ", " + model.CommonPropertySet.Coordinate.ToString());
-        }
-        Status = EffectStatus.Finished;
+        //if (IsMoved(TargetModel))
+        //{
+        //    return;
+        //}
+        Model model = GetUpMostModel(TargetModel);
+        MoveModel(model);
+        Status = EffectStatus.Executed;
+        AssignEffectAfterExecuted();
     }
 
-    public override Effect Clone()
+    private void MoveModel(Model model)
     {
-        if (Status == EffectStatus.Activated)
+        Coordinate moveCoordinateValue = (Coordinate)Value;
+        model.CommonPropertySet.Coordinate.Add(moveCoordinateValue);
+        LogMovedModel(model);
+        Debug.LogWarning(TargetModel.GetType() + ", " + TargetModel.CommonPropertySet.Coordinate.ToString());
+        MoveAllMountedModel(model);
+    }
+
+    private bool IsMoved(Model model)
+    {
+        return Trigger.ExecutedModel.Contains(model);
+    }
+
+    private void LogMovedModel(Model model)
+    {
+        Trigger.ExecutedModel.Add(model);
+    }
+
+    private void MoveAllMountedModel(Model model)
+    {
+        if (model.MountPoints != null && model.MountPoints.Length != 0)
         {
-            return new MoveEffect(Source, TargetList[0], (Coordinate)Value, OffSet);
+            foreach (MountPoint mountPoint in model.MountPoints)
+            {
+                if (mountPoint.MountedModel != null)
+                {
+                    MoveModel(mountPoint.MountedModel);
+                }
+            }
+
         }
-        return new MoveEffect(Source, Coordinate, (Coordinate)Value, OffSet);
+    }
+
+    private Model GetUpMostModel(Model model)
+    {
+        MountPoint mountPoint = model.CommonPropertySet.MountedTo;
+        if (mountPoint != null)
+        {
+            return GetUpMostModel(mountPoint.SourceModel);
+        }
+        return model;
+    }
+
+    public override Effect Bind(Model model)
+    {
+        Effect effect = new MoveEffect(Trigger, (Coordinate)Value)
+        {
+            TargetModel = model
+        };
+        return effect;
     }
 }

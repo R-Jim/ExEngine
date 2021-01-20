@@ -35,7 +35,7 @@ public class AnimationGameObject : MonoBehaviour
         if (Model.SourceExecutedEffect.Count > 0)
         {
             Effect effect = Model.SourceExecutedEffect.Dequeue();
-            AnimationTransition animationTransition = AnimationPreset.GetAnimationTransition(AnimationPresetType, effect.Type);
+            AnimationTransition animationTransition = AnimationPreset.GetAnimationTransition(AnimationPresetType, effect.Trigger.Type);
             AnimationSet.Add(animationTransition);
         }
     }
@@ -53,7 +53,7 @@ public class AnimationGameObject : MonoBehaviour
     {
         Dictionary<string, int> defaultSet = new Dictionary<string, int>
         {
-            { "firing", 0 }
+            { SpawnTrigger.TYPE, 0 } //firing
         };
 
         return defaultSet;

@@ -1,12 +1,25 @@
-﻿public class MoveTrigger
+﻿public class MoveTrigger : Trigger
 {
-    public static bool IsTriggered(Model model, Effect effect)
+    public const string TYPE = "move";
+
+    public MoveTrigger(Model source, Coordinate triggerCoordinate, Coordinate moveValue, int offset)
+        : base(source, TYPE, triggerCoordinate, offset)
     {
-        return SameCoordinate(model.CommonPropertySet.Coordinate, effect);
+        BaseEffect = new MoveEffect(this, moveValue);
     }
 
-    private static bool SameCoordinate(Coordinate coordinate, Effect effect)
+
+    public override Effect Hook(Model model)
     {
-        return coordinate.Equals(effect.Coordinate);
+        if (SameCoordinate(model))
+        {
+            return BaseEffect.Bind(model);
+        }
+        return null;
+    }
+
+    private bool SameCoordinate(Model model)
+    {
+        return model.CommonPropertySet.Coordinate.Equals(TriggerCoordinate);
     }
 }

@@ -2,6 +2,7 @@
 
 public class MovemonentMapper : MonoBehaviour
 {
+    public Model Model;
     public Coordinate ModelCoordinate;
     public float OffSetX = 0.75f;
     public float OffSetY = 0.5f;
@@ -14,17 +15,23 @@ public class MovemonentMapper : MonoBehaviour
     void Start()
     {
         Model model = gameObject.GetComponent<ModelGameObject>().Model;
-        if(model != null)
+        if (model != null)
         {
-            ModelCoordinate = model.CommonPropertySet.Coordinate;
+            Model = model;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (ModelCoordinate != null)
+        Coordinate coordinate = Model.CommonPropertySet.Coordinate;
+        if (coordinate != null)
         {
+            ModelCoordinate = coordinate.Clone();
+            if (Model.CommonPropertySet.MountedTo != null)
+            {
+                ModelCoordinate.Add(Model.CommonPropertySet.MountedTo.RenderCoordinate);
+            }
             if (LastX == ModelCoordinate.X && LastY == ModelCoordinate.Y && LastZ == ModelCoordinate.Z)
             {
                 return;

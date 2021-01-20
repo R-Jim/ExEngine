@@ -1,17 +1,32 @@
-﻿public class CollisionTrigger
+﻿using System.Diagnostics;
+
+public class CollisionTrigger : Trigger
 {
-    public static bool IsTriggered(Model model, Effect effect)
+    public const string TYPE = "collision";
+
+    public CollisionTrigger(Model source, Coordinate triggerCoordinate, int damageValue, int offset)
+        : base(source, TYPE, triggerCoordinate, offset)
     {
-        return DifferentModel(model, effect) && SameCoordinate(model.CommonPropertySet.Coordinate, effect);
+        BaseEffect = new CollisionEffect(this, damageValue);
     }
 
-    private static bool DifferentModel(Model model, Effect effect)
+
+    public override Effect Hook(Model model)
     {
-        return model.GetHashCode() != effect.Source.GetHashCode();
+        if (SameCoordinate(model) && DifferentModel(model))
+        {
+            return BaseEffect.Bind(model);
+        }
+        return null;
     }
 
-    private static bool SameCoordinate(Coordinate coordinate, Effect effect)
+    private bool DifferentModel(Model model)
     {
-        return coordinate.Equals(effect.Coordinate);
+        return model.GetHashCode() != Source.GetHashCode();
+    }
+
+    private bool SameCoordinate(Model model)
+    {
+        return model.CommonPropertySet.Coordinate.Equals(TriggerCoordinate);
     }
 }

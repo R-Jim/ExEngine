@@ -9,7 +9,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 6
-    m_ConditionEvent: firing
+    m_ConditionEvent: spawn
     m_EventTreshold: 1
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 8071522813960436569}
@@ -56,12 +56,12 @@ AnimatorController:
   m_Name: Auto cannon
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: firing
+  - m_Name: spawn
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

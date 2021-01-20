@@ -1,10 +1,10 @@
 ﻿public class Coordinate
 {
-    public int X { get; set; }
-    public int Y { get; set; }
-    public int Z { get; set; }
+    public float X { get; set; }
+    public float Y { get; set; }
+    public float Z { get; set; }
 
-    public Coordinate(int x, int y, int z)
+    public Coordinate(float x, float y, float z)
     {
         X = x;
         Y = y;
@@ -14,6 +14,13 @@
     public Coordinate()
     {
 
+    }
+
+    public void To(Coordinate coordinate)
+    {
+        X = coordinate.X;
+        Y = coordinate.Y;
+        Z = coordinate.Z;
     }
 
     public void Add(Coordinate coordinate)

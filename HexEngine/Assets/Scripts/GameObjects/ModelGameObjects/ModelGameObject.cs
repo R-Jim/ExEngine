@@ -3,6 +3,7 @@
 public class ModelGameObject : MonoBehaviour
 {
     public Model Model { get; private set; }
+    public bool IsActive;
     public int DebugModelIndex = -1;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class ModelGameObject : MonoBehaviour
     public void SetModel(Model model)
     {
         Model = model;
+        IsActive = true;
         AnimationGameObject animationGameObject = gameObject.GetComponent<AnimationGameObject>();
         if (animationGameObject != null)
         {

@@ -16,6 +16,11 @@ public class Mapping
         List<object> convertedValue = new List<object>();
         foreach (string value in dataSet.Values)
         {
+            if (value == null)
+            {
+                convertedValue.Add(null);
+                continue;
+            }
             if (SpecialSyntaxRegex.IsMatch(value))
             {
                 convertedValue.Add(MapSpecialValue(datatable, value, inputOrActionProperties));
@@ -78,11 +83,7 @@ public class Mapping
 
     private static object CloneValue(object value)
     {
-        if (value is Effect)
-        {
-            return ((Effect)value).Clone();
-        }
-        else if (value is Coordinate)
+        if (value is Coordinate)
         {
             return ((Coordinate)value).Clone();
         }
@@ -124,7 +125,14 @@ public class Mapping
         }
         catch (FormatException)
         {
-            return value;
+            try
+            {
+                return bool.Parse(value);
+            }
+            catch (FormatException)
+            {
+                return value;
+            }
         }
     }
 
@@ -138,7 +146,16 @@ public class Mapping
         {
             return MapEffectProperty((EffectPreset.Preset)preset, mappedProperties);
         }
+        else if (preset is TriggerPreset.Preset)
+        {
+            return MapTriggerProperty((TriggerPreset.Preset)preset, mappedProperties);
+        }
         return null;
+    }
+
+    private static Trigger MapTriggerProperty(TriggerPreset.Preset preset, object[] mappedProperties)
+    {
+        return TriggerPreset.GetTrigger(preset, mappedProperties);
     }
 
     private static Effect MapEffectProperty(EffectPreset.Preset preset, object[] mappedProperties)

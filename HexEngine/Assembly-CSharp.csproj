@@ -82,11 +82,13 @@
     <Compile Include="Assets\Scripts\Entities\Properties\CommonPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Properties\GameObjectPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\SystemProfile.cs" />
+    <Compile Include="Assets\Scripts\Entities\Triggers\ChainTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\CollisionTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\MoveTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\RequestTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Triggers\SpawnTrigger.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\ActivatedEffectObserver.cs" />
+    <Compile Include="Assets\Scripts\Entities\Triggers\TargetTrigger.cs" />
+    <Compile Include="Assets\Scripts\Entities\Triggers\Trigger.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DebugGameObjects\AutoCannonDebugGO.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DebugGameObjects\MoveDebugGO.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ModelGameObjects\AnimationGameObject.cs" />
@@ -95,10 +97,12 @@
     <Compile Include="Assets\Scripts\GameObjects\ModelObserver.cs" />
     <Compile Include="Assets\Scripts\GameObjects\PendingEffectObserver.cs" />
     <Compile Include="Assets\Scripts\GameObjects\SystemProperties.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\TriggerObserver.cs" />
     <Compile Include="Assets\Scripts\Presets\AnimationPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\EffectPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\ModelPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\PrefabPreset.cs" />
+    <Compile Include="Assets\Scripts\Presets\TriggerPreset.cs" />
     <Compile Include="Assets\Scripts\Utils\CoordinateUtil.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

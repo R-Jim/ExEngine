@@ -24,37 +24,31 @@
 
     public static Effect GetMoveEffect(object[] properties)
     {
-        if (properties[1] is Model)
-        {
-            return new MoveEffect((Model)properties[0], (Model)properties[1], (Coordinate)properties[2], (int)properties[3]);
-        }
-        else
-        {
-            return new MoveEffect((Model)properties[0], (Coordinate)properties[1], (Coordinate)properties[2], (int)properties[3]);
-        }
+        Trigger trigger = properties[0] != null ? (Trigger)properties[0] : new Trigger();
+        return new MoveEffect(trigger, (Coordinate)properties[1]);
     }
 
     public static Effect GetRequestEffect(object[] properties)
     {
-        return new RequestEffect((Model)properties[0], (Storage)properties[1], (int)properties[2], (int)properties[3]);
+        Trigger trigger = properties[0] != null ? (Trigger)properties[0] : new Trigger();
+        return new RequestEffect(trigger, (int)properties[1]);
     }
 
     public static Effect GetChainEffect(object[] properties)
     {
-        if (properties.Length == 3)
-        {
-            return new ChainEffect((Model)properties[0], (Effect)properties[1], (Effect.EffectStatus)properties[2]);
-        }
-        return new ChainEffect((Model)properties[0], (Effect)properties[1], (Effect)properties[2], (Effect.EffectStatus)properties[3]);
+        Trigger trigger = properties[0] != null ? (Trigger)properties[0] : new Trigger();
+        return new ChainEffect(trigger, (ChainTrigger.ChainSet)properties[1]);
     }
 
     public static Effect GetSpawnEffect(object[] properties)
     {
-        return new SpawnEffect((Model)properties[0], (Model)properties[1], (int)properties[2]);
+        Trigger trigger = properties[0] != null ? (Trigger)properties[0] : new Trigger();
+        return new SpawnEffect(trigger, (Model)properties[1]);
     }
 
     public static Effect GetCollisionEffect(object[] properties)
     {
-        return new CollisionEffect((Model)properties[0], (Coordinate)properties[1], (int)properties[2]);
+        Trigger trigger = properties[0] != null ? (Trigger)properties[0] : new Trigger();
+        return new CollisionEffect(trigger, (int)properties[1]);
     }
 }

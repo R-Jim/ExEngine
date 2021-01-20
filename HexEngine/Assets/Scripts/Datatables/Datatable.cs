@@ -27,9 +27,9 @@ public class Datatable
         }
     }
 
-    public List<Effect> GetEffectListByAction(int actionKey, object[] actionProperties)
+    public List<Trigger> GetTriggerListByAction(int actionKey, object[] actionProperties)
     {
-        List<Effect> effectList = new List<Effect>();
+        List<Trigger> triggerList = new List<Trigger>();
         foreach (EffectActionSet effectActionSet in EffectActions)
         {
             if (effectActionSet.ActionKey == actionKey)
@@ -40,10 +40,10 @@ public class Datatable
                 {
                     initialedList.Add(Mapping.MapProperty(this, index, actionProperties));
                 }
-                effectList.Add((Effect)Mapping.MapProperty(this, effectActionSet.PropertyIndex, initialedList.ToArray()));
+                triggerList.Add((Trigger)Mapping.MapProperty(this, effectActionSet.PropertyIndex, initialedList.ToArray()));
             }
         }
-        return effectList;
+        return triggerList;
     }
 
     public object MainProperty()

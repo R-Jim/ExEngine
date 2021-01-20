@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
 
 public class AnimationSet
 {
@@ -39,7 +39,16 @@ public class AnimationSet
 
     public void Add(string tag, int value, int tick)
     {
-        AnimationDictionary.Add(tag, new AnimationProperty(value, tick));
+        try
+        {
+            AnimationDictionary.Add(tag, new AnimationProperty(value, tick));
+        }
+        catch (ArgumentException)
+        {
+            AnimationDictionary.TryGetValue(tag, out AnimationProperty animationProperty);
+            animationProperty.Value = value;
+            animationProperty.Tick = tick;
+        }
     }
 
     public void Tick()

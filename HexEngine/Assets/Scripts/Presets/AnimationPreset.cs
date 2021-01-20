@@ -14,7 +14,7 @@ public class AnimationPreset
         private readonly Dictionary<string, AnimationTransition> EffectTypeWithAnimation = new Dictionary<string, AnimationTransition>();
         public CannonPreset()
         {
-            EffectTypeWithAnimation.Add(SpawnEffect.TYPE, new AnimationTransition(new string[] { "firing" }, 1, 2));
+            EffectTypeWithAnimation.Add(SpawnTrigger.TYPE, new AnimationTransition(new string[] { SpawnTrigger.TYPE }, 1, 2));
         }
 
         public AnimationTransition GetAnimationTransition(string type)

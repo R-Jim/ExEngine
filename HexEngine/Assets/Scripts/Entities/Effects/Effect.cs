@@ -1,38 +1,50 @@
-﻿using System.Collections.Generic;
-
-public abstract class Effect
+﻿public class Effect
 {
     public EffectStatus Status { get; protected set; }
-    public string Type { get; }
-    public Coordinate Coordinate { get; }
-    public Model Source;
-    public List<Model> TargetList;
     public object Value;
-    public int OffSet { get; }
-    public int EnqueueTick { get; set; }
+    public Trigger Trigger { get; }
+    public Model TargetModel { get; set; }
 
-    public Effect(Model source, Coordinate coordinate, string type, object value, int offset = 0)
+    public Effect(Trigger trigger, object value)
     {
-        Source = source;
-        Coordinate = coordinate;
-        Type = type;
+        Trigger = trigger;
         Value = value;
-        TargetList = new List<Model>();
-        Status = EffectStatus.Pending;
-        OffSet = offset;
-        EnqueueTick = 0;
+        Status = EffectStatus.Base;
     }
 
-    public abstract void Activate(Model target);
+    private Effect(Effect effect, Model targetModel)
+    {
+        Trigger = effect.Trigger;
+        Value = effect.Value;
+        TargetModel = targetModel;
+        Status = EffectStatus.Pending;
+    }
 
-    public abstract void Execute();
+    public virtual void Execute()
+    {
+        Status = EffectStatus.Executed;
+        AssignEffectAfterExecuted();
+    }
+
+    public void AssignEffectAfterExecuted()
+    {
+        Model source = Trigger.Source;
+        if (source != null)
+        {
+            source.SourceExecutedEffect.Enqueue(this);
+        }
+        TargetModel.TargetExecutedEffect.Enqueue(this);
+    }
+
+    public virtual Effect Bind(Model model)
+    {
+        return new Effect(this, model);
+    }
 
     public enum EffectStatus
     {
+        Base,
         Pending,
-        Activated,
-        Finished,
+        Executed,
     }
-
-    public abstract Effect Clone();
 }
