@@ -1,4 +1,4 @@
-# ExEngine (Jul 23, 2020 Deprecated), HexEngine (comming soon)
+# ExEngine (Jul 23, 2020 Deprecated), HexEngine (coming soon)
 An Instance Module Engine
 
 1. EngineTest: Unit test for Engine
