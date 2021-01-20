@@ -8,7 +8,7 @@ An Instance Module Engine
      - Instance: Main focus of Engine. Everything invole with Effect -> Instance -> Effect
      - Util
 
-Workflow for instance Deprecated:
+Workflow for instance (Deprecated):
 
 ```***Factory```: A class that will modify the assigned ```BaseValue``` base on the field path of input object
 
