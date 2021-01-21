@@ -1,14 +1,16 @@
 ﻿public class Coordinate
 {
-    public float X { get; set; }
-    public float Y { get; set; }
-    public float Z { get; set; }
+    public float X { get; private set; }
+    public float Y { get; private set; }
+    public float Z { get; private set; }
+    public VectorDirection Pivot { get; private set; }
 
     public Coordinate(float x, float y, float z)
     {
         X = x;
         Y = y;
         Z = z;
+        Pivot = VectorDirection.XY;
     }
 
     public Coordinate()
@@ -25,9 +27,11 @@
 
     public void Add(Coordinate coordinate)
     {
+        Coordinate oldCoordinate = Clone();
         X += coordinate.X;
         Y += coordinate.Y;
         Z += coordinate.Z;
+        Pivot = CoordinateUtil.GetAxis(this, oldCoordinate);
     }
 
     public void Multiply(Coordinate coordinate)
@@ -40,7 +44,7 @@
 
     public new string ToString()
     {
-        return "X:" + X + ", Y:" + Y + ", Z:" + Z;
+        return "X:" + X + ", Y:" + Y + ", Z:" + Z + ", Pivot:" + Pivot;
     }
 
     public new bool Equals(object obj)
@@ -58,7 +62,7 @@
         return new Coordinate(X, Y, Z);
     }
 
-    public enum Axis
+    public enum VectorDirection
     {
         XY,
         YX,

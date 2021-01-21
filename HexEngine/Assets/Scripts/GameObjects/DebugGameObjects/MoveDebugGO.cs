@@ -3,7 +3,7 @@
 public class MoveDebugGO : MonoBehaviour
 {
     SystemProfile SystemProfile = new SystemProfile();
-    public Coordinate.Axis AxisPreset;
+    public Coordinate.VectorDirection AxisPreset;
 
     //// Start is called before the first frame update
     //void Awake()

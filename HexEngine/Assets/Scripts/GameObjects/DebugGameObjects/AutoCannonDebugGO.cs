@@ -6,7 +6,7 @@ public class AutoCannonDebugGO : MonoBehaviour
 {
     SystemProfile SystemProfile = new SystemProfile();
     Model AutoCannon;
-    public Coordinate.Axis FiringAxisPreset;
+    public Coordinate.VectorDirection FiringVectorDirectionPreset;
     public int Ammo = 5;
     public int TargetSpacing = 2;
     IEnumerator SystemTickCoroutine;
@@ -44,13 +44,13 @@ public class AutoCannonDebugGO : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(1, new object[] { CoordinateUtil.GetCoordinate(FiringAxisPreset) });
+            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(1, new object[] { CoordinateUtil.GetCoordinate(FiringVectorDirectionPreset) });
             TriggerObserver.QueueTrigger(triggerList[0]);
             Debug.Log("Bang, " + TriggerObserver.TriggerQueue.Count + " Ammo, " + (((Storage)AutoCannon).Current - 1));
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(2, new object[] { CoordinateUtil.GetCoordinate(FiringAxisPreset) });
+            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(2, new object[] { CoordinateUtil.GetCoordinate(FiringVectorDirectionPreset) });
             TriggerObserver.QueueTrigger(triggerList[0]);
         }
         //else if (Input.GetKeyDown(KeyCode.E))
