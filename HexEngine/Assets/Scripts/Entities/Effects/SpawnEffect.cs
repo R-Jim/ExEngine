@@ -6,7 +6,7 @@
 
     protected override void ExecuteProcess()
     {
-        ModelObserver.SpawnNewModel((Model)Value);
+        ModelContainer.SpawnNewModel((Model)Value);
     }
 
     public override Effect Bind(Model model)

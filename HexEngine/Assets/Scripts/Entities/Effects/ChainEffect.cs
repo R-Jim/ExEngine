@@ -22,7 +22,7 @@
         {
             tailTrigger.Reset();
         }
-        TriggerObserver.QueueTrigger(tailTrigger);
+        TriggerContainer.QueueTrigger(tailTrigger);
     }
 
     public override Effect Bind(Model model)

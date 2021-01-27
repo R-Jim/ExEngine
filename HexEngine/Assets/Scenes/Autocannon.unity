@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c88a777b3841604d9de3060f30923d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FiringAxisPreset: 3
+  FiringVectorDirectionPreset: 0
   Ammo: 5
   TargetSpacing: 2
 --- !u!4 &1225821240
@@ -3656,6 +3656,7 @@ GameObject:
   - component: {fileID: 1436609720}
   - component: {fileID: 1436609719}
   - component: {fileID: 1436609722}
+  - component: {fileID: 1436609723}
   m_Layer: 0
   m_Name: Overlord (1)
   m_TagString: Untagged
@@ -3718,6 +3719,19 @@ MonoBehaviour:
   PlaceholderModelPrefab: {fileID: 972159410298407701, guid: 47f2daec463191947a3bf0fd0585e09e,
     type: 3}
   ModelLayerGameObject: {fileID: 1828344293}
+--- !u!114 &1436609723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1436609718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: becd4c4da7f6ff44f99f048a05d26c4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeBetweenTick: 0.5
 --- !u!1 &1453976533
 GameObject:
   m_ObjectHideFlags: 0

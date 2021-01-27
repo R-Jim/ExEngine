@@ -5,17 +5,12 @@
     public float Z { get; private set; }
     public VectorDirection Pivot { get; private set; }
 
-    public Coordinate(float x, float y, float z)
+    public Coordinate(float x, float y, float z, VectorDirection pivot = VectorDirection.XY)
     {
         X = x;
         Y = y;
         Z = z;
-        Pivot = VectorDirection.XY;
-    }
-
-    public Coordinate()
-    {
-
+        Pivot = pivot;
     }
 
     public void To(Coordinate coordinate)
@@ -59,7 +54,7 @@
 
     public Coordinate Clone()
     {
-        return new Coordinate(X, Y, Z);
+        return new Coordinate(X, Y, Z, Pivot);
     }
 
     public enum VectorDirection

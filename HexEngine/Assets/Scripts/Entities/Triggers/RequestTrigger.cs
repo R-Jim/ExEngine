@@ -1,13 +1,13 @@
 ﻿public class RequestTrigger : Trigger
 {
-    public static bool IsTriggered(Storage storage, int requireValue)
+    public static bool IsTriggered(StorageModel storage, int requireValue)
     {
-        return storage.Get(requireValue) > 0;
+        return storage.StoragePropertySet.Get(requireValue) > 0;
     }
 
     public const string TYPE = "request";
 
-    public RequestTrigger(Storage source, int requireValue, int offset)
+    public RequestTrigger(StorageModel source, int requireValue, int offset)
         : base(source, TYPE, source.CommonPropertySet.Coordinate, offset)
     {
         BaseEffect = new RequestEffect(this, requireValue);
@@ -30,6 +30,6 @@
 
     private bool IsStorageHasValue()
     {
-        return ((Storage)Source).Get((int)BaseEffect.Value) != 0;
+        return ((StorageModel)Source).StoragePropertySet.Get((int)BaseEffect.Value) != 0;
     }
 }

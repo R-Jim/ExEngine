@@ -1,8 +1,8 @@
 ﻿public class CoordinateUtil
 {
-    public static Coordinate GetCoordinate(Coordinate.VectorDirection axis, int multiplier = 1)
+    public static Coordinate GetCoordinate(Coordinate.VectorDirection vectorDirection, int multiplier = 1)
     {
-        return new Coordinate(XPreset(axis, multiplier), YPreset(axis, multiplier), ZPreset(axis, multiplier));
+        return new Coordinate(XPreset(vectorDirection, multiplier), YPreset(vectorDirection, multiplier), ZPreset(vectorDirection, multiplier), vectorDirection);
     }
 
     private static int XPreset(Coordinate.VectorDirection moveAxisPreset, int multiplier = 1)

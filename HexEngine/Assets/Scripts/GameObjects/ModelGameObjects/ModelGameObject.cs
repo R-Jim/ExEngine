@@ -14,7 +14,7 @@ public class ModelGameObject : MonoBehaviour
             return;
         }
         //Get the placeholder model for debug/design
-        SetModel(ModelObserver.ModelList[DebugModelIndex]);
+        SetModel(ModelContainer.ModelList[DebugModelIndex]);
     }
 
     public void SetModel(Model model)

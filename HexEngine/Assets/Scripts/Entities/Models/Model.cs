@@ -4,9 +4,11 @@ public class Model
 {
     public CommonPropertySet CommonPropertySet { get; }
     public GameObjectPropertySet GameObjectPropertySet { get; }
+    public MountPoint[] MountPoints;
+
+    //For animation
     public Queue<Effect> SourceExecutedEffect = new Queue<Effect>();
     public Queue<Effect> TargetExecutedEffect = new Queue<Effect>();
-    public MountPoint[] MountPoints;
 
     public Model(CommonPropertySet commonPropertySet, GameObjectPropertySet gameObjectPropertySet) : this(commonPropertySet, gameObjectPropertySet, null)
     {

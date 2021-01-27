@@ -6,7 +6,7 @@ public class PresetConverter
 
     static readonly PresetRegex[] Presets = new PresetRegex[]
 {
-       new PresetRegex("model,placeholder", ModelPreset.Preset.Placeholder),
+       new PresetRegex("model,model", ModelPreset.Preset.Model),
        new PresetRegex("model,storage", ModelPreset.Preset.Storage),
 
        new PresetRegex("trigger,placeholder", TriggerPreset.Preset.Placeholder),

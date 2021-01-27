@@ -1,11 +1,17 @@
 ﻿public class CommonPropertySet
 {
-    public Storage HpStorage;
+    public StoragePropertySet HpStorage;
     public Coordinate Coordinate { get; }
     public string MountType { get; }
     public MountPoint MountedTo;
+    public MomentumPropertySet MomentumPropertySet;
 
-    public CommonPropertySet(int hpMax, Coordinate coordinate) : this(hpMax, hpMax, coordinate, null)
+    public CommonPropertySet(int hpMax, Coordinate coordinate) : this(hpMax, hpMax, coordinate, null, new MomentumPropertySet())
+    {
+
+    }
+
+    public CommonPropertySet(int hpMax, Coordinate coordinate, MomentumPropertySet momentumPropertySet) : this(hpMax, hpMax, coordinate, null, momentumPropertySet)
     {
 
     }
@@ -15,10 +21,16 @@
 
     }
 
-    public CommonPropertySet(int hpMax, int hpCurrent, Coordinate coordinate, string mountType)
+    public CommonPropertySet(int hpMax, int hpCurrent, Coordinate coordinate, string mountType) : this(hpMax, hpCurrent, coordinate, mountType, new MomentumPropertySet())
     {
-        HpStorage = new Storage(hpMax, hpCurrent);
+
+    }
+
+    public CommonPropertySet(int hpMax, int hpCurrent, Coordinate coordinate, string mountType, MomentumPropertySet momentumPropertySet)
+    {
+        HpStorage = new StoragePropertySet(hpMax, hpCurrent);
         Coordinate = coordinate;
         MountType = mountType;
+        MomentumPropertySet = momentumPropertySet;
     }
 }
