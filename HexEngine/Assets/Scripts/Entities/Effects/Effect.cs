@@ -5,9 +5,8 @@
     public Trigger Trigger;
     public Model TargetModel;
 
-    public Effect(Trigger trigger, object value)
+    public Effect(object value)
     {
-        Trigger = trigger;
         Value = value;
         Status = EffectStatus.Base;
     }

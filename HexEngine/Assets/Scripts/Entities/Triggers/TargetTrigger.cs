@@ -3,10 +3,9 @@
     public const string TYPE = "target";
 
     public TargetTrigger(Model source, Model target, Effect baseEffect, int offset)
-        : base(source, TYPE, source.CommonPropertySet.Coordinate, offset)
+        : base(source, TYPE, source.CommonPropertySet.Coordinate, baseEffect, offset)
     {
         BaseEffect = baseEffect.Bind(target);
-        BaseEffect.Trigger = this;
     }
 
 

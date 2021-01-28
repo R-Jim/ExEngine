@@ -1,6 +1,6 @@
 ﻿public class ChainEffect : Effect
 {
-    public ChainEffect(Trigger trigger, ChainTrigger.ChainSet chainSet) : base(trigger, chainSet)
+    public ChainEffect(ChainTrigger.ChainSet chainSet) : base(chainSet)
     {
 
     }
@@ -28,10 +28,11 @@
     public override Effect Bind(Model model)
     {
         ChainTrigger.ChainSet chainSet = (ChainTrigger.ChainSet)Value;
-        Effect effect = new ChainEffect(Trigger, new ChainTrigger.ChainSet(chainSet.HeadTrigger, chainSet.TailTrigger, chainSet.Type))
+        Effect effect = new ChainEffect(new ChainTrigger.ChainSet(chainSet.HeadTrigger, chainSet.TailTrigger, chainSet.Type))
         {
             TargetModel = model
         };
+        effect.Trigger = Trigger;
         return effect;
     }
 }

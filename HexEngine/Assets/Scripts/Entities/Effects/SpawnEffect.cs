@@ -1,6 +1,6 @@
 ﻿public class SpawnEffect : Effect
 {
-    public SpawnEffect(Trigger trigger, Model spawnModel) : base(trigger, spawnModel)
+    public SpawnEffect(Model spawnModel) : base(spawnModel)
     {
     }
 
@@ -11,10 +11,11 @@
 
     public override Effect Bind(Model model)
     {
-        Effect effect = new SpawnEffect(Trigger, (Model)Value)
+        Effect effect = new SpawnEffect((Model)Value)
         {
             TargetModel = model
         };
+        effect.Trigger = Trigger;
         return effect;
     }
 }

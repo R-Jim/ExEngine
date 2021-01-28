@@ -8,9 +8,8 @@
     public const string TYPE = "request";
 
     public RequestTrigger(StorageModel source, int requireValue, int offset)
-        : base(source, TYPE, source.CommonPropertySet.Coordinate, offset)
+        : base(source, TYPE, source.CommonPropertySet.Coordinate, new RequestEffect(requireValue), offset)
     {
-        BaseEffect = new RequestEffect(this, requireValue);
     }
 
 

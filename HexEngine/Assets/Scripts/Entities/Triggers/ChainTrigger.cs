@@ -6,14 +6,13 @@ public class ChainTrigger : Trigger
     public bool IsSelfChain { get; }
 
     public ChainTrigger(Model source, ChainSet chainSet, bool isSelfChain = false)
-        : base(source, TYPE, source.CommonPropertySet.Coordinate, chainSet.HeadTrigger.OffSet)
+        : base(source, TYPE, source.CommonPropertySet.Coordinate, new ChainEffect(chainSet), chainSet.HeadTrigger.OffSet)
     {
         if (isSelfChain)
         {
             IsSelfChain = isSelfChain;
             chainSet.TailTrigger = this;
         }
-        BaseEffect = new ChainEffect(this, chainSet);
     }
 
     public override Effect Hook(Model model)
