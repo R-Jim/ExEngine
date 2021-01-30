@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 public class Datatable
 {
@@ -34,16 +33,25 @@ public class Datatable
         {
             if (effectActionSet.ActionKey == actionKey)
             {
-                List<object> initialedList = new List<object>();
-                initialedList.AddRange(actionProperties);
-                foreach (int index in effectActionSet.InitProperties)
-                {
-                    initialedList.Add(Mapping.MapProperty(this, index, actionProperties));
-                }
-                triggerList.Add((Trigger)Mapping.MapProperty(this, effectActionSet.PropertyIndex, initialedList.ToArray()));
+
+                triggerList.Add(
+                    (Trigger) Mapping.MapProperty(
+                        this, effectActionSet.PropertyIndex, GetPropertyList(effectActionSet, actionProperties).ToArray()
+                        ));
             }
         }
         return triggerList;
+    }
+
+    public List<object> GetPropertyList(EffectActionSet effectActionSet, object[] actionProperties)
+    {
+        List<object> initialedList = new List<object>();
+        initialedList.AddRange(actionProperties);
+        foreach (int index in effectActionSet.InitProperties)
+        {
+            initialedList.Add(Mapping.MapProperty(this, index, actionProperties));
+        }
+        return initialedList;
     }
 
     public object MainProperty()

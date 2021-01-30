@@ -48,26 +48,9 @@ public class AutoCannonDebugGO : MonoBehaviour
             List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(2, new object[] { CoordinateUtil.GetCoordinate(FiringVectorDirectionPreset) });
             TriggerContainer.QueueTrigger(triggerList[0]);
         }
-        //else if (Input.GetKeyDown(KeyCode.E))
-        //{
-        //    Coordinate destroyableCoordinate = CoordinateUtil.GetCoordinate(FiringAxisPreset, TargetSpacing);
-        //    TriggerObserver.TriggerQueue.Enqueue(GetSpawnDetroyableModel(destroyableCoordinate));
-        //    Debug.Log("Spawn, " + destroyableCoordinate.ToString());
-        //}
-        //else if (Input.GetKeyDown(KeyCode.R))
-        //{
-        //    AutoCannon.Fill(Ammo);
-        //    Debug.Log("Reload, " + AutoCannon.Current);
-        //}
         if (Input.GetKeyDown(KeyCode.P))
         {
             SystemProperties.IsSwitch = true;
         }
     }
-
-    //private SpawnEffect GetSpawnDetroyableModel(Coordinate coordinate)
-    //{
-    //    Model destroyableModel = new Model(new CommonPropertySet(10, coordinate), new GameObjectPropertySet(PrefabPreset.Preset.Placeholder));
-    //    return new SpawnEffect(null, destroyableModel, 0);
-    //}
 }

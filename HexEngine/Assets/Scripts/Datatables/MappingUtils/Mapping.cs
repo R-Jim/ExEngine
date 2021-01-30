@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 public class Mapping
@@ -27,7 +26,7 @@ public class Mapping
             }
             else
             {
-                convertedValue.Add(GetRawValue(value));
+                convertedValue.Add(RawValueMapping.GetValue(value));
             }
         }
 
@@ -114,32 +113,6 @@ public class Mapping
         {
             isClone = false;
             return value;
-        }
-    }
-
-    private static object GetRawValue(string value)
-    {
-        try
-        {
-            return int.Parse(value);
-        }
-        catch (FormatException)
-        {
-            try
-            {
-                return float.Parse(value);
-            }
-            catch (FormatException)
-            {
-                try
-                {
-                    return bool.Parse(value);
-                }
-                catch (FormatException)
-                {
-                    return value;
-                }
-            }
         }
     }
 

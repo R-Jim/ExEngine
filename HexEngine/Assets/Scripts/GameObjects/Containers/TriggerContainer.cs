@@ -9,14 +9,12 @@ public class TriggerContainer : MonoBehaviour
 
     private List<Model> ModelList;
 
-    // Start is called before the first frame update
     void Start()
     {
         PendingEffectQueue = PendingEffectContainer.PendingEffectQueue;
         ModelList = ModelContainer.ModelList;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (TriggerQueue.Count > 0)

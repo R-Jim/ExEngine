@@ -65,13 +65,8 @@ public class AnimationSet
 
         foreach(string removableTag in removableTagList)
         {
-            Remove(removableTag);
+            AnimationDictionary.Remove(removableTag);
         }
-    }
-
-    public void Remove(string tag)
-    {
-        AnimationDictionary.Remove(tag);
     }
 
     public int GetValue(string tag)
