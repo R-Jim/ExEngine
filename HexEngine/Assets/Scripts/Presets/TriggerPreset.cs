@@ -2,10 +2,8 @@
 {
     public enum Preset
     {
-        Placeholder,
+        Trigger,
         Chain,
-        Collision,
-        Move,
         Request,
         Spawn,
         Target,
@@ -15,10 +13,8 @@
     {
         switch (preset)
         {
-            case Preset.Placeholder: return GetPlaceholderTrigger();
+            case Preset.Trigger: return GetTrigger(properties);
             case Preset.Chain: return GetChainTrigger(properties);
-            case Preset.Collision: return GetCollisionTrigger(properties);
-            case Preset.Move: return GetMoveTrigger(properties);
             case Preset.Request: return GetRequestTrigger(properties);
             case Preset.Spawn: return GetSpawnTrigger(properties);
             case Preset.Target: return GetTargetTrigger(properties);
@@ -26,14 +22,9 @@
         return null;
     }
 
-    public static Trigger GetPlaceholderTrigger()
+    public static Trigger GetTrigger(object[] properties)
     {
-        return new Trigger();
-    }
-
-    public static Trigger GetMoveTrigger(object[] properties)
-    {
-        return new MoveTrigger((Model)properties[0], (Coordinate)properties[1], (Coordinate)properties[2], (int)properties[3]);
+        return new Trigger((Model)properties[0], (Coordinate)properties[1], (Effect)properties[2], (int)properties[3]);
     }
 
     public static Trigger GetRequestTrigger(object[] properties)
@@ -45,7 +36,7 @@
     {
         ChainTrigger.ChainSet chainSet = new ChainTrigger.ChainSet(
                 (Trigger)properties[1],
-                properties[2] != null ? (Trigger)properties[2] : GetPlaceholderTrigger(),
+                properties[2] != null ? (Trigger)properties[2] : null,
                 (ChainTrigger.ChainSet.ChainType)properties[3]
             );
         if (properties.Length == 5)
@@ -58,11 +49,6 @@
     public static Trigger GetSpawnTrigger(object[] properties)
     {
         return new SpawnTrigger((Model)properties[0], (Model)properties[1], (int)properties[2]);
-    }
-
-    public static Trigger GetCollisionTrigger(object[] properties)
-    {
-        return new CollisionTrigger((Model)properties[0], (Coordinate)properties[1], (int)properties[2], (int)properties[3]);
     }
 
     public static Trigger GetTargetTrigger(object[] properties)

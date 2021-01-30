@@ -4,7 +4,7 @@ using UnityEngine;
 public class AutoCannonDebugGO : MonoBehaviour
 {
     Model AutoCannon;
-    public Coordinate.VectorDirection FiringVectorDirectionPreset;
+    public Coordinate.Vector FiringVectorDirectionPreset;
     public int Ammo = 5;
     public int TargetSpacing = 2;
     readonly CannonDatatable CannonDatatable = new CannonDatatable();
@@ -13,7 +13,7 @@ public class AutoCannonDebugGO : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        ModelContainer.ModelList.Add(new Model(new CommonPropertySet(100, Coordinate.Clone(), "system"), null, null));
+        ModelContainer.ModelList.Add(new Model(new CommonPropertySet(100, new Coordinate(1000, 1000, 1000), "system"), null, null));
 
         //Init mount model
         MountPoint weaponMountPoint = new MountPoint("weapon", new Coordinate(0, 0.03f, 0));

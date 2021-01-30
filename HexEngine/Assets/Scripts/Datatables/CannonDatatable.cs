@@ -15,12 +15,9 @@
             new DataSet("trigger,request", new string[]{ "<init,0/>", "1", "1"}),
             new DataSet("trigger,spawn", new string[]{ "<init,0/>", "<action,1/>",  "0"}),
             new DataSet("trigger,chain", new string[]{ "<init,0/>", "<prop,2/>", "<prop,3/>", "0"}), //Usage index 4
-            
-           // new DataSet("effect,move", new string[]{ null, "<action,0/>"}), //Usage index 12
-
-           //new DataSet("trigger,target", new string[]{ "<init,0/>", "<init,0/>", "<prop,14/>", "0"}),
-
-           //new DataSet("effect,move", new string[]{ null, "<action,0/>"}), //Usage index 14
+            //Move cannon
+            new DataSet("effect,modifier", new string[]{ "2", "1", "1"}),
+            new DataSet("trigger,trigger", new string[]{ "<init,0/>", "<init,0.CommonPropertySet.~Coordinate/>", "<prop,5/>", "0"}), //Usage index 6
         };
     }
 
@@ -28,8 +25,8 @@
     private static EffectActionSet[] GetEffectActions()
     {
         return new EffectActionSet[] {
-            new EffectActionSet(1,new int[]{ 1 }, 4),
-            //new EffectActionSet(2,new int[]{ }, 13),
+            new EffectActionSet(1, new int[]{ 1 }, 4),
+            new EffectActionSet(2, new int[]{ }, 6),
         };
     }
 }

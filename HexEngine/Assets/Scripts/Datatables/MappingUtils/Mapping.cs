@@ -127,11 +127,18 @@ public class Mapping
         {
             try
             {
-                return bool.Parse(value);
+                return float.Parse(value);
             }
             catch (FormatException)
             {
-                return value;
+                try
+                {
+                    return bool.Parse(value);
+                }
+                catch (FormatException)
+                {
+                    return value;
+                }
             }
         }
     }

@@ -13,7 +13,7 @@
             return;
         }
 
-        Coordinate.VectorDirection vectorDirection = momentumPropertySet.GetVectorDirection(model.CommonPropertySet.Coordinate);
+        Coordinate.Vector vectorDirection = momentumPropertySet.GetVectorDirection(model.CommonPropertySet.Coordinate);
         Coordinate moveValueCoordinate = CoordinateUtil.GetCoordinate(vectorDirection);
 
         ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(moveValueCoordinate));
