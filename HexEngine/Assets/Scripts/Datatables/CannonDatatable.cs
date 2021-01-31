@@ -17,7 +17,7 @@
             new DataSet("trigger,chain", new string[]{ "<init,0/>", "<prop,2/>", "<prop,3/>", "0"}), //Usage index 4
             //Move cannon
             new DataSet("effect,modifier", new string[]{ "2", "1", "1"}),
-            new DataSet("trigger,trigger", new string[]{ "<init,0/>", "<init,0.CommonPropertySet.~Coordinate/>", "<prop,5/>", "0"}), //Usage index 6
+            new DataSet("trigger,target", new string[]{ "<init,0/>", "<init,0/>", "<prop,5/>", "0"}), //Usage index 6
         };
     }
 
