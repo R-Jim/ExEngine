@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class ModelContainer: MonoBehaviour
+public class ModelContainer : MonoBehaviour
 {
     public static List<Model> ModelList = new List<Model>();
     public GameObject ProjectileModelPrefab;
@@ -38,5 +38,10 @@ public class ModelContainer: MonoBehaviour
         projectile.transform.parent = ModelLayer.transform;
         projectile.GetComponent<ModelGameObject>().SetModel(model);
         Debug.Log("Spawned, " + model.CommonPropertySet.Coordinate.ToString());
+    }
+
+    public static List<Model> GetModelList(Coordinate coordinate)
+    {
+        return ModelList.FindAll(model => model.CommonPropertySet.Coordinate.Equals(coordinate));
     }
 }

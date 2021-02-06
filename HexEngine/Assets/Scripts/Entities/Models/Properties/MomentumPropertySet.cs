@@ -22,6 +22,14 @@ public class MomentumPropertySet
         Z.Add(zAxis);
     }
 
+    public MomentumPropertySet(VectorPropertySet vectorPropertySet)
+    {
+        X = new MomentumAxisSet(Coordinate.Vector.YZ, Coordinate.Vector.ZY);
+        Y = new MomentumAxisSet(Coordinate.Vector.XZ, Coordinate.Vector.ZX);
+        Z = new MomentumAxisSet(Coordinate.Vector.YX, Coordinate.Vector.XY);
+        Add(vectorPropertySet);
+    }
+
     public void Add(VectorPropertySet vectorPropertySet)
     {
         X.Add(vectorPropertySet);
@@ -50,6 +58,11 @@ public class MomentumPropertySet
     public bool IsEmpty()
     {
         return X.IsEmpty() && Y.IsEmpty() && Z.IsEmpty();
+    }
+
+    public float GetTotalMomentum()
+    {
+        return X.Value + Y.Value + Z.Value;
     }
 
     public class MomentumAxisSet
@@ -108,7 +121,7 @@ public class MomentumPropertySet
 
         public bool IsEmpty()
         {
-            return Value <= 0;
+            return Value == 0;
         }
     }
 }

@@ -33,7 +33,6 @@ public class TriggerContainer : MonoBehaviour
 
     private void HookEffect(Trigger trigger)
     {
-
         foreach (Model model in ModelList)
         {
             Effect effect = trigger.Hook(model);

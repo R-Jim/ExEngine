@@ -30,7 +30,7 @@
 
     public static Modifier GetCoordinateModifier(object[] properties, int offset)
     {
-        return new CoordinateModifier(new Coordinate((float)properties[0 + offset], (float)properties[1 + offset], (float)properties[2 + offset]));
+        return new CoordinateModifier((Coordinate.Vector)properties[0 + offset]);
     }
 }
 

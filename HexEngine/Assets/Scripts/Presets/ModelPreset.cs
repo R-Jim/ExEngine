@@ -23,9 +23,10 @@
                 (int)properties[0],
                 (int)properties[1],
                 (Coordinate)properties[2],
-                (string)properties[3],
-                new MomentumPropertySet((int)properties[4], (int)properties[5], (int)properties[6]))
-            , new GameObjectPropertySet((PrefabPreset.Preset)properties[7]));
+                (int)properties[3],
+                (string)properties[4],
+                new MomentumPropertySet((int)properties[5], (int)properties[6], (int)properties[7]))
+            , new GameObjectPropertySet((PrefabPreset.Preset)properties[8]));
     }
 
     private static Model GetStorageModel(object[] properties)
@@ -36,8 +37,9 @@
                 (int)properties[1],
                 (int)properties[2],
                 (Coordinate)properties[3],
-                (string)properties[4],
-                new MomentumPropertySet((int)properties[5], (int)properties[6], (int)properties[7]))
-            , new GameObjectPropertySet((PrefabPreset.Preset)properties[8]));
+                (int)properties[4],
+                (string)properties[5],
+                new MomentumPropertySet((int)properties[6], (int)properties[7], (int)properties[8]))
+            , new GameObjectPropertySet((PrefabPreset.Preset)properties[9]));
     }
 }

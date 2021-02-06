@@ -13,11 +13,11 @@ public class AutoCannonDebugGO : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        ModelContainer.ModelList.Add(new Model(new CommonPropertySet(100, new Coordinate(1000, 1000, 1000), "system"), null, null));
+        ModelContainer.ModelList.Add(new Model(new CommonPropertySet(100, new Coordinate(1000, 1000, 1000), 0, "system"), null, null));
 
         //Init mount model
         MountPoint weaponMountPoint = new MountPoint("weapon", new Coordinate(0, 0.03f, 0));
-        Model MountPlaceholderModel = new Model(new CommonPropertySet(100, Coordinate.Clone()), null, new MountPoint[] { weaponMountPoint });
+        Model MountPlaceholderModel = new Model(new CommonPropertySet(100, Coordinate.Clone(), 20), null, new MountPoint[] { weaponMountPoint });
         ModelContainer.ModelList.Add(MountPlaceholderModel);
 
         //Init Auto cannon model
@@ -39,13 +39,15 @@ public class AutoCannonDebugGO : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(1, new object[] { CoordinateUtil.GetCoordinate(FiringVectorDirectionPreset) });
+            Coordinate spawnCoordinate = AutoCannon.CommonPropertySet.Coordinate.Clone();
+            spawnCoordinate.Add(CoordinateUtil.GetCoordinate(FiringVectorDirectionPreset));
+            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(1, new object[] { spawnCoordinate, FiringVectorDirectionPreset });
             TriggerContainer.QueueTrigger(triggerList[0]);
             Debug.Log("Bang, " + TriggerContainer.TriggerQueue.Count + " Ammo, " + (((StorageModel)AutoCannon).StoragePropertySet.Current - 1));
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(2, new object[] { CoordinateUtil.GetCoordinate(FiringVectorDirectionPreset) });
+            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(2, new object[] { FiringVectorDirectionPreset });
             TriggerContainer.QueueTrigger(triggerList[0]);
         }
         if (Input.GetKeyDown(KeyCode.P))

@@ -12,8 +12,7 @@
         {
             return;
         }
-        ChainTrigger chainTrigger = new ChainTrigger(model, new ChainTrigger.ChainSet(GetMoveTrigger(model), GetCollisionTrigger(model), ChainTrigger.ChainSet.ChainType.Hook));
-        QueueTrigger(chainTrigger);
+        QueueTrigger(GetMoveTrigger(model));
     }
 
     private Trigger GetMoveTrigger(Model model)
@@ -21,16 +20,9 @@
         MomentumPropertySet momentumPropertySet = model.CommonPropertySet.MomentumPropertySet;
 
         Coordinate.Vector vectorDirection = momentumPropertySet.GetVectorDirection(model.CommonPropertySet.Coordinate);
-        Coordinate moveValueCoordinate = CoordinateUtil.GetCoordinate(vectorDirection);
 
-        ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(moveValueCoordinate));
+        ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(vectorDirection));
         //TODO replace offset with momentum calculated value
         return new TargetTrigger(model, model, modifyEffect, 2);
-    }
-
-    private Trigger GetCollisionTrigger(Model model)
-    {
-        //TODO replace damage value
-        return new Trigger(model, model.CommonPropertySet.Coordinate, new ModifyPropertyEffect(new HpModifier(10)), 0);
     }
 }
