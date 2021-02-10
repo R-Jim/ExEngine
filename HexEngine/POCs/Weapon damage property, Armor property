@@ -1,0 +1,8 @@
+Weapon damage property:
++ Base value
++ Impact value modifier
++ Damage type
+Armor property:
++ Armor type
++ Nullify value
++ Absorbtion value
