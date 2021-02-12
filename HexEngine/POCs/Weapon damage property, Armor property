@@ -1,5 +1,6 @@
 Weapon damage property:
 + Base value
++ True value
 + Impact value modifier
 + Damage type
 Armor property:
