@@ -11,7 +11,7 @@ class PushUtil
         List<Model> effectedModelList = ModelContainer.GetModelList(EffectedCoordinate);
         HashSet<Model> effectedModelSet = GetUpMostModelSet(effectedModelList);
 
-        if(effectedModelSet.Count == 0)
+        if (effectedModelSet.Count == 0)
         {
             return true;
         }

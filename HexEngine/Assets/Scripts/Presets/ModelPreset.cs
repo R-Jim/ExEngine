@@ -26,13 +26,17 @@
                 (int)properties[3],
                 (string)properties[4],
                 new MomentumPropertySet((int)properties[5], (int)properties[6], (int)properties[7]))
-            , new GameObjectPropertySet((PrefabPreset.Preset)properties[8]));
+            , null
+            , new GameObjectPropertySet((PrefabPreset.Preset)properties[8])
+            , null
+            );
     }
 
     private static Model GetStorageModel(object[] properties)
     {
         return new StorageModel(
             (int)properties[0]
+            , (int)properties[0]
             , new CommonPropertySet(
                 (int)properties[1],
                 (int)properties[2],

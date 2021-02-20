@@ -3,6 +3,7 @@
 public class Model
 {
     public CommonPropertySet CommonPropertySet { get; }
+    public CombatPropertySet CombatPropertySet { get; }
     public GameObjectPropertySet GameObjectPropertySet { get; }
     public MountPoint[] MountPoints;
 
@@ -10,16 +11,13 @@ public class Model
     public Queue<Effect> SourceExecutedEffect = new Queue<Effect>();
     public Queue<Effect> TargetExecutedEffect = new Queue<Effect>();
 
-    public Model(CommonPropertySet commonPropertySet, GameObjectPropertySet gameObjectPropertySet) : this(commonPropertySet, gameObjectPropertySet, null)
-    {
-    }
-
-    public Model(CommonPropertySet commonPropertySet, GameObjectPropertySet gameObjectPropertySet, MountPoint[] mountPoints)
+    public Model(CommonPropertySet commonPropertySet, CombatPropertySet combatPropertySet, GameObjectPropertySet gameObjectPropertySet, MountPoint[] mountPoints)
     {
         CommonPropertySet = commonPropertySet;
+        CombatPropertySet = combatPropertySet ?? new CombatPropertySet();
         GameObjectPropertySet = gameObjectPropertySet;
         MountPoints = mountPoints;
-        if(MountPoints != null)
+        if (MountPoints != null)
         {
             foreach (MountPoint mountPoint in MountPoints)
             {

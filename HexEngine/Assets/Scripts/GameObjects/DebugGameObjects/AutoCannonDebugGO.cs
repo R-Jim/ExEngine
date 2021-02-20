@@ -13,11 +13,11 @@ public class AutoCannonDebugGO : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        ModelContainer.ModelList.Add(new Model(new CommonPropertySet(100, new Coordinate(1000, 1000, 1000), 0, "system"), null, null));
+        ModelContainer.ModelList.Add(new Model(new CommonPropertySet(100, 100, new Coordinate(1000, 1000, 1000), 0, "system", new MomentumPropertySet()), null, null, null));
 
         //Init mount model
         MountPoint weaponMountPoint = new MountPoint("weapon", new Coordinate(0, 0.03f, 0));
-        Model MountPlaceholderModel = new Model(new CommonPropertySet(100, Coordinate.Clone(), 20), null, new MountPoint[] { weaponMountPoint });
+        Model MountPlaceholderModel = new Model(new CommonPropertySet(100, 100, Coordinate.Clone(), 20, null, new MomentumPropertySet()), null, null, new MountPoint[] { weaponMountPoint });
         ModelContainer.ModelList.Add(MountPlaceholderModel);
 
         //Init Auto cannon model

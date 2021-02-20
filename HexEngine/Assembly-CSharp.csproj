@@ -87,10 +87,14 @@
     <Compile Include="Assets\Scripts\Entities\Intervals\Interval.cs" />
     <Compile Include="Assets\Scripts\Entities\Intervals\MomentumInterval.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Model.cs" />
-    <Compile Include="Assets\Scripts\Entities\Models\Properties\CommonPropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Combat\ArmorPropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Combat\CombatPropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Combat\DamagePropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\CommonPropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\MomentumAxisSet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\MomentumPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Coordinate.cs" />
-    <Compile Include="Assets\Scripts\Entities\Models\Properties\GameObjectPropertySet.cs" />
-    <Compile Include="Assets\Scripts\Entities\Models\Properties\MomentumPropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\GameObject\GameObjectPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\MountPoint.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\StoragePropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\VectorPropertySet.cs" />
@@ -110,9 +114,12 @@
     <Compile Include="Assets\Scripts\Presets\ModifierPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\PrefabPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\TriggerPreset.cs" />
+    <Compile Include="Assets\Scripts\Utils\CombatPropertySetUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\CommonPropertySetUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\CoordinateUtil.cs" />
+    <Compile Include="Assets\Scripts\Utils\DamageUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\ImpactDamageUtil.cs" />
+    <Compile Include="Assets\Scripts\Utils\ModelUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\PushUtil.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.13f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

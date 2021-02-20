@@ -5,9 +5,9 @@
         return new Coordinate(XPreset(vectorDirection, multiplier), YPreset(vectorDirection, multiplier), ZPreset(vectorDirection, multiplier), vectorDirection);
     }
 
-    private static int XPreset(Coordinate.Vector moveAxisPreset, int multiplier = 1)
+    private static int XPreset(Coordinate.Vector vector, int multiplier = 1)
     {
-        switch (moveAxisPreset)
+        switch (vector)
         {
             case Coordinate.Vector.XY:
             case Coordinate.Vector.XZ: return 1 * multiplier;
@@ -17,9 +17,9 @@
         }
     }
 
-    private static int YPreset(Coordinate.Vector moveAxisPreset, int multiplier = 1)
+    private static int YPreset(Coordinate.Vector vector, int multiplier = 1)
     {
-        switch (moveAxisPreset)
+        switch (vector)
         {
             case Coordinate.Vector.YX:
             case Coordinate.Vector.YZ: return 1 * multiplier;
@@ -29,9 +29,9 @@
         }
     }
 
-    private static int ZPreset(Coordinate.Vector moveAxisPreset, int multiplier = 1)
+    private static int ZPreset(Coordinate.Vector vector, int multiplier = 1)
     {
-        switch (moveAxisPreset)
+        switch (vector)
         {
             case Coordinate.Vector.ZX:
             case Coordinate.Vector.ZY: return 1 * multiplier;
