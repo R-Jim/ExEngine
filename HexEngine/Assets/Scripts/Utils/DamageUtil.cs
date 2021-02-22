@@ -3,26 +3,27 @@ using UnityEngine;
 
 public class DamageUtil
 {
-    public static void DamageModel(Model effectedModel, Model sourceModel, Coordinate.Vector vectorDirection)
+    public static void DamageModel(Model effectedModel, Model sourceModel, int impactValue)
     {
-        int impactValue = ImpactDamageUtil.GetImpactValue(sourceModel, vectorDirection);
         int rawDamageValue = CombatPropertySetUtil.GetFullRawDamage(sourceModel, impactValue);
         int trueDamageValue = CombatPropertySetUtil.GetFullTrueDamage(sourceModel, impactValue);
 
         Debug.Log(sourceModel + ", impactValue:" + impactValue + ", " + rawDamageValue + ", " + trueDamageValue);
 
-        DamageModelWithRawValue(effectedModel, rawDamageValue);
-        DamageModelWithTrueValue(effectedModel, trueDamageValue);
+        ModelUtil.ProcessAllModelByFunctionWithInputObjects(effectedModel, DamageModelWithRawValue, new object[] { rawDamageValue });
+        ModelUtil.ProcessAllModelByFunctionWithInputObjects(effectedModel, DamageModelWithTrueValue, new object[] { trueDamageValue });
     }
 
-    private static void DamageModelWithRawValue(Model effectedModel, int rawDamageValue)
+    private static void DamageModelWithRawValue(Model effectedModel, object[] inputObjects)
     {
+        int rawDamageValue = (int)inputObjects[0];
         int damageTaken = (int)Math.Ceiling(GetDamageValueAfterAbsorbtion(effectedModel, rawDamageValue) * CombatPropertySetUtil.GetArmorNullifier(effectedModel));
         effectedModel.CommonPropertySet.HpStorage.Fill(damageTaken);
     }
 
-    private static void DamageModelWithTrueValue(Model effectedModel, int trueDamageValue)
+    private static void DamageModelWithTrueValue(Model effectedModel, object[] inputObjects)
     {
+        int trueDamageValue = (int)inputObjects[0];
         int damageTaken = GetDamageValueAfterAbsorbtion(effectedModel, trueDamageValue);
         effectedModel.CommonPropertySet.HpStorage.Fill(damageTaken);
     }

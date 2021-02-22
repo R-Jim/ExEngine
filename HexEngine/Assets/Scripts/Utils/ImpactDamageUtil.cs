@@ -7,16 +7,14 @@ class ImpactDamageUtil
         Coordinate.Vector vectorDirection = sourceModel.CommonPropertySet.Coordinate.Pivot;
 
 
-        DamageUtil.DamageModel(effectedModel, sourceModel, vectorDirection);
-        DamageUtil.DamageModel(sourceModel, effectedModel, vectorDirection);
+        //DamageUtil.DamageModel(effectedModel, sourceModel, GetImpactValue(sourceModel, vectorDirection));
+        //DamageUtil.DamageModel(sourceModel, effectedModel, GetImpactValue(effectedModel, vectorDirection));
     }
 
-    public static int GetImpactValue(Model model, Coordinate.Vector vectorDirection)
+    public static float GetImpactValue(Model model, Coordinate.Vector vectorDirection)
     {
-
-        return (int)Math.Round(
-            CommonPropertySetUtil.GetFullWeight(model)
-            * (model.CommonPropertySet.MomentumPropertySet.GetTotalMomentumByDirection(vectorDirection) + 1)
-            );
+        float totalMomentum = Math.Abs(model.CommonPropertySet.MomentumPropertySet.GetTotalMomentumByDirection(vectorDirection));
+        int modelWeight = CommonPropertySetUtil.GetFullWeight(model);
+        return modelWeight * totalMomentum;
     }
 }

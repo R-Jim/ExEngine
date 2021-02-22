@@ -31,6 +31,19 @@ public class ModelUtil
         return propertyValue;
     }
 
+    public static void ProcessAllModelByFunctionWithInputObjects(Model model, Action<Model, object[]> processFunction, object[] inputObjects)
+    {
+        processFunction(model, inputObjects);
+        if (model.MountPoints == null)
+        {
+            return;
+        }
+        foreach (MountPoint mountPoint in model.MountPoints)
+        {
+            ProcessAllModelByFunctionWithInputObjects(mountPoint.MountedModel, processFunction, inputObjects);
+        }
+    }
+
     public static bool IsModelMountedTo(Model sourceModel, Model mountedModel)
     {
         MountPoint mountPoint = sourceModel.CommonPropertySet.MountedTo;

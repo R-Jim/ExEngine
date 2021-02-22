@@ -8,11 +8,18 @@
     public override void Modify(Effect effect)
     {
         Model targetModel = effect.TargetModel;
+        Modify(targetModel, CommonPropertySetUtil.GetFullWeight(targetModel));
+    }
+
+    public float Modify(Model targetModel, float bonusImpactValue = 0)
+    {
         Model upMostModel = CommonPropertySetUtil.GetUpMostModel(targetModel);
-        if (PushUtil.Push(upMostModel, this))
+        float pushImpactValue = PushUtil.Push(upMostModel, this, bonusImpactValue);
+        if (pushImpactValue > 0)
         {
             MoveModel(upMostModel);
         }
+        return pushImpactValue;
     }
 
     private void MoveModel(Model model)

@@ -10,7 +10,7 @@
         return new DataSet[] {
             //Init cannon, number of ammo, travel distant of projectile
             new DataSet("model,storage", new string[]{"5", "100", "100", "<in,0/>", "10", "weapon", "0", "0", "0", "1" }), //Usage index 0
-            new DataSet("model,model", new string[]{"2", "2", "<action,0/>", "1", "", "0", "0", "0", "2" }), //Usage index 1
+            new DataSet("model,model", new string[]{"2", "2", "<action,0/>", "2", "", "0", "0", "0", "2" }), //Usage index 1
             //Spawn projectile
             new DataSet("trigger,request", new string[]{ "<init,0/>", "1", "1"}),
             new DataSet("trigger,spawn", new string[]{ "<init,0/>", "<action,2/>",  "0"}),

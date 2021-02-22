@@ -40,6 +40,12 @@ public class ModelContainer : MonoBehaviour
         Debug.Log("Spawned, " + model.CommonPropertySet.Coordinate.ToString());
     }
 
+    public static Model GetModel(Coordinate coordinate)
+    {
+        Model model = ModelList.Find(m => m.CommonPropertySet.Coordinate.Equals(coordinate));
+        return CommonPropertySetUtil.GetUpMostModel(model);
+    }
+
     public static List<Model> GetModelList(Coordinate coordinate)
     {
         return ModelList.FindAll(model => model.CommonPropertySet.Coordinate.Equals(coordinate));
