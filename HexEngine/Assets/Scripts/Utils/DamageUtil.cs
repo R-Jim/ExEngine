@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DamageUtil
 {
-    public static void DamageModel(Model effectedModel, Model sourceModel, int impactValue)
+    public static void DamageModel(Model effectedModel, Model sourceModel, float impactValue)
     {
         int rawDamageValue = CombatPropertySetUtil.GetFullRawDamage(sourceModel, impactValue);
         int trueDamageValue = CombatPropertySetUtil.GetFullTrueDamage(sourceModel, impactValue);

@@ -10,12 +10,12 @@ class PushUtil
         EffectedCoordinate.Add(CoordinateUtil.GetCoordinate(vectorValue));
 
         Model model = ModelContainer.GetModel(EffectedCoordinate);
+        float pushImpactValue = ImpactUtil.GetImpactValue(sourceModel, vectorValue) + bonusImpactValue;
         if (model == null)
         {
-            return CommonPropertySetUtil.GetFullWeight(sourceModel);
+            return pushImpactValue;
         }
 
-        float pushImpactValue = ImpactDamageUtil.GetImpactValue(sourceModel, vectorValue) + bonusImpactValue;
         return PushEffectedModel(pushImpactValue, model, coordinateModifier);
     }
 
@@ -23,11 +23,11 @@ class PushUtil
     {
         Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
 
-        float effectedImpactValue = ImpactDamageUtil.GetImpactValue(effectedModel, vectorValue) + CommonPropertySetUtil.GetFullWeight(effectedModel);
+        float effectedImpactValue = ImpactUtil.GetImpactValue(effectedModel, vectorValue);
         float remainImpactValue = pushImpactValue - effectedImpactValue;
         if (remainImpactValue >= 0)
         {
-            remainImpactValue = pushImpactValue - coordinateModifier.Modify(effectedModel, effectedImpactValue);
+            remainImpactValue = coordinateModifier.Modify(effectedModel, remainImpactValue);
         }
         Debug.Log("pushValue:" + pushImpactValue + "," + remainImpactValue);
         return remainImpactValue;

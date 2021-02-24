@@ -8,18 +8,20 @@
     public override void Modify(Effect effect)
     {
         Model targetModel = effect.TargetModel;
-        Modify(targetModel, CommonPropertySetUtil.GetFullWeight(targetModel));
+        Modify(targetModel, 0);
     }
 
     public float Modify(Model targetModel, float bonusImpactValue = 0)
     {
         Model upMostModel = CommonPropertySetUtil.GetUpMostModel(targetModel);
         float pushImpactValue = PushUtil.Push(upMostModel, this, bonusImpactValue);
-        if (pushImpactValue > 0)
+        float remainImpactValue = pushImpactValue - CommonPropertySetUtil.GetFullWeight(upMostModel);
+        if (remainImpactValue >= 0)
         {
             MoveModel(upMostModel);
         }
-        return pushImpactValue;
+        targetModel.CommonPropertySet.SpeedAxisSet.ConsumeValueByDirection((Coordinate.Vector)Value);
+        return remainImpactValue;
     }
 
     private void MoveModel(Model model)

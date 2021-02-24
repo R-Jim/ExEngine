@@ -49,6 +49,10 @@
 
     public void ConsumeValueByDirection(Coordinate.Vector vectorDirection)
     {
+        if (Value == 0)
+        {
+            return;
+        }
         if (Positive == vectorDirection)
         {
             Value--;
@@ -88,5 +92,10 @@
     public bool IsEmpty()
     {
         return Value == 0;
+    }
+
+    public MomentumAxisSet Clone(float value = 0)
+    {
+        return new MomentumAxisSet(Positive, Negative) { Value = value };
     }
 }

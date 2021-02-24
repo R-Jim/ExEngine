@@ -19,8 +19,11 @@
     {
         MomentumPropertySet momentumPropertySet = model.CommonPropertySet.MomentumPropertySet;
 
-        Coordinate.Vector vectorDirection = momentumPropertySet.GetVectorDirection(model.CommonPropertySet.Coordinate);
+        MomentumAxisSet momentumAxisSet = momentumPropertySet.GetMomentumAxisSet(model.CommonPropertySet.Coordinate);
+        Coordinate.Vector vectorDirection = momentumAxisSet.GetVectorDirection(momentumAxisSet.Value);
+
         momentumPropertySet.ConsumeMomentum(vectorDirection);
+        model.CommonPropertySet.SpeedAxisSet = momentumAxisSet;
 
         ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(vectorDirection));
         //TODO replace offset with momentum calculated value

@@ -2,14 +2,14 @@
 
 public class CombatPropertySetUtil
 {
-    public static int GetFullRawDamage(Model model, int impactValue)
+    public static int GetFullRawDamage(Model model, float impactValue)
     {
         Model upMostModel = CommonPropertySetUtil.GetUpMostModel(model);
         return (int)Math.Ceiling(ModelUtil.GetModelFullPropertyByFunctionWithInputObjects(upMostModel, GetDamage, new object[] { impactValue, false }));
     }
 
 
-    public static int GetFullTrueDamage(Model model, int impactValue)
+    public static int GetFullTrueDamage(Model model, float impactValue)
     {
         Model upMostModel = CommonPropertySetUtil.GetUpMostModel(model);
         return (int)Math.Ceiling(ModelUtil.GetModelFullPropertyByFunctionWithInputObjects(upMostModel, GetDamage, new object[] { impactValue, true }));
@@ -17,7 +17,7 @@ public class CombatPropertySetUtil
 
     public static float GetDamage(Model model, object[] inputObjects)
     {
-        int impactValue = (int)inputObjects[0];
+        float impactValue = (int)inputObjects[0];
         bool isTrueDamage = (bool)inputObjects[1];
         float totalDamage = 0;
         DamagePropertySet[] damagePropertySets = model.CombatPropertySet.DamagePropertySets;

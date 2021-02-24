@@ -31,7 +31,7 @@ public class MomentumPropertySet
         Z.Add(vectorPropertySet);
     }
 
-    public Coordinate.Vector GetVectorDirection(Coordinate coordinate)
+    public MomentumAxisSet GetMomentumAxisSet(Coordinate coordinate)
     {
         Coordinate.Vector bonusVectorDirection = coordinate.Pivot;
         float x = GetTotalMomentumByDirectionWithBonus(Coordinate.Vector.YZ, bonusVectorDirection);
@@ -40,13 +40,13 @@ public class MomentumPropertySet
 
         if (Math.Abs(x) > Math.Abs(y) && Math.Abs(x) > Math.Abs(z))
         {
-            return X.GetVectorDirection(x);
+            return X.Clone(1);
         }
         else if (Math.Abs(y) > Math.Abs(z) && Math.Abs(y) > Math.Abs(x))
         {
-            return Y.GetVectorDirection(y);
+            return Y.Clone(1);
         }
-        return Z.GetVectorDirection(z);
+        return Z.Clone(1);
     }
 
     public void ConsumeMomentum(Coordinate.Vector vectorDirection)
