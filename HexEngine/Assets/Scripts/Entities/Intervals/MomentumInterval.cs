@@ -19,10 +19,20 @@
     {
         MomentumPropertySet momentumPropertySet = model.CommonPropertySet.MomentumPropertySet;
 
-        Coordinate.Vector vectorDirection = momentumPropertySet.GetVectorDirection(model.CommonPropertySet.Coordinate);
+        MomentumAxisSet momentumAxisSet = momentumPropertySet.GetMomentumAxisSet(model.CommonPropertySet.Coordinate);
+        Coordinate.Vector vectorDirection = momentumAxisSet.GetVectorDirection(momentumAxisSet.Value);
 
-        ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(vectorDirection));
+        momentumPropertySet.ConsumeMomentum(vectorDirection);
+        model.CommonPropertySet.SpeedAxisSet = momentumAxisSet;
+
+        ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(vectorDirection))
+        {
+            PostEffect = (effect) =>
+            {
+                effect.TargetModel.CommonPropertySet.SpeedAxisSet.ConsumeValueByDirection((Coordinate.Vector)effect.Value);
+            }
+        };
         //TODO replace offset with momentum calculated value
-        return new TargetTrigger(model, model, modifyEffect, 2);
+        return new TargetTrigger(model, model, modifyEffect, 1);
     }
 }

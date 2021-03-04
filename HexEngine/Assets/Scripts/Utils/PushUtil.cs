@@ -1,61 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using UnityEngine;
 
 class PushUtil
 {
-    public static bool Push(Model sourceModel, CoordinateModifier coordinateModifier)
+    public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float bonusImpactValue)
+    {
+        Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
+        Model model = GetModel(sourceModel, vectorValue);
+        float pushImpactValue = ImpactUtil.GetImpactValue(sourceModel, vectorValue) + bonusImpactValue;
+        if (model == null)
+        {
+            return pushImpactValue;
+        }
+
+        float remainImpactValue = PushEffectedModel(pushImpactValue, model, coordinateModifier, out float totalImpactValue);
+        DamageEffectedModel(sourceModel, model, totalImpactValue);
+        return remainImpactValue;
+    }
+
+    private static Model GetModel(Model sourceModel, Coordinate.Vector vectorValue)
     {
         Coordinate EffectedCoordinate = sourceModel.CommonPropertySet.Coordinate.Clone();
-        Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
         EffectedCoordinate.Add(CoordinateUtil.GetCoordinate(vectorValue));
-
-        List<Model> effectedModelList = ModelContainer.GetModelList(EffectedCoordinate);
-        HashSet<Model> effectedModelSet = GetUpMostModelSet(effectedModelList);
-
-        if (effectedModelSet.Count == 0)
-        {
-            return true;
-        }
-        return PushEffectedModelSet(sourceModel, effectedModelSet, vectorValue);
+        return ModelContainer.GetModel(EffectedCoordinate);
     }
 
-    private static bool PushEffectedModelSet(Model sourceModel, HashSet<Model> effectedModelSet, Coordinate.Vector vectorValue)
+    private static float PushEffectedModel(float pushImpactValue, Model effectedModel, CoordinateModifier coordinateModifier, out float totalImpactValue)
     {
-        bool pushedAModel = false;
+        Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
 
-        foreach (Model effectedModel in effectedModelSet)
+        float effectedImpactValue = ImpactUtil.GetImpactValue(effectedModel, vectorValue);
+        float remainImpactValue = pushImpactValue - effectedImpactValue;
+        if (remainImpactValue >= 0)
         {
-            ImpactDamageUtil.Damage(sourceModel, effectedModel);
-            if (PushEffectedModel(sourceModel, effectedModel, vectorValue))
-            {
-                pushedAModel = true;
-            };
+            remainImpactValue = coordinateModifier.Modify(effectedModel, remainImpactValue);
         }
-        return pushedAModel;
+        totalImpactValue = pushImpactValue + effectedImpactValue - remainImpactValue;
+        return remainImpactValue;
     }
 
-    private static bool PushEffectedModel(Model sourceModel, Model effectedModel, Coordinate.Vector vectorValue)
+    private static void DamageEffectedModel(Model sourceModel, Model effectedModel, float impactValue)
     {
-        if (GetImpactValue(sourceModel) > GetImpactValue(effectedModel))
-        {
-            effectedModel.CommonPropertySet.MomentumPropertySet.Add(new VectorPropertySet(vectorValue));
-            return true;
-        }
-        return false;
-    }
-
-    private static HashSet<Model> GetUpMostModelSet(List<Model> modelList)
-    {
-        HashSet<Model> upMostModelSet = new HashSet<Model>();
-        foreach (Model model in modelList)
-        {
-            upMostModelSet.Add(CommonPropertySetUtil.GetUpMostModel(model));
-        }
-        return upMostModelSet;
-    }
-
-    private static float GetImpactValue(Model model)
-    {
-        int weight = CommonPropertySetUtil.GetFullWeight(model);
-        return weight * model.CommonPropertySet.MomentumPropertySet.GetTotalMomentum();
+        DamageUtil.DamageModel(effectedModel, sourceModel, impactValue);
+        DamageUtil.DamageModel(sourceModel, effectedModel, impactValue);
     }
 }

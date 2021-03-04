@@ -22,7 +22,7 @@ public class TriggerContainer : MonoBehaviour
             Trigger trigger = TriggerQueue.Dequeue();
             if (trigger.EnqueueTick + trigger.OffSet <= SystemProperties.SystemProfile.SystemTick)
             {
-                HookEffect(trigger);
+                CheckHook(trigger);
             }
             else
             {
@@ -31,7 +31,7 @@ public class TriggerContainer : MonoBehaviour
         }
     }
 
-    private void HookEffect(Trigger trigger)
+    private void CheckHook(Trigger trigger)
     {
         foreach (Model model in ModelList)
         {

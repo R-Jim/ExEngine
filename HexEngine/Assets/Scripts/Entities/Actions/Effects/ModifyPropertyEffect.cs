@@ -8,35 +8,17 @@
     {
         Modifier modifier = (Modifier)Value;
         modifier.Modify(this);
+        Status = EffectStatus.Executed;
     }
 
     public override Effect Bind(Model model)
     {
         Model upMostModel = CommonPropertySetUtil.GetUpMostModel(model);
-        HookModel(upMostModel);
-
-        Effect effect = new ModifyPropertyEffect((Modifier)Value)
+        return new ModifyPropertyEffect((Modifier)Value)
         {
-            TargetModel = upMostModel
+            TargetModel = upMostModel,
+            Trigger = Trigger
         };
-        effect.Trigger = Trigger;
-        return effect;
-    }
-
-    private void HookModel(Model model)
-    {
-        Trigger.HookedModel.Add(model);
-        if (model.MountPoints == null)
-        {
-            return;
-        }
-        foreach (MountPoint mountPoint in model.MountPoints)
-        {
-            if (mountPoint.MountedModel != null)
-            {
-                HookModel(mountPoint.MountedModel);
-            }
-        }
     }
 }
 

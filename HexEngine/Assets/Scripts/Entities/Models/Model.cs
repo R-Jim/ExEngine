@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 
 public class Model
-{
+{   
     public CommonPropertySet CommonPropertySet { get; }
     public CombatPropertySet CombatPropertySet { get; }
     public GameObjectPropertySet GameObjectPropertySet { get; }

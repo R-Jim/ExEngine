@@ -13,7 +13,7 @@ public class DamagePropertySet
         IsTrueDamage = isTrueDamage;
     }
 
-    public int GetDamageValue(int impactValue)
+    public int GetDamageValue(float impactValue)
     {
         return Value + (int)Math.Ceiling(impactValue * ImpactValueModifier);
     }

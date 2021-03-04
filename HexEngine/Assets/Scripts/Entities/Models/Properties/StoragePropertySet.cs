@@ -18,7 +18,6 @@
     {
         if (Current >= value)
         {
-            Current -= value;
             return value;
         }
         else

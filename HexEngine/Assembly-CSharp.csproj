@@ -118,7 +118,7 @@
     <Compile Include="Assets\Scripts\Utils\CommonPropertySetUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\CoordinateUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\DamageUtil.cs" />
-    <Compile Include="Assets\Scripts\Utils\ImpactDamageUtil.cs" />
+    <Compile Include="Assets\Scripts\Utils\ImpactUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\ModelUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\PushUtil.cs" />
     <Reference Include="UnityEngine">

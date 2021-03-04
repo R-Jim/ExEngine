@@ -6,6 +6,7 @@
     public MountPoint MountedTo;
     public MomentumPropertySet MomentumPropertySet;
     public int Weight { get; }
+    public MomentumAxisSet SpeedAxisSet;
 
     public CommonPropertySet(int hpMax, int hpCurrent, Coordinate coordinate, int weight, string mountType, MomentumPropertySet momentumPropertySet)
     {

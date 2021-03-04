@@ -35,11 +35,36 @@
 
     public float GetValueByDirection(Coordinate.Vector vectorDirection)
     {
-        if (Positive == vectorDirection || Negative == vectorDirection)
+        if (IsAxis(vectorDirection))
         {
             return Value;
         }
         return Value / 2;
+    }
+
+    public bool IsAxis(Coordinate.Vector vectorDirection)
+    {
+        return Positive == vectorDirection || Negative == vectorDirection;
+    }
+
+    public void ConsumeValueByDirection(Coordinate.Vector vectorDirection)
+    {
+        if (Value == 0)
+        {
+            return;
+        }
+        if (Positive == vectorDirection)
+        {
+            Value--;
+        }
+        else if (Negative == vectorDirection)
+        {
+            Value++;
+        }
+        else
+        {
+            Value *= .5f;
+        }
     }
 
     public float GetBonus(Coordinate.Vector vectorDirection)
@@ -59,15 +84,18 @@
     {
         if (value >= 0)
         {
-            Value--;
             return Positive;
         }
-        Value++;
         return Negative;
     }
 
     public bool IsEmpty()
     {
         return Value == 0;
+    }
+
+    public MomentumAxisSet Clone(float value = 0)
+    {
+        return new MomentumAxisSet(Positive, Negative) { Value = value };
     }
 }
