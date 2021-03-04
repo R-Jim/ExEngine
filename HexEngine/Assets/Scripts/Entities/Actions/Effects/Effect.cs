@@ -1,9 +1,12 @@
-﻿public class Effect
+﻿using System;
+
+public class Effect
 {
     public EffectStatus Status { get; protected set; }
     public object Value;
     public Trigger Trigger;
     public Model TargetModel;
+    public Action<Effect> PostEffect;
 
     public Effect(object value)
     {
@@ -23,6 +26,7 @@
     {
         ExecuteProcess();
         PostExecute();
+        PostEffect?.Invoke(this);
     }
 
     protected virtual void ExecuteProcess()

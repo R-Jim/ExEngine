@@ -20,7 +20,6 @@
         {
             MoveModel(upMostModel);
         }
-        targetModel.CommonPropertySet.SpeedAxisSet.ConsumeValueByDirection((Coordinate.Vector)Value);
         return remainImpactValue;
     }
 

@@ -16,10 +16,11 @@ class PushUtil
             return pushImpactValue;
         }
 
-        return PushEffectedModel(pushImpactValue, model, coordinateModifier);
+        float remainImpactValue = PushEffectedModel(pushImpactValue, model, coordinateModifier, out float totalImpactValue);
+        return remainImpactValue;
     }
 
-    private static float PushEffectedModel(float pushImpactValue, Model effectedModel, CoordinateModifier coordinateModifier)
+    private static float PushEffectedModel(float pushImpactValue, Model effectedModel, CoordinateModifier coordinateModifier, out float totalImpactValue)
     {
         Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
 
@@ -30,6 +31,7 @@ class PushUtil
             remainImpactValue = coordinateModifier.Modify(effectedModel, remainImpactValue);
         }
         Debug.Log("pushValue:" + pushImpactValue + "," + remainImpactValue);
+        totalImpactValue = pushImpactValue + effectedImpactValue - remainImpactValue;
         return remainImpactValue;
     }
 }

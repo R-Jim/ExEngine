@@ -25,7 +25,13 @@
         momentumPropertySet.ConsumeMomentum(vectorDirection);
         model.CommonPropertySet.SpeedAxisSet = momentumAxisSet;
 
-        ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(vectorDirection));
+        ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(vectorDirection))
+        {
+            PostEffect = (effect) =>
+            {
+                effect.TargetModel.CommonPropertySet.SpeedAxisSet.ConsumeValueByDirection((Coordinate.Vector)effect.Value);
+            }
+        };
         //TODO replace offset with momentum calculated value
         return new TargetTrigger(model, model, modifyEffect, 1);
     }
