@@ -17,7 +17,7 @@ public class CombatPropertySetUtil
 
     public static float GetDamage(Model model, object[] inputObjects)
     {
-        float impactValue = (int)inputObjects[0];
+        float impactValue = (float)inputObjects[0];
         bool isTrueDamage = (bool)inputObjects[1];
         float totalDamage = 0;
         DamagePropertySet[] damagePropertySets = model.CombatPropertySet.DamagePropertySets;

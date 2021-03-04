@@ -17,6 +17,7 @@ class PushUtil
         }
 
         float remainImpactValue = PushEffectedModel(pushImpactValue, model, coordinateModifier, out float totalImpactValue);
+        DamagePushedModel(sourceModel, model, totalImpactValue);
         return remainImpactValue;
     }
 
@@ -33,5 +34,11 @@ class PushUtil
         Debug.Log("pushValue:" + pushImpactValue + "," + remainImpactValue);
         totalImpactValue = pushImpactValue + effectedImpactValue - remainImpactValue;
         return remainImpactValue;
+    }
+
+    private static void DamagePushedModel(Model sourceModel, Model effectedModel, float impactValue)
+    {
+        DamageUtil.DamageModel(effectedModel, sourceModel, impactValue);
+        DamageUtil.DamageModel(sourceModel, effectedModel, impactValue);
     }
 }
