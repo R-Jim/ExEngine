@@ -25,22 +25,16 @@ public class Effect
     public void Execute()
     {
         ExecuteProcess();
-        PostExecute();
+        AssignEffectAfterExecuted();
         PostEffect?.Invoke(this);
     }
 
     protected virtual void ExecuteProcess()
     {
-
-    }
-
-    protected virtual void PostExecute()
-    {
         Status = EffectStatus.Executed;
-        AssignEffectAfterExecuted();
     }
 
-    public void AssignEffectAfterExecuted()
+    protected virtual void AssignEffectAfterExecuted()
     {
         Model source = Trigger.Source;
         if (source != null)

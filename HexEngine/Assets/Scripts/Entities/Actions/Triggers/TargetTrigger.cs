@@ -20,7 +20,6 @@
 
     private bool SameTarget(Model model)
     {
-        Effect effectWithTarget = BaseEffect;
-        return model.GetHashCode().Equals(effectWithTarget.TargetModel.GetHashCode());
+        return model.GetHashCode().Equals(BaseEffect.TargetModel.GetHashCode());
     }
 }

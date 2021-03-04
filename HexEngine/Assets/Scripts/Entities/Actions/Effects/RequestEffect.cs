@@ -7,11 +7,20 @@
 
     public override Effect Bind(Model model)
     {
-        Effect effect = new RequestEffect((int)Value)
+        return new RequestEffect((int)Value)
         {
-            TargetModel = model
+            TargetModel = model,
+            Trigger = Trigger,
         };
-        effect.Trigger = Trigger;
-        return effect;
+    }
+
+    protected override void ExecuteProcess()
+    {
+        StoragePropertySet storagePropertySet = ((StorageModel)TargetModel).StoragePropertySet;
+        if (storagePropertySet.Get((int)Value) != 0)
+        {
+            storagePropertySet.Fill(-(int)Value);
+            Status = EffectStatus.Executed;
+        }
     }
 }

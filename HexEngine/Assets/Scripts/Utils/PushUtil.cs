@@ -4,12 +4,8 @@ class PushUtil
 {
     public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float bonusImpactValue)
     {
-        Coordinate EffectedCoordinate = sourceModel.CommonPropertySet.Coordinate.Clone();
-
         Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
-        EffectedCoordinate.Add(CoordinateUtil.GetCoordinate(vectorValue));
-
-        Model model = ModelContainer.GetModel(EffectedCoordinate);
+        Model model = GetModel(sourceModel, vectorValue);
         float pushImpactValue = ImpactUtil.GetImpactValue(sourceModel, vectorValue) + bonusImpactValue;
         if (model == null)
         {
@@ -17,8 +13,15 @@ class PushUtil
         }
 
         float remainImpactValue = PushEffectedModel(pushImpactValue, model, coordinateModifier, out float totalImpactValue);
-        DamagePushedModel(sourceModel, model, totalImpactValue);
+        DamageEffectedModel(sourceModel, model, totalImpactValue);
         return remainImpactValue;
+    }
+
+    private static Model GetModel(Model sourceModel, Coordinate.Vector vectorValue)
+    {
+        Coordinate EffectedCoordinate = sourceModel.CommonPropertySet.Coordinate.Clone();
+        EffectedCoordinate.Add(CoordinateUtil.GetCoordinate(vectorValue));
+        return ModelContainer.GetModel(EffectedCoordinate);
     }
 
     private static float PushEffectedModel(float pushImpactValue, Model effectedModel, CoordinateModifier coordinateModifier, out float totalImpactValue)
@@ -31,12 +34,11 @@ class PushUtil
         {
             remainImpactValue = coordinateModifier.Modify(effectedModel, remainImpactValue);
         }
-        Debug.Log("pushValue:" + pushImpactValue + "," + remainImpactValue);
         totalImpactValue = pushImpactValue + effectedImpactValue - remainImpactValue;
         return remainImpactValue;
     }
 
-    private static void DamagePushedModel(Model sourceModel, Model effectedModel, float impactValue)
+    private static void DamageEffectedModel(Model sourceModel, Model effectedModel, float impactValue)
     {
         DamageUtil.DamageModel(effectedModel, sourceModel, impactValue);
         DamageUtil.DamageModel(sourceModel, effectedModel, impactValue);

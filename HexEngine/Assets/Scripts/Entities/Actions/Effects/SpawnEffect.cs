@@ -7,15 +7,15 @@
     protected override void ExecuteProcess()
     {
         ModelContainer.SpawnNewModel((Model)Value);
+        Status = EffectStatus.Executed;
     }
 
     public override Effect Bind(Model model)
     {
-        Effect effect = new SpawnEffect((Model)Value)
+        return new SpawnEffect((Model)Value)
         {
-            TargetModel = model
+            TargetModel = model,
+            Trigger = Trigger
         };
-        effect.Trigger = Trigger;
-        return effect;
     }
 }

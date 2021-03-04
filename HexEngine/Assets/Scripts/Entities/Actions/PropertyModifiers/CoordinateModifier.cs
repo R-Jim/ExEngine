@@ -7,8 +7,7 @@
 
     public override void Modify(Effect effect)
     {
-        Model targetModel = effect.TargetModel;
-        Modify(targetModel, 0);
+        Modify(effect.TargetModel, 0);
     }
 
     public float Modify(Model targetModel, float bonusImpactValue = 0)

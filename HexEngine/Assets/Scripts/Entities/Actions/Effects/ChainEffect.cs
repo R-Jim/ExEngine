@@ -12,6 +12,7 @@
         headEffect.Execute();
 
         HandleTailTrigger();
+        Status = EffectStatus.Executed;
     }
 
     private void HandleTailTrigger()
@@ -28,12 +29,11 @@
     public override Effect Bind(Model model)
     {
         ChainTrigger.ChainSet chainSet = (ChainTrigger.ChainSet)Value;
-        Effect effect = new ChainEffect(new ChainTrigger.ChainSet(chainSet.HeadTrigger, chainSet.TailTrigger, chainSet.Type))
+        Trigger.HookedModel.Add(model);
+        return new ChainEffect(new ChainTrigger.ChainSet(chainSet.HeadTrigger, chainSet.TailTrigger, chainSet.Type))
         {
-            TargetModel = model
+            TargetModel = model,
+            Trigger = Trigger,
         };
-        effect.Trigger = Trigger;
-        effect.Trigger.HookedModel.Add(model);
-        return effect;
     }
 }
