@@ -65,9 +65,10 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Datatables\CannonDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Datatable.cs" />
-    <Compile Include="Assets\Scripts\Datatables\MappingUtils\Mapping.cs" />
-    <Compile Include="Assets\Scripts\Datatables\MappingUtils\PresetConverter.cs" />
-    <Compile Include="Assets\Scripts\Datatables\MappingUtils\RawValueMapping.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Effects\EffectDatatable.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Mapping\Mapping.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Mapping\RawValueMapping.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Models\ModelDatatable.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\ChainEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\Effect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\ModifyPropertyEffect.cs" />
@@ -109,6 +110,7 @@
     <Compile Include="Assets\Scripts\GameObjects\ModelGameObjects\MovemonentMapper.cs" />
     <Compile Include="Assets\Scripts\GameObjects\System\SystemProperties.cs" />
     <Compile Include="Assets\Scripts\Presets\AnimationPreset.cs" />
+    <Compile Include="Assets\Scripts\Presets\CombatPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\EffectPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\ModelPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\ModifierPreset.cs" />

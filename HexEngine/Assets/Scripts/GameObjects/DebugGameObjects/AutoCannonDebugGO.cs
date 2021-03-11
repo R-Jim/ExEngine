@@ -21,7 +21,7 @@ public class AutoCannonDebugGO : MonoBehaviour
         ModelContainer.ModelList.Add(MountPlaceholderModel);
 
         //Init Auto cannon model
-        CannonDatatable.Init(new object[] { Coordinate.Clone() });
+        CannonDatatable.Get(new object[] { Coordinate.Clone() });
         AutoCannon = (Model)CannonDatatable.MainProperty();
 
         weaponMountPoint.Mount(AutoCannon);
