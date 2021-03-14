@@ -85,6 +85,7 @@
     <Compile Include="Assets\Scripts\Entities\Actions\Triggers\Trigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Animations\AnimationSet.cs" />
     <Compile Include="Assets\Scripts\Entities\Animations\AnimationTransition.cs" />
+    <Compile Include="Assets\Scripts\Entities\Hosts\Host.cs" />
     <Compile Include="Assets\Scripts\Entities\Intervals\Interval.cs" />
     <Compile Include="Assets\Scripts\Entities\Intervals\MomentumInterval.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Model.cs" />
@@ -110,11 +111,11 @@
     <Compile Include="Assets\Scripts\GameObjects\ModelGameObjects\MovemonentMapper.cs" />
     <Compile Include="Assets\Scripts\GameObjects\System\SystemProperties.cs" />
     <Compile Include="Assets\Scripts\Presets\AnimationPreset.cs" />
-    <Compile Include="Assets\Scripts\Presets\CombatPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\EffectPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\ModelPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\ModifierPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\PrefabPreset.cs" />
+    <Compile Include="Assets\Scripts\Presets\PropertyPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\TriggerPreset.cs" />
     <Compile Include="Assets\Scripts\Utils\CombatPropertySetUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\CommonPropertySetUtil.cs" />

@@ -8,6 +8,7 @@ public class AutoCannonDebugGO : MonoBehaviour
     public int Ammo = 5;
     public int TargetSpacing = 2;
     readonly CannonDatatable CannonDatatable = new CannonDatatable();
+    private Host Cannon;
     readonly Coordinate Coordinate = new Coordinate(1, 1, 0);
 
     // Start is called before the first frame update
@@ -21,8 +22,8 @@ public class AutoCannonDebugGO : MonoBehaviour
         ModelContainer.ModelList.Add(MountPlaceholderModel);
 
         //Init Auto cannon model
-        CannonDatatable.Get(new object[] { Coordinate.Clone() });
-        AutoCannon = (Model)CannonDatatable.MainProperty();
+        Cannon = new Host(CannonDatatable, new object[] { Coordinate.Clone() });
+        AutoCannon = Cannon.Model;
 
         weaponMountPoint.Mount(AutoCannon);
 
@@ -41,13 +42,15 @@ public class AutoCannonDebugGO : MonoBehaviour
         {
             Coordinate spawnCoordinate = AutoCannon.CommonPropertySet.Coordinate.Clone();
             spawnCoordinate.Add(CoordinateUtil.GetCoordinate(FiringVectorDirectionPreset));
-            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(1, new object[] { spawnCoordinate, FiringVectorDirectionPreset });
+            // new object[] { spawnCoordinate, FiringVectorDirectionPreset }
+            List<Trigger> triggerList = Cannon.GetTriggerListByAction(1);
             TriggerContainer.QueueTrigger(triggerList[0]);
             Debug.Log("Bang, " + TriggerContainer.TriggerQueue.Count + " Ammo, " + (((StorageModel)AutoCannon).StoragePropertySet.Current - 1));
         }
         if (Input.GetKeyDown(KeyCode.M))
         {
-            List<Trigger> triggerList = CannonDatatable.GetTriggerListByAction(2, new object[] { FiringVectorDirectionPreset });
+            //, new object[] { FiringVectorDirectionPreset }
+            List<Trigger> triggerList = Cannon.GetTriggerListByAction(2);
             TriggerContainer.QueueTrigger(triggerList[0]);
         }
         if (Input.GetKeyDown(KeyCode.P))

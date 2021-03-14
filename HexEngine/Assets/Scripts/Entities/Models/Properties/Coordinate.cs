@@ -22,11 +22,19 @@
 
     public void Add(Coordinate coordinate)
     {
-        Coordinate oldCoordinate = Clone();
         X += coordinate.X;
         Y += coordinate.Y;
         Z += coordinate.Z;
-        Pivot = CoordinateUtil.GetAxis(this, oldCoordinate);
+    }
+
+    public void SetPivot(Vector vector)
+    {
+        Pivot = vector;
+    }
+
+    public void SetPivot(Coordinate coordinate)
+    {
+        Pivot = GetVector(coordinate);
     }
 
     public void Multiply(Coordinate coordinate)
@@ -55,6 +63,36 @@
     public Coordinate Clone()
     {
         return new Coordinate(X, Y, Z, Pivot);
+    }
+
+
+    public Vector GetVector(Coordinate coordinate)
+    {
+        float x = X - coordinate.X;
+        float y = Y - coordinate.Y;
+        float z = Z - coordinate.Z;
+
+        if (x == 0)
+        {
+            if (y > 0)
+            {
+                return Vector.YZ;
+            }
+            return Vector.ZY;
+        }
+        else if (y == 0)
+        {
+            if (z > 0)
+            {
+                return Vector.ZX;
+            }
+            return Vector.XZ;
+        }
+        if (x > 0)
+        {
+            return Vector.XY;
+        }
+        return Vector.YX;
     }
 
     public enum Vector

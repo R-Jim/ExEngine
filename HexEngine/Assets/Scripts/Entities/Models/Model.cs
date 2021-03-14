@@ -11,6 +11,8 @@ public class Model
     public Queue<Effect> SourceExecutedEffect = new Queue<Effect>();
     public Queue<Effect> TargetExecutedEffect = new Queue<Effect>();
 
+
+
     public Model(CommonPropertySet commonPropertySet, CombatPropertySet combatPropertySet, GameObjectPropertySet gameObjectPropertySet, MountPoint[] mountPoints)
     {
         CommonPropertySet = commonPropertySet;
