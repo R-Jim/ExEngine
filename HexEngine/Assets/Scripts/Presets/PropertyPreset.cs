@@ -2,6 +2,7 @@
 {
     public enum Preset
     {
+        Vector,
         Coordinate,
         Damage,
         Armor,
@@ -11,12 +12,20 @@
     {
         switch (preset)
         {
+            case Preset.Vector: return GetVectorProperty(properties);
             case Preset.Coordinate: return GetCoordinateProperty(properties);
             case Preset.Damage: return GetDamgeProperty(properties);
             case Preset.Armor: return GetArmorProperty(properties);
         };
         return null;
     }
+
+
+    public static Coordinate.Vector GetVectorProperty(object[] properties)
+    {
+        return (Coordinate.Vector)properties[0];
+    }
+
 
     public static Coordinate GetCoordinateProperty(object[] properties)
     {

@@ -9,6 +9,12 @@ public class Mapping
 
     public static object MapProperty(Datatable datatable, Datatable.DataSet dataSet, object[] inputOrActionProperties)
     {
+        List<object> convertedValue = ConvertValue(datatable, dataSet, inputOrActionProperties);
+        return MapPropertyWithPreset(dataSet.Preset, convertedValue.ToArray());
+    }
+
+    public static List<object> ConvertValue(Datatable datatable, Datatable.DataSet dataSet, object[] inputOrActionProperties)
+    {
         List<object> convertedValue = new List<object>();
         foreach (string value in dataSet.Values)
         {
@@ -26,7 +32,7 @@ public class Mapping
                 convertedValue.Add(RawValueMapping.GetValue(value));
             }
         }
-        return MapPropertyWithPreset(dataSet.Preset, convertedValue.ToArray());
+        return convertedValue;
     }
 
     private static object MapSpecialValue(Datatable datatable, string value, object[] inputOrActionProperties)
@@ -121,7 +127,26 @@ public class Mapping
         {
             return MapTriggerProperty((TriggerPreset.Preset)preset, mappedProperties);
         }
+        else if (preset is DatatablePreset.Preset)
+        {
+            return MapDatatableProperty((DatatablePreset.Preset)preset, mappedProperties);
+        }
+        else if (preset is PropertyPreset.Preset)
+        {
+            return MapProperty((PropertyPreset.Preset)preset, mappedProperties);
+        }
         return null;
+    }
+
+    private static object MapProperty(PropertyPreset.Preset preset, object[] mappedProperties)
+    {
+        return PropertyPreset.GetProperty(preset, mappedProperties);
+    }
+
+    private static object MapDatatableProperty(DatatablePreset.Preset preset, object[] mappedProperties)
+    {
+        Datatable datatable = DatatablePreset.GetDatatable(preset);
+        return datatable.GetDataObject(mappedProperties);
     }
 
     private static Trigger MapTriggerProperty(TriggerPreset.Preset preset, object[] mappedProperties)
