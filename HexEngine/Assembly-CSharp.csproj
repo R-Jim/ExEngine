@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\Datatables\Samples\BulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\CannonDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\FiringBulletDatatable.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Samples\HighImpactBulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\ChainEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\Effect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\ModifyPropertyEffect.cs" />

@@ -26,8 +26,8 @@
                 (int)properties[3],
                 (string)properties[4],
                 new MomentumPropertySet((int)properties[5], (int)properties[6], (int)properties[7]))
-            , null
-            , new GameObjectPropertySet((PrefabPreset.Preset)properties[8])
+            , properties[8] != null ? (CombatPropertySet)properties[8] : null
+            , new GameObjectPropertySet((PrefabPreset.Preset)properties[9])
             , null
             );
     }
@@ -44,6 +44,7 @@
                 (int)properties[4],
                 (string)properties[5],
                 new MomentumPropertySet((int)properties[6], (int)properties[7], (int)properties[8]))
-            , new GameObjectPropertySet((PrefabPreset.Preset)properties[9]));
+            , properties[9] != null ? (CombatPropertySet)properties[9] : null
+            , new GameObjectPropertySet((PrefabPreset.Preset)properties[10]));
     }
 }

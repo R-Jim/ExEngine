@@ -1,9 +1,13 @@
-﻿public class PropertyPreset
+﻿using System.Collections;
+using System.Collections.Generic;
+
+public class PropertyPreset
 {
     public enum Preset
     {
         Vector,
         Coordinate,
+        CombatProperty,
         Damage,
         Armor,
     }
@@ -14,18 +18,35 @@
         {
             case Preset.Vector: return GetVectorProperty(properties);
             case Preset.Coordinate: return GetCoordinateProperty(properties);
+            case Preset.CombatProperty: return GetCombatProperty(properties);
             case Preset.Damage: return GetDamgeProperty(properties);
             case Preset.Armor: return GetArmorProperty(properties);
         };
         return null;
     }
 
+    public static CombatPropertySet GetCombatProperty(object[] properties)
+    {
+        List<DamagePropertySet> DamagePropertySets = new List<DamagePropertySet>();
+        List<ArmorPropertySet> ArmorPropertySets = new List<ArmorPropertySet>();
+        foreach (object property in properties)
+        {
+            if (property is DamagePropertySet)
+            {
+                DamagePropertySets.Add((DamagePropertySet)property);
+            }
+            else
+            {
+                ArmorPropertySets.Add((ArmorPropertySet)property);
+            }
+        }
+        return new CombatPropertySet(DamagePropertySets.ToArray(), ArmorPropertySets.ToArray());
+    }
 
     public static Coordinate.Vector GetVectorProperty(object[] properties)
     {
         return (Coordinate.Vector)properties[0];
     }
-
 
     public static Coordinate GetCoordinateProperty(object[] properties)
     {

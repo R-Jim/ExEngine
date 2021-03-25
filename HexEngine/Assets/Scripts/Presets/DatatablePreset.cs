@@ -3,6 +3,7 @@
     public enum Preset
     {
         Cannon,
+        HighImpactBullet,
         Bullet,
         FiringBullet,
     }
@@ -12,6 +13,7 @@
         switch (preset)
         {
             case Preset.Cannon: return new CannonDatatable();
+            case Preset.HighImpactBullet: return new HighImpactBulletDatatable();
             case Preset.Bullet: return new BulletDatatable();
             case Preset.FiringBullet: return new FiringBulletDatatable();
         };
