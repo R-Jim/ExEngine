@@ -55,6 +55,14 @@ public class AutoCannonDebugGO : MonoBehaviour
             TriggerContainer.QueueTrigger(triggerList[0]);
             Debug.Log("Bang, " + TriggerContainer.TriggerQueue.Count + "High impact Ammo, " + (((StorageModel)AutoCannon).StoragePropertySet.Current - 1));
         }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            Coordinate spawnCoordinate = AutoCannon.CommonPropertySet.Coordinate.Clone();
+            spawnCoordinate.Add(CoordinateUtil.GetCoordinate(FiringVectorDirectionPreset));
+            List<Trigger> triggerList = Cannon.GetTriggerListByAction(4);
+            TriggerContainer.QueueTrigger(triggerList[0]);
+            Debug.Log("Spawn Dummy");
+        }
         if (Input.GetKeyDown(KeyCode.M))
         {
             //, new object[] { FiringVectorDirectionPreset }

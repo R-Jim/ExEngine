@@ -28,7 +28,7 @@
                 new MomentumPropertySet((int)properties[5], (int)properties[6], (int)properties[7]))
             , properties[8] != null ? (CombatPropertySet)properties[8] : null
             , new GameObjectPropertySet((PrefabPreset.Preset)properties[9])
-            , null
+            , properties.Length >= 11 ? (MountPoint[])properties[10] : null
             );
     }
 

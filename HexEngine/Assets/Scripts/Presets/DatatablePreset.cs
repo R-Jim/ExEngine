@@ -6,6 +6,7 @@
         HighImpactBullet,
         Bullet,
         FiringBullet,
+        Dummy,
     }
 
     public static Datatable GetDatatable(Preset preset, params object[] properties)
@@ -16,6 +17,7 @@
             case Preset.HighImpactBullet: return new HighImpactBulletDatatable();
             case Preset.Bullet: return new BulletDatatable();
             case Preset.FiringBullet: return new FiringBulletDatatable();
+            case Preset.Dummy: return new DummyDatatable();
         };
         return null;
     }

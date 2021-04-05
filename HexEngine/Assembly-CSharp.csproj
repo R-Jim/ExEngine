@@ -69,6 +69,7 @@
     <Compile Include="Assets\Scripts\Datatables\Models\ModelDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\BulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\CannonDatatable.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Samples\DummyDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\FiringBulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\HighImpactBulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\ChainEffect.cs" />

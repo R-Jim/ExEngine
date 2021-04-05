@@ -4,17 +4,25 @@ using UnityEngine;
 public class ModelContainer : MonoBehaviour
 {
     public static List<Model> ModelList = new List<Model>();
+    //Prefab
     public GameObject ProjectileModelPrefab;
     public GameObject PlaceholderModelPrefab;
-    public GameObject ModelLayerGameObject;
+    public GameObject DummyModelPrefab;
+
+    //Prefab usage
     public static GameObject ProjectilePrefab;
     public static GameObject PlaceholderPrefab;
+    public static GameObject DummyPrefab;
+
     public static GameObject ModelLayer;
+    public GameObject ModelLayerGameObject;
+
 
     void Start()
     {
         ProjectilePrefab = ProjectileModelPrefab;
         PlaceholderPrefab = PlaceholderModelPrefab;
+        DummyPrefab = DummyModelPrefab;
         ModelLayer = ModelLayerGameObject;
     }
 
@@ -31,7 +39,7 @@ public class ModelContainer : MonoBehaviour
 
     public static void SpawnNewModel(Model model)
     {
-        GameObject prefab = model.GameObjectPropertySet.PrefabPreset == PrefabPreset.Preset.Projectile ? ProjectilePrefab : PlaceholderPrefab;
+        GameObject prefab = PrefabPreset.GetPrefab(model.GameObjectPropertySet.PrefabPreset);
 
         ModelList.Add(model);
         GameObject projectile = Instantiate(prefab);

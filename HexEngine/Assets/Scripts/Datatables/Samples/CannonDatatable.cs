@@ -20,7 +20,13 @@
             new DataSet(DatatablePreset.Preset.HighImpactBullet, new string[]{ "<action,0/>" }),
             new DataSet(DatatablePreset.Preset.FiringBullet, new string[]{ "<action,0/>",  "<prop,5/>", "<prop,7/>"}), //Firing high impact bullet
 
-            new DataSet(PropertyPreset.Preset.Vector, new string[]{ "0" })
+            new DataSet(PropertyPreset.Preset.Vector, new string[]{ "0" }),
+
+            //Spawn dummy
+            new DataSet(PropertyPreset.Preset.Coordinate, new string[]{ "<action,0.CommonPropertySet.~Coordinate/>",  "<prop,7/>", "4" }),
+
+            new DataSet(TriggerPreset.Preset.Spawn, new string[]{ "<action,0/>", "<prop,10/>",  "0"}),
+            new DataSet(DatatablePreset.Preset.Dummy, new string[]{ "<prop,8/>"}),
         };
     }
 
@@ -31,6 +37,7 @@
             new ActionSet(1, 4),
             new ActionSet(3, 6),
             new ActionSet(2, 2),
+            new ActionSet(4, 9),
         };
     }
 }

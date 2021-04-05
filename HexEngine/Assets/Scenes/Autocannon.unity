@@ -3718,6 +3718,8 @@ MonoBehaviour:
     type: 3}
   PlaceholderModelPrefab: {fileID: 972159410298407701, guid: 47f2daec463191947a3bf0fd0585e09e,
     type: 3}
+  DummyModelPrefab: {fileID: 8459856015112569157, guid: e26aada995978bc4f90a1af5819ef0dd,
+    type: 3}
   ModelLayerGameObject: {fileID: 1828344293}
 --- !u!114 &1436609723
 MonoBehaviour:

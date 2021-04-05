@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 public class PropertyPreset
 {
@@ -10,6 +10,8 @@ public class PropertyPreset
         CombatProperty,
         Damage,
         Armor,
+        MountArray,
+        Mount,
     }
 
     public static object GetProperty(Preset preset, params object[] properties)
@@ -21,8 +23,25 @@ public class PropertyPreset
             case Preset.CombatProperty: return GetCombatProperty(properties);
             case Preset.Damage: return GetDamgeProperty(properties);
             case Preset.Armor: return GetArmorProperty(properties);
+            case Preset.MountArray: return GetDamgeProperty(properties);
+            case Preset.Mount: return GetArmorProperty(properties);
         };
         return null;
+    }
+
+    public static MountPoint[] GetMountPointArrayProperty(object[] properties)
+    {
+        return properties.Select(property => (MountPoint)property).ToArray();
+    }
+
+    public static MountPoint GetMountPointProperty(object[] properties)
+    {
+        MountPoint mountPoint = new MountPoint(properties[0] != null ? (Model)properties[0] : null, (string)properties[1], (Coordinate)properties[2]);
+        if (properties.Length == 4)
+        {
+            mountPoint.Mount((Model)properties[3]);
+        }
+        return mountPoint;
     }
 
     public static CombatPropertySet GetCombatProperty(object[] properties)
