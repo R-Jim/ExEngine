@@ -6,8 +6,24 @@
 
     protected override void ExecuteProcess()
     {
-        ModelContainer.SpawnNewModel((Model)Value);
+        Model model = (Model)Value;
+        SpawnModel(model);
         Status = EffectStatus.Executed;
+    }
+
+    private void SpawnModel(Model model)
+    {
+        ModelContainer.SpawnNewModel(model);
+        if (model.MountPoints != null && model.MountPoints.Length != 0)
+        {
+            foreach (MountPoint mountPoint in model.MountPoints)
+            {
+                if (mountPoint.MountedModel != null)
+                {
+                    SpawnModel(mountPoint.MountedModel);
+                }
+            }
+        }
     }
 
     public override Effect Bind(Model model)

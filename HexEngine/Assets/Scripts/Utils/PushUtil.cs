@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-class PushUtil
+﻿class PushUtil
 {
     public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float bonusImpactValue)
     {

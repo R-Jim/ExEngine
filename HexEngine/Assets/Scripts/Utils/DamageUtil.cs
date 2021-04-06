@@ -18,6 +18,10 @@ public class DamageUtil
 
     private static void DamageModelWithRawValue(Model effectedModel, object[] inputObjects)
     {
+        if (effectedModel == null)
+        {
+            return;
+        }
         int rawDamageValue = (int)inputObjects[0];
         int damageTaken = (int)Math.Ceiling(GetDamageValueAfterAbsorbtion(effectedModel, rawDamageValue) * CombatPropertySetUtil.GetArmorNullifier(effectedModel));
         effectedModel.CommonPropertySet.HpStorage.Fill(damageTaken);
@@ -25,6 +29,10 @@ public class DamageUtil
 
     private static void DamageModelWithTrueValue(Model effectedModel, object[] inputObjects)
     {
+        if (effectedModel == null)
+        {
+            return;
+        }
         int trueDamageValue = (int)inputObjects[0];
         int damageTaken = GetDamageValueAfterAbsorbtion(effectedModel, trueDamageValue);
         effectedModel.CommonPropertySet.HpStorage.Fill(damageTaken);
@@ -32,6 +40,10 @@ public class DamageUtil
 
     private static int GetDamageValueAfterAbsorbtion(Model effectedModel, int damageValue)
     {
+        if (effectedModel == null)
+        {
+            return 0;
+        }
         int totalArmorAbsobtion = CombatPropertySetUtil.GetFullArmorAbsorbtion(effectedModel);
         if (totalArmorAbsobtion == 0)
         {

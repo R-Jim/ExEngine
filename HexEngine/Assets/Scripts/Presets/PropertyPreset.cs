@@ -23,8 +23,8 @@ public class PropertyPreset
             case Preset.CombatProperty: return GetCombatProperty(properties);
             case Preset.Damage: return GetDamgeProperty(properties);
             case Preset.Armor: return GetArmorProperty(properties);
-            case Preset.MountArray: return GetDamgeProperty(properties);
-            case Preset.Mount: return GetArmorProperty(properties);
+            case Preset.MountArray: return GetMountPointArrayProperty(properties);
+            case Preset.Mount: return GetMountPointProperty(properties);
         };
         return null;
     }

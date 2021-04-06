@@ -34,7 +34,20 @@ public class ModelContainer : MonoBehaviour
 
     private void RemoveModel()
     {
-        ModelList.RemoveAll(Model => Model.IsRemovable());
+        ModelList.RemoveAll((Model model) =>
+        {
+            if (model.IsRemovable())
+            {
+                MountPoint mountPoint = model.CommonPropertySet.MountedTo;
+                if (mountPoint != null)
+                {
+                    mountPoint.Unmount();
+                }
+                Debug.Log("Remove model:" + model.CommonPropertySet.MountType);
+                return true;
+            }
+            return false;
+        });
     }
 
     public static void SpawnNewModel(Model model)
@@ -42,9 +55,9 @@ public class ModelContainer : MonoBehaviour
         GameObject prefab = PrefabPreset.GetPrefab(model.GameObjectPropertySet.PrefabPreset);
 
         ModelList.Add(model);
-        GameObject projectile = Instantiate(prefab);
-        projectile.transform.parent = ModelLayer.transform;
-        projectile.GetComponent<ModelGameObject>().SetModel(model);
+        GameObject gameObject = Instantiate(prefab);
+        gameObject.transform.parent = ModelLayer.transform;
+        gameObject.GetComponent<ModelGameObject>().SetModel(model);
         Debug.Log("Spawned, " + model.CommonPropertySet.Coordinate.ToString());
     }
 

@@ -6,7 +6,7 @@ public class ModelUtil
     public static float GetModelFullPropertyByFunction(Model model, Func<Model, float> getPropertyValueFunction)
     {
         float propertyValue = getPropertyValueFunction(model);
-        if (model.MountPoints == null)
+        if (model == null || model.MountPoints == null)
         {
             return propertyValue;
         }
@@ -20,7 +20,7 @@ public class ModelUtil
     public static float GetModelFullPropertyByFunctionWithInputObjects(Model model, Func<Model, object[], float> getPropertyValueFunction, object[] inputObjects)
     {
         float propertyValue = getPropertyValueFunction(model, inputObjects);
-        if (model.MountPoints == null)
+        if (model == null || model.MountPoints == null)
         {
             return propertyValue;
         }
@@ -34,7 +34,7 @@ public class ModelUtil
     public static void ProcessAllModelByFunctionWithInputObjects(Model model, Action<Model, object[]> processFunction, object[] inputObjects)
     {
         processFunction(model, inputObjects);
-        if (model.MountPoints == null)
+        if (model == null || model.MountPoints == null)
         {
             return;
         }
@@ -46,6 +46,11 @@ public class ModelUtil
 
     public static bool IsModelMountedTo(Model sourceModel, Model mountedModel)
     {
+        if (sourceModel == null || mountedModel == null)
+        {
+            return false;
+        }
+
         MountPoint mountPoint = sourceModel.CommonPropertySet.MountedTo;
         if (mountPoint == null)
         {

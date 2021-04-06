@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 public class Mapping
 {
@@ -41,20 +43,28 @@ public class Mapping
         indexString = FormatString(indexString, out bool isClone);
         int index = int.Parse(indexString);
         object returnValue = null;
-        if (PropSyntaxRegex.IsMatch(value))
+        try
         {
-            returnValue = MapProperty(datatable, datatable.DataSets[index], inputOrActionProperties);
-        }
-        else if (InputOrActionSyntaxRegex.IsMatch(value))
-        {
-            returnValue = inputOrActionProperties[index];
-        }
+            if (PropSyntaxRegex.IsMatch(value))
+            {
+                returnValue = MapProperty(datatable, datatable.DataSets[index], inputOrActionProperties);
+            }
+            else if (InputOrActionSyntaxRegex.IsMatch(value))
+            {
+                returnValue = inputOrActionProperties[index];
+            }
 
-        if (isClone)
-        {
-            returnValue = CloneValue(value);
+            if (isClone)
+            {
+                returnValue = CloneValue(value);
+            }
+            return GetNestedValue(returnValue, nestedFields);
         }
-        return GetNestedValue(returnValue, nestedFields);
+        catch (IndexOutOfRangeException e)
+        {
+            Debug.LogError("Index out of range on: " + value);
+            throw e;
+        }
     }
 
     private static object GetNestedValue(object value, string nestedString)

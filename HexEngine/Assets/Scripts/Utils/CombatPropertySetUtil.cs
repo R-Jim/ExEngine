@@ -20,6 +20,10 @@ public class CombatPropertySetUtil
         float impactValue = (float)inputObjects[0];
         bool isTrueDamage = (bool)inputObjects[1];
         float totalDamage = 0;
+        if (model == null)
+        {
+            return totalDamage;
+        }
         DamagePropertySet[] damagePropertySets = model.CombatPropertySet.DamagePropertySets;
         foreach (DamagePropertySet damagePropertySet in damagePropertySets)
         {
@@ -40,6 +44,10 @@ public class CombatPropertySetUtil
     public static float GetArmorAbsorbtion(Model model)
     {
         float total = 0;
+        if (model == null)
+        {
+            return total;
+        }
         ArmorPropertySet[] armorPropertySets = model.CombatPropertySet.ArmorPropertySets;
         foreach (ArmorPropertySet armorPropertySet in armorPropertySets)
         {
@@ -57,6 +65,10 @@ public class CombatPropertySetUtil
     public static float GetArmorNullifier(Model model)
     {
         float total = 0;
+        if (model == null)
+        {
+            return total;
+        }
         ArmorPropertySet[] armorPropertySets = model.CombatPropertySet.ArmorPropertySets;
         foreach (ArmorPropertySet armorPropertySet in armorPropertySets)
         {

@@ -28,4 +28,9 @@ public class MountPoint
             model.CommonPropertySet.MountedTo = this;
         }
     }
+
+    public void Unmount()
+    {
+        MountedModel = null;
+    }
 }
