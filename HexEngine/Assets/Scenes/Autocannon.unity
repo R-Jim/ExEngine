@@ -214,9 +214,9 @@ GameObject:
   m_Component:
   - component: {fileID: 255514437}
   - component: {fileID: 255514441}
-  - component: {fileID: 255514440}
   - component: {fileID: 255514439}
   - component: {fileID: 255514438}
+  - component: {fileID: 255514440}
   m_Layer: 0
   m_Name: Mounted Auto cannon
   m_TagString: Untagged
@@ -281,11 +281,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 255514436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f6ff4062c4e1d41b269502a29b5e85, type: 3}
+  m_Script: {fileID: 11500000, guid: 2651b646e989ba1448881888f8b6ff32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsActive: 0
   DebugModelIndex: 2
+  SystemGameObject: {fileID: 1225821238}
 --- !u!114 &255514441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,8 +392,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1225821240}
   - component: {fileID: 1225821239}
+  - component: {fileID: 1225821241}
   m_Layer: 0
-  m_Name: Debug (1)
+  m_Name: System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,6 +412,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c88a777b3841604d9de3060f30923d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ModelLayerGameObject: {fileID: 1828344293}
   FiringVectorDirectionPreset: 0
   Ammo: 5
   TargetSpacing: 2
@@ -428,6 +430,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1225821241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225821238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577ac283faf10a74db2606e05ad6d701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectileModelPrefab: {fileID: 3749879899826118019, guid: 4372d296cab68574e82da454ad347b2d,
+    type: 3}
+  PlaceholderModelPrefab: {fileID: 972159410298407701, guid: 47f2daec463191947a3bf0fd0585e09e,
+    type: 3}
+  DummyModelPrefab: {fileID: 8459856015112569157, guid: e26aada995978bc4f90a1af5819ef0dd,
+    type: 3}
 --- !u!1 &1252563154
 GameObject:
   m_ObjectHideFlags: 0
@@ -3642,98 +3662,8 @@ Transform:
   - {fileID: 1828344294}
   - {fileID: 1252563155}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
---- !u!1 &1436609718
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1436609721}
-  - component: {fileID: 1436609720}
-  - component: {fileID: 1436609719}
-  - component: {fileID: 1436609722}
-  - component: {fileID: 1436609723}
-  m_Layer: 0
-  m_Name: Overlord (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1436609719
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436609718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdd3f6a53043a0644bc31c91df1e812e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1436609720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436609718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f930fd17a706544291e4d88b80c9ef5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1436609721
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436609718}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1436609722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436609718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49bf997fbcd5af84aaa9c50da47b9394, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ProjectileModelPrefab: {fileID: 3749879899826118019, guid: 4372d296cab68574e82da454ad347b2d,
-    type: 3}
-  PlaceholderModelPrefab: {fileID: 972159410298407701, guid: 47f2daec463191947a3bf0fd0585e09e,
-    type: 3}
-  DummyModelPrefab: {fileID: 8459856015112569157, guid: e26aada995978bc4f90a1af5819ef0dd,
-    type: 3}
-  ModelLayerGameObject: {fileID: 1828344293}
---- !u!114 &1436609723
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1436609718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: becd4c4da7f6ff44f99f048a05d26c4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimeBetweenTick: 0.5
+  m_LocalEulerAnglesHint: {x: -45, y: 0, z: 0}
 --- !u!1 &1453976533
 GameObject:
   m_ObjectHideFlags: 0
@@ -3826,8 +3756,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1702551259}
   - component: {fileID: 1702551262}
-  - component: {fileID: 1702551261}
   - component: {fileID: 1702551260}
+  - component: {fileID: 1702551261}
   m_Layer: 0
   m_Name: MountPlaceholder
   m_TagString: Untagged
@@ -3908,11 +3838,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1702551258}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79f6ff4062c4e1d41b269502a29b5e85, type: 3}
+  m_Script: {fileID: 11500000, guid: 2651b646e989ba1448881888f8b6ff32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsActive: 0
   DebugModelIndex: 1
+  SystemGameObject: {fileID: 1225821238}
 --- !u!114 &1702551262
 MonoBehaviour:
   m_ObjectHideFlags: 0

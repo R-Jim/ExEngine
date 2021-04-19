@@ -4,10 +4,10 @@
     {
     }
 
-    protected override void ExecuteProcess()
+    protected override void ExecuteProcess(BattleHandler battleHandler)
     {
         Modifier modifier = (Modifier)Value;
-        modifier.Modify(this);
+        modifier.Modify(this, battleHandler);
         Status = EffectStatus.Executed;
     }
 

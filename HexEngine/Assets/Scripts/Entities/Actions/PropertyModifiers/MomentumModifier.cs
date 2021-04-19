@@ -5,7 +5,7 @@
 
     }
 
-    public override void Modify(Effect effect)
+    public override void Modify(Effect effect, BattleHandler battleHandler)
     {
         GetMomentumPropertySet(effect.TargetModel).Add((VectorPropertySet)Value);
     }

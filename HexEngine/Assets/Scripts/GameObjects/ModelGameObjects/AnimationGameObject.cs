@@ -22,7 +22,7 @@ public class AnimationGameObject : MonoBehaviour
 
     private void SystemTickAnimationHandler()
     {
-        int systemTick = SystemProperties.SystemProfile.SystemTick;
+        int systemTick = BattleHandler.GetSystemTick();
         if (LastTick != systemTick)
         {
             AnimationSet.Tick();

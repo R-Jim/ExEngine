@@ -14,7 +14,7 @@
         };
     }
 
-    protected override void ExecuteProcess()
+    protected override void ExecuteProcess(BattleHandler battleHandler)
     {
         StoragePropertySet storagePropertySet = ((StorageModel)TargetModel).StoragePropertySet;
         if (storagePropertySet.Get((int)Value) != 0)

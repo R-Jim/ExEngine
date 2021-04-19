@@ -1,18 +1,21 @@
-﻿class MomentumInterval : Interval
+﻿public class MomentumInterval : Interval
 {
-    public MomentumInterval() : base(1)
+    public MomentumInterval(BattleHandler battleHandler) : base(1, battleHandler)
     {
 
     }
 
-    protected override void Process(Model model)
+    protected override void Process()
     {
-        MomentumPropertySet momentumPropertySet = model.CommonPropertySet.MomentumPropertySet;
-        if (momentumPropertySet.IsEmpty())
+        foreach (Model model in BattleHandler.GetModels())
         {
-            return;
+            MomentumPropertySet momentumPropertySet = model.CommonPropertySet.MomentumPropertySet;
+            if (momentumPropertySet.IsEmpty())
+            {
+                continue;
+            }
+            AddTrigger(GetMoveTrigger(model));
         }
-        QueueTrigger(GetMoveTrigger(model));
     }
 
     private Trigger GetMoveTrigger(Model model)
@@ -33,6 +36,6 @@
             }
         };
         //TODO replace offset with momentum calculated value
-        return new TargetTrigger(model, model, modifyEffect, 1);
+        return new TargetTrigger(model, model, modifyEffect, 0);
     }
 }

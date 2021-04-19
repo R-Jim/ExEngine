@@ -14,10 +14,10 @@ public class PrefabPreset
     {
         switch (prefabPreset)
         {
-            case Preset.Placeholder: return ModelContainer.PlaceholderPrefab;
+            case Preset.Placeholder: return PrefabGameObjectPreset.PlaceholderPrefab;
             case Preset.Cannon: return null;
-            case Preset.Projectile: return ModelContainer.ProjectilePrefab;
-            case Preset.Dummy: return ModelContainer.DummyPrefab;
+            case Preset.Projectile: return PrefabGameObjectPreset.ProjectilePrefab;
+            case Preset.Dummy: return PrefabGameObjectPreset.DummyPrefab;
             default: return null;
         }
     }

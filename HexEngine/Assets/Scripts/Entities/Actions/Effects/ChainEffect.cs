@@ -5,17 +5,17 @@
 
     }
 
-    protected override void ExecuteProcess()
+    protected override void ExecuteProcess(BattleHandler battleHandler)
     {
         ChainTrigger.ChainSet chainSet = (ChainTrigger.ChainSet)Value;
         Effect headEffect = chainSet.HeadTrigger.BaseEffect.Bind(TargetModel);
-        headEffect.Execute();
+        headEffect.Execute(battleHandler);
 
-        HandleTailTrigger();
+        HandleTailTrigger(battleHandler);
         Status = EffectStatus.Executed;
     }
 
-    private void HandleTailTrigger()
+    private void HandleTailTrigger(BattleHandler battleHandler)
     {
         ChainTrigger.ChainSet chainSet = (ChainTrigger.ChainSet)Value;
         Trigger tailTrigger = chainSet.TailTrigger;
@@ -23,7 +23,7 @@
         {
             tailTrigger.Reset();
         }
-        TriggerContainer.QueueTrigger(tailTrigger);
+        battleHandler.AddTrigger(tailTrigger);
     }
 
     public override Effect Bind(Model model)

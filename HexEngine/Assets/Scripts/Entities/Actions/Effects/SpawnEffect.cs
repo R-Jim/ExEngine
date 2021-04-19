@@ -4,23 +4,23 @@
     {
     }
 
-    protected override void ExecuteProcess()
+    protected override void ExecuteProcess(BattleHandler battleHandler)
     {
         Model model = (Model)Value;
-        SpawnModel(model);
+        SpawnModel(model, battleHandler);
         Status = EffectStatus.Executed;
     }
 
-    private void SpawnModel(Model model)
+    private void SpawnModel(Model model, BattleHandler battleHandler)
     {
-        ModelContainer.SpawnNewModel(model);
+        battleHandler.SpawnNewModel(model);
         if (model.MountPoints != null && model.MountPoints.Length != 0)
         {
             foreach (MountPoint mountPoint in model.MountPoints)
             {
                 if (mountPoint.MountedModel != null)
                 {
-                    SpawnModel(mountPoint.MountedModel);
+                    SpawnModel(mountPoint.MountedModel, battleHandler);
                 }
             }
         }

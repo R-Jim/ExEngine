@@ -22,14 +22,14 @@ public class Effect
         Status = EffectStatus.Pending;
     }
 
-    public void Execute()
+    public void Execute(BattleHandler battleHandler)
     {
-        ExecuteProcess();
+        ExecuteProcess(battleHandler);
         AssignEffectAfterExecuted();
         PostEffect?.Invoke(this);
     }
 
-    protected virtual void ExecuteProcess()
+    protected virtual void ExecuteProcess(BattleHandler battleHandler)
     {
         Status = EffectStatus.Executed;
     }

@@ -88,6 +88,8 @@
     <Compile Include="Assets\Scripts\Entities\Actions\Triggers\Trigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Animations\AnimationSet.cs" />
     <Compile Include="Assets\Scripts\Entities\Animations\AnimationTransition.cs" />
+    <Compile Include="Assets\Scripts\Entities\Containers\ModelContainer.cs" />
+    <Compile Include="Assets\Scripts\Entities\Containers\TriggerContainer.cs" />
     <Compile Include="Assets\Scripts\Entities\Hosts\Host.cs" />
     <Compile Include="Assets\Scripts\Entities\Intervals\Interval.cs" />
     <Compile Include="Assets\Scripts\Entities\Intervals\MomentumInterval.cs" />
@@ -105,14 +107,13 @@
     <Compile Include="Assets\Scripts\Entities\Models\Properties\VectorPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\StorageModel.cs" />
     <Compile Include="Assets\Scripts\Entities\SystemProfile.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\Containers\ModelContainer.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\Containers\PendingEffectContainer.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\Containers\TriggerContainer.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\BattleHandler.cs" />
     <Compile Include="Assets\Scripts\GameObjects\DebugGameObjects\AutoCannonDebugGO.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\DebugGameObjects\DebugModelGameObject.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ModelGameObjects\AnimationGameObject.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ModelGameObjects\ModelGameObject.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ModelGameObjects\MovemonentMapper.cs" />
-    <Compile Include="Assets\Scripts\GameObjects\System\SystemProperties.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\Prefabs\PrefabGameObjectPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\AnimationPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\DatatablePreset.cs" />
     <Compile Include="Assets\Scripts\Presets\EffectPreset.cs" />

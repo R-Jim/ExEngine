@@ -5,15 +5,15 @@
 
     }
 
-    public override void Modify(Effect effect)
+    public override void Modify(Effect effect, BattleHandler battleHandler)
     {
-        Modify(effect.TargetModel, 0);
+        Modify(effect.TargetModel, battleHandler, 0);
     }
 
-    public float Modify(Model targetModel, float bonusImpactValue = 0)
+    public float Modify(Model targetModel, BattleHandler battleHandler, float bonusImpactValue = 0)
     {
         Model upMostModel = CommonPropertySetUtil.GetUpMostModel(targetModel);
-        float pushImpactValue = PushUtil.Push(upMostModel, this, bonusImpactValue);
+        float pushImpactValue = PushUtil.Push(upMostModel, this, bonusImpactValue, battleHandler);
         float remainImpactValue = pushImpactValue - CommonPropertySetUtil.GetFullWeight(upMostModel);
         if (remainImpactValue >= 0)
         {

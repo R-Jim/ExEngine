@@ -1,28 +1,28 @@
 ﻿class PushUtil
 {
-    public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float bonusImpactValue)
+    public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float bonusImpactValue, BattleHandler battleHandler)
     {
         Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
-        Model model = GetModel(sourceModel, vectorValue);
+        Model model = GetModel(sourceModel, vectorValue, battleHandler);
         float pushImpactValue = ImpactUtil.GetImpactValue(sourceModel, vectorValue) + bonusImpactValue;
         if (model == null)
         {
             return pushImpactValue;
         }
 
-        float remainImpactValue = PushEffectedModel(pushImpactValue, model, coordinateModifier, out float totalImpactValue);
+        float remainImpactValue = PushEffectedModel(pushImpactValue, model, coordinateModifier, battleHandler, out float totalImpactValue);
         DamageEffectedModel(sourceModel, model, totalImpactValue);
         return remainImpactValue;
     }
 
-    private static Model GetModel(Model sourceModel, Coordinate.Vector vectorValue)
+    private static Model GetModel(Model sourceModel, Coordinate.Vector vectorValue, BattleHandler battleHandler)
     {
         Coordinate EffectedCoordinate = sourceModel.CommonPropertySet.Coordinate.Clone();
         EffectedCoordinate.Add(CoordinateUtil.GetCoordinate(vectorValue));
-        return ModelContainer.GetModel(EffectedCoordinate);
+        return battleHandler.GetModel(EffectedCoordinate);
     }
 
-    private static float PushEffectedModel(float pushImpactValue, Model effectedModel, CoordinateModifier coordinateModifier, out float totalImpactValue)
+    private static float PushEffectedModel(float pushImpactValue, Model effectedModel, CoordinateModifier coordinateModifier, BattleHandler battleHandler, out float totalImpactValue)
     {
         Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
 
@@ -30,7 +30,7 @@
         float remainImpactValue = pushImpactValue - effectedImpactValue;
         if (remainImpactValue >= 0)
         {
-            remainImpactValue = coordinateModifier.Modify(effectedModel, remainImpactValue);
+            remainImpactValue = coordinateModifier.Modify(effectedModel, battleHandler, remainImpactValue);
         }
         totalImpactValue = pushImpactValue + effectedImpactValue - remainImpactValue;
         return remainImpactValue;
