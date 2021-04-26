@@ -1,4 +1,6 @@
-﻿class PushUtil
+﻿using UnityEngine;
+
+class PushUtil
 {
     public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float bonusImpactValue, BattleHandler battleHandler)
     {
@@ -11,6 +13,8 @@
         }
 
         float remainImpactValue = PushEffectedModel(pushImpactValue, model, coordinateModifier, battleHandler, out float totalImpactValue);
+
+        Debug.Log(LoggingUtil.GetModelLoggingIdentifier(sourceModel) + " => " + LoggingUtil.GetModelLoggingIdentifier(model) + ",TIP: " + totalImpactValue);
         DamageEffectedModel(sourceModel, model, totalImpactValue);
         return remainImpactValue;
     }

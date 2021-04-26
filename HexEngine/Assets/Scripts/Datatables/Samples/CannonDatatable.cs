@@ -25,7 +25,7 @@
             //Spawn dummy
             new DataSet(PropertyPreset.Preset.Coordinate, new string[]{ "<action,0.CommonPropertySet.~Coordinate/>",  "<prop,7/>", "4" }),
 
-            new DataSet(TriggerPreset.Preset.Spawn, new string[]{ "<action,0/>", "<prop,10/>",  "0"}),
+            new DataSet(TriggerPreset.Preset.Spawn, new string[]{ "<action,0/>", "<prop,10/>",  "1"}),
             new DataSet(DatatablePreset.Preset.Dummy, new string[]{ "<prop,8/>"}),
 
             new DataSet(PropertyPreset.Preset.Coordinate, new string[]{ "<action,0.CommonPropertySet.~Coordinate/>",  "<prop,7/>", "1" }),
