@@ -1,55 +1,42 @@
-﻿using System.Collections.Generic;
-
-public class ChainTrigger : Trigger
+﻿public class ChainTrigger : Trigger
 {
     public const string TYPE = "chain";
-    public bool IsSelfChain { get; }
+    private readonly ChainSet Chain;
 
-    public ChainTrigger(Model source, ChainSet chainSet, bool isSelfChain = false)
-        : base(source, TYPE, source.CommonPropertySet.Coordinate, new ChainEffect(chainSet), chainSet.HeadTrigger.OffSet)
+    public ChainTrigger(Model source, ChainSet chainSet)
+        : base(source, TYPE, source.CommonPropertySet.Coordinate, null, chainSet.HeadTrigger.OffSet)
     {
-        if (isSelfChain)
-        {
-            IsSelfChain = isSelfChain;
-            chainSet.TailTrigger = this;
-        }
+        Chain = chainSet;
     }
 
-    public override Effect Hook(Model model)
+    public override void Hook(BattleHandler battleHandler, Model model)
     {
-        ChainSet chainSet = (ChainSet)BaseEffect.Value;
-
-        Effect headEffect = chainSet.HeadTrigger.Hook(model);
-        Effect bindedEffect = BaseEffect.Bind(model);
-        switch (chainSet.Type)
+        Trigger Head = Chain.HeadTrigger;
+        Head.Hook(battleHandler, model);
+        switch (Chain.Type)
         {
             case ChainSet.ChainType.Hook:
-                if (headEffect != null)
+                if (Head.HookedModel.Contains(model))
                 {
-                    return bindedEffect;
+                    HandleTailTrigger(battleHandler, model);
                 }
                 break;
             case ChainSet.ChainType.NotHook:
-                if (headEffect == null)
+                if (!Head.HookedModel.Contains(model))
                 {
-                   return chainSet.TailTrigger.Hook(model);
+                    HandleTailTrigger(battleHandler, model);
                 }
                 break;
             case ChainSet.ChainType.Always:
-                return bindedEffect;
+                HandleTailTrigger(battleHandler, model);
+                break;
         }
-        return null;
     }
 
-    public override void Reset()
+    private void HandleTailTrigger(BattleHandler battleHandler, Model model)
     {
-        ExecutedModel = new HashSet<Model>();
-        ChainSet chainSet = (ChainSet)BaseEffect.Value;
-        chainSet.HeadTrigger.Reset();
-        if (!IsSelfChain)
-        {
-            chainSet.TailTrigger.Reset();
-        }
+        HookedModel.Add(model);
+        battleHandler.AddTrigger(Chain.TailTrigger);
     }
 
     public class ChainSet

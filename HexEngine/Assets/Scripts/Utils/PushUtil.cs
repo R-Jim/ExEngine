@@ -34,7 +34,7 @@ class PushUtil
         float remainImpactValue = pushImpactValue - effectedImpactValue;
         if (remainImpactValue >= 0)
         {
-            remainImpactValue = coordinateModifier.Modify(effectedModel, battleHandler, remainImpactValue);
+            remainImpactValue = coordinateModifier.Modify(battleHandler, effectedModel, remainImpactValue);
         }
         totalImpactValue = pushImpactValue + effectedImpactValue - remainImpactValue;
         return remainImpactValue;

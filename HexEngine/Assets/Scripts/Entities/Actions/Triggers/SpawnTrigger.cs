@@ -8,13 +8,12 @@
     }
 
 
-    public override Effect Hook(Model model)
+    public override void Hook(BattleHandler battleHandler, Model model)
     {
         string mountType = model.CommonPropertySet.MountType;
-        if (mountType != null && mountType.Equals("system"))
+        if ("system".Equals(mountType))
         {
-            return BaseEffect.Bind(model);
+            HandleHookedModel(battleHandler, model);
         }
-        return null;
     }
 }

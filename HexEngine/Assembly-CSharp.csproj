@@ -72,11 +72,11 @@
     <Compile Include="Assets\Scripts\Datatables\Samples\DummyDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\FiringBulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\HighImpactBulletDatatable.cs" />
-    <Compile Include="Assets\Scripts\Entities\Actions\Effects\ChainEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\Effect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\ModifyPropertyEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\RequestEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\SpawnEffect.cs" />
+    <Compile Include="Assets\Scripts\Entities\Actions\Loggers\LoggingEvent.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\PropertyModifiers\CoordinateModifier.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\PropertyModifiers\HpModifier.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\PropertyModifiers\Modifier.cs" />
@@ -86,8 +86,6 @@
     <Compile Include="Assets\Scripts\Entities\Actions\Triggers\SpawnTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Triggers\TargetTrigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Triggers\Trigger.cs" />
-    <Compile Include="Assets\Scripts\Entities\Animations\AnimationSet.cs" />
-    <Compile Include="Assets\Scripts\Entities\Animations\AnimationTransition.cs" />
     <Compile Include="Assets\Scripts\Entities\Containers\ModelContainer.cs" />
     <Compile Include="Assets\Scripts\Entities\Containers\TriggerContainer.cs" />
     <Compile Include="Assets\Scripts\Entities\Hosts\Host.cs" />
@@ -114,6 +112,7 @@
     <Compile Include="Assets\Scripts\GameObjects\ModelGameObjects\ModelGameObject.cs" />
     <Compile Include="Assets\Scripts\GameObjects\ModelGameObjects\MovemonentMapper.cs" />
     <Compile Include="Assets\Scripts\GameObjects\Prefabs\PrefabGameObjectPreset.cs" />
+    <Compile Include="Assets\Scripts\GameObjects\StateMachineFunctions\ResetParameter.cs" />
     <Compile Include="Assets\Scripts\Presets\AnimationPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\DatatablePreset.cs" />
     <Compile Include="Assets\Scripts\Presets\EffectPreset.cs" />

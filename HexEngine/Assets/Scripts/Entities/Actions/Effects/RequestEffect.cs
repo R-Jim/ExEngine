@@ -1,26 +1,18 @@
 ﻿public class RequestEffect : Effect
 {
-    public RequestEffect(int requireValue) : base(requireValue)
+    public int RequireValue { get; }
+    public RequestEffect(int requireValue) : base()
     {
-
+        RequireValue = requireValue;
     }
 
-    public override Effect Bind(Model model)
-    {
-        return new RequestEffect((int)Value)
-        {
-            TargetModel = model,
-            Trigger = Trigger,
-        };
-    }
 
-    protected override void ExecuteProcess(BattleHandler battleHandler)
+    protected override void Process(BattleHandler battleHandler, Model targetModel)
     {
-        StoragePropertySet storagePropertySet = ((StorageModel)TargetModel).StoragePropertySet;
-        if (storagePropertySet.Get((int)Value) != 0)
+        StoragePropertySet storagePropertySet = ((StorageModel)targetModel).StoragePropertySet;
+        if (storagePropertySet.Get(RequireValue) != 0)
         {
-            storagePropertySet.Fill(-(int)Value);
-            Status = EffectStatus.Executed;
+            storagePropertySet.Fill(-RequireValue);
         }
     }
 }

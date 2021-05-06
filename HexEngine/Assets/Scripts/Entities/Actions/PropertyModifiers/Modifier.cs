@@ -7,7 +7,7 @@
         Value = value;
     }
 
-    public virtual void Modify(Effect effect, BattleHandler battleHandler)
+    public virtual void Modify(BattleHandler battleHandler, Model targetModel)
     {
 
     }

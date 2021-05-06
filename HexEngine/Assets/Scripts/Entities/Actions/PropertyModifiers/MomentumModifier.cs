@@ -5,9 +5,9 @@
 
     }
 
-    public override void Modify(Effect effect, BattleHandler battleHandler)
+    public override void Modify(BattleHandler battleHandler, Model targetModel)
     {
-        GetMomentumPropertySet(effect.TargetModel).Add((VectorPropertySet)Value);
+        GetMomentumPropertySet(targetModel).Add((VectorPropertySet)Value);
     }
 
     private MomentumPropertySet GetMomentumPropertySet(Model model)

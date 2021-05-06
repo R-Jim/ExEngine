@@ -5,46 +5,55 @@ public class Trigger
     public Model Source { get; }
     public string Type { get; }
     public Coordinate TriggerCoordinate { get; }
-    public Effect BaseEffect { get; protected set; }
+    public Effect Effect { get; protected set; }
     public int OffSet { get; }
     public int EnqueueTick { get; set; }
 
-    public HashSet<Model> ExecutedModel { get; protected set; }
     public HashSet<Model> HookedModel { get; protected set; }
 
-    public Trigger(Model source, Coordinate triggerCoordinate, Effect baseEffect, int offset = 0) : this(source, "trigger", triggerCoordinate, baseEffect, offset)
+    public Trigger(Model source, Coordinate triggerCoordinate, Effect effect, int offset = 0) : this(source, "trigger", triggerCoordinate, effect, offset)
     {
 
     }
 
-    protected Trigger(Model source, string type, Coordinate triggerCoordinate, Effect baseEffect, int offset = 0)
+    protected Trigger(Model source, string type, Coordinate triggerCoordinate, Effect effect, int offset = 0)
     {
         Source = source;
         Type = type;
         TriggerCoordinate = triggerCoordinate;
-        BaseEffect = baseEffect;
-        BaseEffect.Trigger = this;
+        Effect = effect;
+        if (effect != null)
+        {
+            Effect.SetUp(this, null);
+        }
         OffSet = offset;
-        ExecutedModel = new HashSet<Model>();
         HookedModel = new HashSet<Model>();
     }
 
-    public virtual Effect Hook(Model model)
+    public virtual void Hook(BattleHandler battleHandler, Model model)
     {
-        if (SameCoordinate(model) && !HookedModel.Contains(model))
+        if (SameCoordinate(model))
         {
-            return BaseEffect.Bind(model);
+            HandleHookedModel(battleHandler, model);
         }
-        return null;
+    }
+
+    protected void HandleHookedModel(BattleHandler battleHandler, Model model)
+    {
+        HookedModel.Add(model);
+        Effect.Execute(battleHandler, model);
+        EventHandling(model);
+    }
+
+    protected void EventHandling(Model model)
+    {
+        LoggingEvent loggingEvent = new LoggingEvent(this, model);
+        model.AddEvent(loggingEvent);
+        Source.AddEvent(loggingEvent);
     }
 
     private bool SameCoordinate(Model model)
     {
         return model.CommonPropertySet.Coordinate.Equals(TriggerCoordinate);
-    }
-
-    public virtual void Reset()
-    {
-        ExecutedModel = new HashSet<Model>();
     }
 }

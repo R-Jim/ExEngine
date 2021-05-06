@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationGameObject : MonoBehaviour
 {
-    private readonly AnimationSet AnimationSet = new AnimationSet(GetDefaultAnimationSet());
+    private readonly Queue<Dictionary<string, int>> AnimationQueue = new Queue<Dictionary<string, int>>();
     public Model Model;
     public AnimationPreset.Preset AnimationPresetType;
-    private int LastTick = 0;
+    public Animator animator;
 
     // Update is called once per frame
     void Update()
@@ -17,45 +18,31 @@ public class AnimationGameObject : MonoBehaviour
         }
         UpdateNewAnimation();
         UpdateAnimator();
-        SystemTickAnimationHandler();
-    }
-
-    private void SystemTickAnimationHandler()
-    {
-        int systemTick = BattleHandler.GetSystemTick();
-        if (LastTick != systemTick)
-        {
-            AnimationSet.Tick();
-            LastTick = systemTick;
-        }
     }
 
     private void UpdateNewAnimation()
     {
-        if (Model.SourceExecutedEffect.Count > 0)
+        LoggingEvent loggingEvent = Model.GetEvent();
+        if (loggingEvent != null)
         {
-            Effect effect = Model.SourceExecutedEffect.Dequeue();
-            AnimationTransition animationTransition = AnimationPreset.GetAnimationTransition(AnimationPresetType, effect.Trigger.Type);
-            AnimationSet.Add(animationTransition);
+            Dictionary<string, int> animationTransition = AnimationPreset.GetAnimationTransition(AnimationPresetType, loggingEvent.TriggerType);
+            if (animationTransition != null)
+            {
+                AnimationQueue.Enqueue(animationTransition);
+            }
         }
     }
 
     private void UpdateAnimator()
     {
-        Animator animator = gameObject.GetComponent<Animator>();
-        foreach(string tag in AnimationSet.GetTags())
+        try
         {
-            animator.SetInteger(tag, AnimationSet.GetValue(tag));
+            Dictionary<string, int> animationTransition = AnimationQueue.Dequeue();
+            foreach (string tag in animationTransition.Keys)
+            {
+                animator.SetInteger(tag, animationTransition[tag]);
+            }
         }
-    }
-
-    private static Dictionary<string, int> GetDefaultAnimationSet()
-    {
-        Dictionary<string, int> defaultSet = new Dictionary<string, int>
-        {
-            { SpawnTrigger.TYPE, 0 } //firing
-        };
-
-        return defaultSet;
+        catch (InvalidOperationException) { }
     }
 }

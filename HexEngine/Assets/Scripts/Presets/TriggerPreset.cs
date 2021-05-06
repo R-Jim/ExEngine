@@ -39,10 +39,6 @@
                 properties[2] != null ? (Trigger)properties[2] : null,
                 (ChainTrigger.ChainSet.ChainType)properties[3]
             );
-        if (properties.Length == 5)
-        {
-            return new ChainTrigger((Model)properties[0], chainSet, (bool)properties[4]);
-        }
         return new ChainTrigger((Model)properties[0], chainSet);
     }
 
