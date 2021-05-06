@@ -5,8 +5,8 @@
 
     }
 
-    public override void Modify(Effect effect, BattleHandler battleHandler)
+    public override void Modify(BattleHandler battleHandler, Model model)
     {
-        effect.TargetModel.CommonPropertySet.HpStorage.Fill((int)Value);
+        model.CommonPropertySet.HpStorage.Fill((int)Value);
     }
 }

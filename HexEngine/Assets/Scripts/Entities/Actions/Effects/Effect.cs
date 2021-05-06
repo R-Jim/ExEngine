@@ -2,58 +2,31 @@
 
 public class Effect
 {
-    public EffectStatus Status { get; protected set; }
-    public object Value;
-    public Trigger Trigger;
-    public Model TargetModel;
-    public Action<Effect> PostEffect;
+    public Trigger Trigger { get; private set; }
+    private Action<Effect> PostEffect; //To handle action after effect is executed
 
-    public Effect(object value)
+    protected Effect()
     {
-        Value = value;
-        Status = EffectStatus.Base;
     }
 
-    private Effect(Effect effect, Model targetModel)
+    public void SetUp(Trigger trigger, Action<Effect> postEffect)
     {
-        Trigger = effect.Trigger;
-        Value = effect.Value;
-        TargetModel = targetModel;
-        Status = EffectStatus.Pending;
+        Trigger = trigger;
+        PostEffect = postEffect;
     }
 
-    public void Execute(BattleHandler battleHandler)
+    public void Execute(BattleHandler battleHandler, Model targetModel)
     {
-        ExecuteProcess(battleHandler);
-        AssignEffectAfterExecuted();
+        if (Trigger == null)
+        {
+            throw new Exception("Trigger not found");
+        }
+        Process(battleHandler, targetModel);
         PostEffect?.Invoke(this);
     }
 
-    protected virtual void ExecuteProcess(BattleHandler battleHandler)
+    protected virtual void Process(BattleHandler battleHandler, Model targetModel)
     {
-        Status = EffectStatus.Executed;
-    }
 
-    protected virtual void AssignEffectAfterExecuted()
-    {
-        Model source = Trigger.Source;
-        if (source != null)
-        {
-            source.SourceExecutedEffect.Enqueue(this);
-        }
-        TargetModel.TargetExecutedEffect.Enqueue(this);
-    }
-
-    public virtual Effect Bind(Model model)
-    {
-        Trigger.HookedModel.Add(model);
-        return new Effect(this, model);
-    }
-
-    public enum EffectStatus
-    {
-        Base,
-        Pending,
-        Executed,
     }
 }

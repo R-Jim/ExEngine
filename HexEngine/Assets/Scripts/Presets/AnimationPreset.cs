@@ -4,28 +4,26 @@ public class AnimationPreset
 {
     public enum Preset
     {
-        Placeholder,
         Cannon,
     }
 
 
     public class CannonPreset : IPreset
     {
-        private readonly Dictionary<string, AnimationTransition> EffectTypeWithAnimation = new Dictionary<string, AnimationTransition>();
-        public CannonPreset()
+        public Dictionary<string, int> GetAnimationTransition(string type)
         {
-            EffectTypeWithAnimation.Add(SpawnTrigger.TYPE, new AnimationTransition(new string[] { SpawnTrigger.TYPE }, 1, 2));
-        }
-
-        public AnimationTransition GetAnimationTransition(string type)
-        {
-            EffectTypeWithAnimation.TryGetValue(type, out AnimationTransition animationTransition);
-            return animationTransition;
+            if (SpawnTrigger.TYPE == type)
+            {
+                return new Dictionary<string, int>() {
+                    {SpawnTrigger.TYPE, 1 }
+                };
+            }
+            return null;
         }
 
     }
 
-    public static AnimationTransition GetAnimationTransition(Preset preset, string type)
+    public static Dictionary<string, int> GetAnimationTransition(Preset preset, string type)
     {
         return GetPreset(preset).GetAnimationTransition(type);
     }
@@ -41,6 +39,6 @@ public class AnimationPreset
 
     interface IPreset
     {
-        AnimationTransition GetAnimationTransition(string type);
+        Dictionary<string, int> GetAnimationTransition(string type);
     }
 }

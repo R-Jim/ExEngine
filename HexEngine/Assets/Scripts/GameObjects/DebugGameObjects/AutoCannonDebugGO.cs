@@ -14,7 +14,8 @@ public class AutoCannonDebugGO : BattleHandler
     new void Awake()
     {
         base.Awake();
-        ModelContainer.AddModel(new Model(new CommonPropertySet(100, 100, new Coordinate(1000, 1000, 1000), 0, "system", new MomentumPropertySet()), null, null, null));
+
+        ModelContainer.AddModel(SystemModel);
 
         //Init mount model
         MountPoint weaponMountPoint = new MountPoint("weapon", new Coordinate(0, 0.03f, 0));

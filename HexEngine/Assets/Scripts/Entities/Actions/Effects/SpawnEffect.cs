@@ -1,14 +1,15 @@
 ﻿public class SpawnEffect : Effect
 {
-    public SpawnEffect(Model spawnModel) : base(spawnModel)
+    private readonly Model Model;
+
+    public SpawnEffect(Model model) : base()
     {
+        Model = model;
     }
 
-    protected override void ExecuteProcess(BattleHandler battleHandler)
+    protected override void Process(BattleHandler battleHandler, Model model)
     {
-        Model model = (Model)Value;
-        SpawnModel(model, battleHandler);
-        Status = EffectStatus.Executed;
+        SpawnModel(Model, battleHandler);
     }
 
     private void SpawnModel(Model model, BattleHandler battleHandler)
@@ -24,14 +25,5 @@
                 }
             }
         }
-    }
-
-    public override Effect Bind(Model model)
-    {
-        return new SpawnEffect((Model)Value)
-        {
-            TargetModel = model,
-            Trigger = Trigger
-        };
     }
 }

@@ -7,13 +7,12 @@
     {
     }
 
-    public override Effect Hook(Model model)
+    public override void Hook(BattleHandler battleHandler, Model model)
     {
         if (IsSameHashCode(model) && IsStorageHasValue())
         {
-            return BaseEffect.Bind(model);
+            HandleHookedModel(battleHandler, model);
         }
-        return null;
     }
 
     private bool IsSameHashCode(Model model)
@@ -23,6 +22,7 @@
 
     private bool IsStorageHasValue()
     {
-        return ((StorageModel)Source).StoragePropertySet.Get((int)BaseEffect.Value) != 0;
+        RequestEffect requestEffect = (RequestEffect)Effect;
+        return ((StorageModel)Source).StoragePropertySet.Get(requestEffect.RequireValue) != 0;
     }
 }

@@ -5,12 +5,12 @@
 
     }
 
-    public override void Modify(Effect effect, BattleHandler battleHandler)
+    public override void Modify(BattleHandler battleHandler, Model targetModel)
     {
-        Modify(effect.TargetModel, battleHandler, 0);
+        Modify(battleHandler, targetModel, 0);
     }
 
-    public float Modify(Model targetModel, BattleHandler battleHandler, float bonusImpactValue = 0)
+    public float Modify(BattleHandler battleHandler, Model targetModel, float bonusImpactValue = 0)
     {
         Model upMostModel = CommonPropertySetUtil.GetUpMostModel(targetModel);
         float pushImpactValue = PushUtil.Push(upMostModel, this, bonusImpactValue, battleHandler);

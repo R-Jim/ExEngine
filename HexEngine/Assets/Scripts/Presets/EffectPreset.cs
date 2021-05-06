@@ -3,7 +3,6 @@
     public enum Preset
     {
         Request,
-        Chain,
         Spawn,
         Modifier,
     }
@@ -13,7 +12,6 @@
         switch (preset)
         {
             case Preset.Request: return GetRequestEffect(properties);
-            case Preset.Chain: return GetChainEffect(properties);
             case Preset.Spawn: return GetSpawnEffect(properties);
             case Preset.Modifier: return GetModifierEffect(properties);
         };
@@ -29,11 +27,6 @@
     public static Effect GetRequestEffect(object[] properties)
     {
         return new RequestEffect((int)properties[0]);
-    }
-
-    public static Effect GetChainEffect(object[] properties)
-    {
-        return new ChainEffect((ChainTrigger.ChainSet)properties[0]);
     }
 
     public static Effect GetSpawnEffect(object[] properties)

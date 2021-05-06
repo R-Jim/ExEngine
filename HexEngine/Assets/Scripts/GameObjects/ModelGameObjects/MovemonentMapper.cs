@@ -12,18 +12,14 @@ public class MovemonentMapper : MonoBehaviour
     private float LastY;
     private float LastZ;
 
-    void Start()
-    {
-        Model model = gameObject.GetComponent<ModelGameObject>().Model;
-        if (model != null)
-        {
-            Model = model;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
+        if(Model == null)
+        {
+            return;
+        }
+
         Coordinate coordinate = Model.CommonPropertySet.Coordinate;
         if (coordinate != null)
         {
