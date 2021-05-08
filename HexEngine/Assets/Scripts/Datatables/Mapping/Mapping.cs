@@ -5,36 +5,40 @@ using UnityEngine;
 
 public class Mapping
 {
-    private static readonly Regex SpecialSyntaxRegex = new Regex("<\\w*,~?\\d+(\\.~?\\w+)*\\/>");
-    private static readonly Regex PropSyntaxRegex = new Regex("<prop,.*\\/>");
-    private static readonly Regex InputOrActionSyntaxRegex = new Regex("<(in|action),.*\\/>");
+    private static readonly Regex SPECIAL = new Regex("<\\w*,~?\\d+(\\.~?\\w+)*\\/>");
+    private static readonly Regex PROPERTY = new Regex("<prop,.*\\/>");
+    private static readonly Regex INPUT_OR_ACTION = new Regex("<(in|action),.*\\/>");
 
     public static object MapProperty(Datatable datatable, Datatable.DataSet dataSet, object[] inputOrActionProperties)
     {
-        List<object> convertedValue = ConvertValue(datatable, dataSet, inputOrActionProperties);
+        List<object> convertedValue = GetConvertedList(datatable, dataSet, inputOrActionProperties);
         return MapPropertyWithPreset(dataSet.Preset, convertedValue.ToArray());
     }
 
-    public static List<object> ConvertValue(Datatable datatable, Datatable.DataSet dataSet, object[] inputOrActionProperties)
+    private static List<object> GetConvertedList(Datatable datatable, Datatable.DataSet dataSet, object[] inputOrActionProperties)
     {
         List<object> convertedValue = new List<object>();
         foreach (string value in dataSet.Values)
         {
-            if (value == null)
-            {
-                convertedValue.Add(null);
-                continue;
-            }
-            if (SpecialSyntaxRegex.IsMatch(value))
-            {
-                convertedValue.Add(MapSpecialValue(datatable, value, inputOrActionProperties));
-            }
-            else
-            {
-                convertedValue.Add(RawValueMapping.GetValue(value));
-            }
+            convertedValue.Add(GetConvertedValue(value, datatable, inputOrActionProperties));
         }
         return convertedValue;
+    }
+
+    private static object GetConvertedValue(string value, Datatable datatable, object[] inputOrActionProperties)
+    {
+        if (value == null)
+        {
+            return null;
+        }
+        if (SPECIAL.IsMatch(value))
+        {
+            return MapSpecialValue(datatable, value, inputOrActionProperties);
+        }
+        else
+        {
+            return RawValueMapper.GetValue(value);
+        }
     }
 
     private static object MapSpecialValue(Datatable datatable, string value, object[] inputOrActionProperties)
@@ -45,11 +49,11 @@ public class Mapping
         object returnValue = null;
         try
         {
-            if (PropSyntaxRegex.IsMatch(value))
+            if (PROPERTY.IsMatch(value))
             {
                 returnValue = MapProperty(datatable, datatable.DataSets[index], inputOrActionProperties);
             }
-            else if (InputOrActionSyntaxRegex.IsMatch(value))
+            else if (INPUT_OR_ACTION.IsMatch(value))
             {
                 returnValue = inputOrActionProperties[index];
             }
@@ -69,16 +73,15 @@ public class Mapping
 
     private static object GetNestedValue(object value, string nestedString)
     {
-        object returnValue = value;
         if (nestedString == null)
         {
-            return returnValue;
+            return value;
         }
-        string[] nestedFields = nestedString.Split('.');
-        foreach (string field in nestedFields)
+
+        object returnValue = value;
+        foreach (string field in nestedString.Split('.'))
         {
-            string formatedField = FormatString(field, out bool isClone);
-            returnValue = returnValue.GetType().GetProperty(formatedField).GetValue(returnValue, null);
+            returnValue = GetFieldValue(returnValue, FormatString(field, out bool isClone));
             if (isClone)
             {
                 returnValue = CloneValue(returnValue);
@@ -87,11 +90,16 @@ public class Mapping
         return returnValue;
     }
 
+    private static object GetFieldValue(object dataObject, string field)
+    {
+        return dataObject.GetType().GetProperty(field).GetValue(dataObject, null);
+    }
+
     private static object CloneValue(object value)
     {
-        if (value is Coordinate)
+        if (value is Coordinate coordinate)
         {
-            return ((Coordinate)value).Clone();
+            return coordinate.Clone();
         }
         return value;
     }
@@ -116,11 +124,8 @@ public class Mapping
             isClone = true;
             return value.Replace("~", "");
         }
-        else
-        {
-            isClone = false;
-            return value;
-        }
+        isClone = false;
+        return value;
     }
 
     private static object MapPropertyWithPreset(object preset, object[] mappedProperties)

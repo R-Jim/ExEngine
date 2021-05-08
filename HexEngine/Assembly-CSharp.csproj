@@ -47,6 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
+    <UnityProjectGeneratorVersion>4.9.1.0</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2019.3.13f1</UnityVersion>
@@ -65,7 +66,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Datatables\Datatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Mapping\Mapping.cs" />
-    <Compile Include="Assets\Scripts\Datatables\Mapping\RawValueMapping.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Mapping\RawValueMapper.cs" />
     <Compile Include="Assets\Scripts\Datatables\Models\ModelDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\BulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\CannonDatatable.cs" />
