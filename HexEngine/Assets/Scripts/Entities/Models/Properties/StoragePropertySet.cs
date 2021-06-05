@@ -1,5 +1,6 @@
 ﻿public class StoragePropertySet
 {
+    public string Type { get; }
     public int Max { get; }
     public int Current { get; private set; }
 

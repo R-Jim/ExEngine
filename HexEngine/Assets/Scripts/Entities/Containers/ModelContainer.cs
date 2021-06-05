@@ -35,7 +35,7 @@ public class ModelContainer
         GameObject prefab = PrefabPreset.GetPrefab(model.GameObjectPropertySet.PrefabPreset);
 
         ModelList.Add(model);
-        GameObject gameObject = Object.Instantiate(prefab);
+        GameObject gameObject = UnityEngine.Object.Instantiate(prefab);
         gameObject.transform.parent = ModelLayerGameObject.transform;
         gameObject.GetComponent<ModelGameObject>().SetModel(model);
         Debug.Log("Spawned, " + model.CommonPropertySet.Coordinate.ToString());

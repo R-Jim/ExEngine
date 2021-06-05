@@ -29,7 +29,7 @@
 
     public static Trigger GetRequestTrigger(object[] properties)
     {
-        return new RequestTrigger((StorageModel)properties[0], (int)properties[1], (int)properties[2]);
+        return new RequestTrigger((StorageModel)properties[0], (string)properties[1], (int)properties[2], (int)properties[3]);
     }
 
     public static Trigger GetChainTrigger(object[] properties)

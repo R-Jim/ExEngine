@@ -20,31 +20,39 @@
     {
         return new Model(
             new CommonPropertySet(
-                (int)properties[0],
-                (int)properties[1],
-                (Coordinate)properties[2],
-                (int)properties[3],
-                (string)properties[4],
-                new MomentumPropertySet((int)properties[5], (int)properties[6], (int)properties[7]))
-            , properties[8] != null ? (CombatPropertySet)properties[8] : null
-            , new GameObjectPropertySet((PrefabPreset.Preset)properties[9])
-            , properties.Length >= 11 ? (MountPoint[])properties[10] : null
+                (int)properties[0],             //Max Hp
+                (int)properties[1],             //Current Hp
+                (Coordinate)properties[2],      //Current position
+                (int)properties[3],             //Weight    
+                (string)properties[4],          //Mount type
+                new MomentumPropertySet(        //Initial momentum
+                    (int)properties[5],             //X
+                    (int)properties[6],             //Y
+                    (int)properties[7])             //Z
+                ),
+                properties[8] != null ? (CombatPropertySet)properties[8] : null //Combat set
+                , new GameObjectPropertySet((PrefabPreset.Preset)properties[9]) //Prefab
+                , properties.Length >= 11 ? (MountPoint[])properties[10] : null //Mount Points config
             );
     }
 
     private static Model GetStorageModel(object[] properties)
     {
         return new StorageModel(
-            (int)properties[0]
-            , (int)properties[0]
-            , new CommonPropertySet(
-                (int)properties[1],
-                (int)properties[2],
-                (Coordinate)properties[3],
-                (int)properties[4],
-                (string)properties[5],
-                new MomentumPropertySet((int)properties[6], (int)properties[7], (int)properties[8]))
-            , properties[9] != null ? (CombatPropertySet)properties[9] : null
-            , new GameObjectPropertySet((PrefabPreset.Preset)properties[10]));
+                (int)properties[0],         //Max storage
+                (int)properties[0],         //Current storage
+                new CommonPropertySet(
+                    (int)properties[1],         //Max Hp
+                    (int)properties[2],         //Current Hp
+                    (Coordinate)properties[3],  //Current position
+                    (int)properties[4],         //Weight
+                    (string)properties[5],      //Mount type
+                    new MomentumPropertySet(    //Initial momentum
+                        (int)properties[6],         //X
+                        (int)properties[7],         //Y
+                        (int)properties[8])         //Z
+                ),
+             properties[9] != null ? (CombatPropertySet)properties[9] : null    //Combat set
+            , new GameObjectPropertySet((PrefabPreset.Preset)properties[10]));  //Prefab
     }
 }

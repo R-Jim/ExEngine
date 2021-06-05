@@ -7,9 +7,10 @@ public class Model
     public CombatPropertySet CombatPropertySet { get; }
     public GameObjectPropertySet GameObjectPropertySet { get; }
     public MountPoint[] MountPoints;
+    public TempPropertySet TempPropertySet { get; } = new TempPropertySet();
 
     //For animation
-    private Queue<LoggingEvent> EventQueue = new Queue<LoggingEvent>();
+    private readonly Queue<LoggingEvent> EventQueue = new Queue<LoggingEvent>();
 
     public Model(CommonPropertySet commonPropertySet, CombatPropertySet combatPropertySet, GameObjectPropertySet gameObjectPropertySet, MountPoint[] mountPoints)
     {

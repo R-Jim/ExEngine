@@ -1,11 +1,13 @@
 ﻿public class ArmorPropertySet
 {
+    public int Value { get; }
     public float Nullifier { get; }
-    public int Absobtion { get; }
+    public int Absorption { get; }
 
-    public ArmorPropertySet(float nullifier, int absobtion)
+    public ArmorPropertySet(int value, float nullifier, int absorption)
     {
+        Value = value;
         Nullifier = nullifier;
-        Absobtion = absobtion;
+        Absorption = absorption;
     }
 }

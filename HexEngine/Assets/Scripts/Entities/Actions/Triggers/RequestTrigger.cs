@@ -2,8 +2,8 @@
 {
     public const string TYPE = "request";
 
-    public RequestTrigger(StorageModel source, int requireValue, int offset)
-        : base(source, TYPE, source.CommonPropertySet.Coordinate, new RequestEffect(requireValue), offset)
+    public RequestTrigger(StorageModel source, string requestType, int value, int offset)
+        : base(source, TYPE, source.CommonPropertySet.Coordinate, new RequestEffect(requestType, value), offset)
     {
     }
 
@@ -23,6 +23,6 @@
     private bool IsStorageHasValue()
     {
         RequestEffect requestEffect = (RequestEffect)Effect;
-        return ((StorageModel)Source).StoragePropertySet.Get(requestEffect.RequireValue) != 0;
+        return ((StorageModel)Source).StoragePropertySet.Get(requestEffect.Value) != 0;
     }
 }

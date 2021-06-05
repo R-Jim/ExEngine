@@ -74,11 +74,19 @@ public class PropertyPreset
 
     public static DamagePropertySet GetDamgeProperty(object[] properties)
     {
-        return new DamagePropertySet((int)properties[0], (float)properties[1], (bool)properties[2]);
+        return new DamagePropertySet(
+            (int)properties[0],     //base value
+            (float)properties[1],   //Impact modifier
+            (bool)properties[2]     //Is true damage
+            );
     }
 
     public static ArmorPropertySet GetArmorProperty(object[] properties)
     {
-        return new ArmorPropertySet((float)properties[0], (int)properties[1]);
+        return new ArmorPropertySet(
+            (int)properties[0],   //value
+            (float)properties[1], //Nullify modifier
+            (int)properties[2]    //Absorbtion value
+            );
     }
 }

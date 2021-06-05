@@ -26,7 +26,7 @@
 
     public static Effect GetRequestEffect(object[] properties)
     {
-        return new RequestEffect((int)properties[0]);
+        return new RequestEffect((string) properties[0], (int)properties[1]);
     }
 
     public static Effect GetSpawnEffect(object[] properties)
