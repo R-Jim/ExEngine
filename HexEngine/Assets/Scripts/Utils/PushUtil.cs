@@ -1,21 +1,17 @@
-﻿using UnityEngine;
-
-class PushUtil
+﻿class PushUtil
 {
-    public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float bonusImpactValue, BattleHandler battleHandler)
+    public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float impactValue, BattleHandler battleHandler)
     {
         Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
         Model model = GetModel(sourceModel, vectorValue, battleHandler);
-        float pushImpactValue = ImpactUtil.GetImpactValue(sourceModel, vectorValue) + bonusImpactValue;
-        if (model == null)
+        if (model != null)
         {
-            return pushImpactValue;
+            return impactValue;
         }
 
-        float remainImpactValue = PushEffectedModel(pushImpactValue, model, coordinateModifier, battleHandler, out float totalImpactValue);
+        float remainImpactValue = coordinateModifier.Modify(battleHandler, model, impactValue);
 
-        Debug.Log(LoggingUtil.GetModelLoggingIdentifier(sourceModel) + " => " + LoggingUtil.GetModelLoggingIdentifier(model) + ",TIP: " + totalImpactValue);
-        DamageEffectedModel(sourceModel, model, totalImpactValue);
+        DamageEffectedModel(sourceModel, model, vectorValue);
         return remainImpactValue;
     }
 
@@ -26,23 +22,9 @@ class PushUtil
         return battleHandler.GetModel(EffectedCoordinate);
     }
 
-    private static float PushEffectedModel(float pushImpactValue, Model effectedModel, CoordinateModifier coordinateModifier, BattleHandler battleHandler, out float totalImpactValue)
+    private static void DamageEffectedModel(Model sourceModel, Model effectedModel, Coordinate.Vector vector)
     {
-        Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
-
-        float effectedImpactValue = ImpactUtil.GetImpactValue(effectedModel, vectorValue);
-        float remainImpactValue = pushImpactValue - effectedImpactValue;
-        if (remainImpactValue >= 0)
-        {
-            remainImpactValue = coordinateModifier.Modify(battleHandler, effectedModel, remainImpactValue);
-        }
-        totalImpactValue = pushImpactValue + effectedImpactValue - remainImpactValue;
-        return remainImpactValue;
-    }
-
-    private static void DamageEffectedModel(Model sourceModel, Model effectedModel, float impactValue)
-    {
-        DamageUtil.DamageModel(effectedModel, sourceModel, impactValue);
-        DamageUtil.DamageModel(sourceModel, effectedModel, impactValue);
+        DamageUtil.DamageModel(sourceModel, effectedModel, vector);
+        DamageUtil.DamageModel(effectedModel, sourceModel, CoordinateUtil.RevertVector(vector));
     }
 }

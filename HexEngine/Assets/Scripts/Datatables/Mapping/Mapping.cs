@@ -7,15 +7,15 @@ public class Mapping
 {
     private static readonly Regex SPECIAL = new Regex("<\\w*,~?\\d+(\\.~?\\w+)*\\/>");
     private static readonly Regex PROPERTY = new Regex("<prop,.*\\/>");
-    private static readonly Regex INPUT_OR_ACTION = new Regex("<(in|action),.*\\/>");
+    private static readonly Regex INPUT = new Regex("<in,.*\\/>");
 
-    public static object MapProperty(Datatable datatable, Datatable.DataSet dataSet, object[] inputOrActionProperties)
+    public static object MapProperty(Datatable datatable, DataSet dataSet, object[] inputOrActionProperties)
     {
         List<object> convertedValue = GetConvertedList(datatable, dataSet, inputOrActionProperties);
         return MapPropertyWithPreset(dataSet.Preset, convertedValue.ToArray());
     }
 
-    private static List<object> GetConvertedList(Datatable datatable, Datatable.DataSet dataSet, object[] inputOrActionProperties)
+    private static List<object> GetConvertedList(Datatable datatable, DataSet dataSet, object[] inputOrActionProperties)
     {
         List<object> convertedValue = new List<object>();
         foreach (string value in dataSet.Values)
@@ -53,7 +53,7 @@ public class Mapping
             {
                 returnValue = MapProperty(datatable, datatable.DataSets[index], inputOrActionProperties);
             }
-            else if (INPUT_OR_ACTION.IsMatch(value))
+            else if (INPUT.IsMatch(value))
             {
                 returnValue = inputOrActionProperties[index];
             }
@@ -130,11 +130,7 @@ public class Mapping
 
     private static object MapPropertyWithPreset(object preset, object[] mappedProperties)
     {
-        if (preset is ModelPreset.Preset)
-        {
-            return MapModelProperty((ModelPreset.Preset)preset, mappedProperties);
-        }
-        else if (preset is EffectPreset.Preset)
+        if (preset is EffectPreset.Preset)
         {
             return MapEffectProperty((EffectPreset.Preset)preset, mappedProperties);
         }
@@ -161,7 +157,7 @@ public class Mapping
     private static object MapDatatableProperty(DatatablePreset.Preset preset, object[] mappedProperties)
     {
         Datatable datatable = DatatablePreset.GetDatatable(preset);
-        return datatable.GetDataObject(mappedProperties);
+        return datatable.GetDataValue(mappedProperties);
     }
 
     private static Trigger MapTriggerProperty(TriggerPreset.Preset preset, object[] mappedProperties)
@@ -172,10 +168,5 @@ public class Mapping
     private static Effect MapEffectProperty(EffectPreset.Preset preset, object[] mappedProperties)
     {
         return EffectPreset.GetEffect(preset, mappedProperties);
-    }
-
-    private static Model MapModelProperty(ModelPreset.Preset preset, object[] mappedProperties)
-    {
-        return ModelPreset.GetModel(preset, mappedProperties);
     }
 }

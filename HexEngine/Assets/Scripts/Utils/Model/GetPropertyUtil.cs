@@ -4,7 +4,7 @@ public class GetPropertyUtil
 {
     public static int GetFullProperty(Model model, string type)
     {
-        return (int)Math.Ceiling(ModelUtil.GetModelFullPropertyByFunctionWithInputObjects(model, GetProperty, new object[] { type }));
+        return (int)Math.Ceiling(ModelUtil.GetFullPropertyByFunction(model, GetProperty, new object[] { type }));
     }
 
     public static float GetProperty(Model model, object[] inputObjects)

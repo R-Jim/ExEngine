@@ -29,7 +29,7 @@
 
     public static Trigger GetRequestTrigger(object[] properties)
     {
-        return new RequestTrigger((StorageModel)properties[0], (string)properties[1], (int)properties[2], (int)properties[3]);
+        return new RequestTrigger((StorageModel)properties[0], (int)properties[1], (Effect)properties[2], (int)properties[3]);
     }
 
     public static Trigger GetChainTrigger(object[] properties)
@@ -44,7 +44,7 @@
 
     public static Trigger GetSpawnTrigger(object[] properties)
     {
-        return new SpawnTrigger((Model)properties[0], (Model)properties[1], (int)properties[2]);
+        return new SpawnTrigger((Model)properties[0], (ModelDatatable)properties[1], (Coordinate)properties[2], (int)properties[3]);
     }
 
     public static Trigger GetTargetTrigger(object[] properties)

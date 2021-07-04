@@ -7,14 +7,13 @@
 
     public override void Modify(BattleHandler battleHandler, Model targetModel)
     {
-        Modify(battleHandler, targetModel, 0);
+        Modify(battleHandler, targetModel, targetModel.ModelDatatable.Weight);
     }
 
     public float Modify(BattleHandler battleHandler, Model targetModel, float bonusImpactValue = 0)
     {
         Model upMostModel = CommonPropertySetUtil.GetUpMostModel(targetModel);
-        float pushImpactValue = PushUtil.Push(upMostModel, this, bonusImpactValue, battleHandler);
-        float remainImpactValue = pushImpactValue - CommonPropertySetUtil.GetFullWeight(upMostModel);
+        float remainImpactValue = PushUtil.Push(upMostModel, this, bonusImpactValue, battleHandler) - targetModel.ModelDatatable.Weight;
         if (remainImpactValue >= 0)
         {
             MoveModel(upMostModel);

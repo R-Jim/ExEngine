@@ -1,29 +1,21 @@
 ﻿public class SpawnEffect : Effect
 {
-    private readonly Model Model;
+    private readonly ModelDatatable ModelDatatable;
 
-    public SpawnEffect(Model model) : base()
+    public SpawnEffect(ModelDatatable modelDatatable) : base()
     {
-        Model = model;
+        ModelDatatable = modelDatatable;
     }
 
     protected override void Process(BattleHandler battleHandler, Model model)
     {
-        SpawnModel(Model, battleHandler);
+        SpawnModel(battleHandler);
     }
 
-    private void SpawnModel(Model model, BattleHandler battleHandler)
+    private void SpawnModel(BattleHandler battleHandler)
     {
+        Model model = ModelDatatable.GetModel();
+        model.CommonPropertySet.Coordinate = Trigger.TriggerCoordinate;
         battleHandler.SpawnNewModel(model);
-        if (model.MountPoints != null && model.MountPoints.Length != 0)
-        {
-            foreach (MountPoint mountPoint in model.MountPoints)
-            {
-                if (mountPoint.MountedModel != null)
-                {
-                    SpawnModel(mountPoint.MountedModel, battleHandler);
-                }
-            }
-        }
     }
 }

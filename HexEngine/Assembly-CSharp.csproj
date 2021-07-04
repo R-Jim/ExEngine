@@ -64,14 +64,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Datatables\DataSet.cs" />
     <Compile Include="Assets\Scripts\Datatables\Datatable.cs" />
-    <Compile Include="Assets\Scripts\Datatables\DemoSamples\AlieDatatable.cs" />
-    <Compile Include="Assets\Scripts\Datatables\DemoSamples\BladeDatatable.cs" />
-    <Compile Include="Assets\Scripts\Datatables\DemoSamples\CombatArmorDatatable.cs" />
-    <Compile Include="Assets\Scripts\Datatables\DemoSamples\EnergyStorageDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Mapping\Mapping.cs" />
     <Compile Include="Assets\Scripts\Datatables\Mapping\RawValueMapper.cs" />
     <Compile Include="Assets\Scripts\Datatables\Models\ModelDatatable.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Models\StorageModelDatatable.cs" />
+    <Compile Include="Assets\Scripts\Datatables\Models\SystemModelDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\BulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\CannonDatatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Samples\DummyDatatable.cs" />
@@ -79,7 +78,6 @@
     <Compile Include="Assets\Scripts\Datatables\Samples\HighImpactBulletDatatable.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\Effect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\ModifyPropertyEffect.cs" />
-    <Compile Include="Assets\Scripts\Entities\Actions\Effects\RequestEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Effects\SpawnEffect.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\Loggers\LoggingEvent.cs" />
     <Compile Include="Assets\Scripts\Entities\Actions\PropertyModifiers\CoordinateModifier.cs" />
@@ -94,7 +92,6 @@
     <Compile Include="Assets\Scripts\Entities\Actions\Triggers\Trigger.cs" />
     <Compile Include="Assets\Scripts\Entities\Containers\ModelContainer.cs" />
     <Compile Include="Assets\Scripts\Entities\Containers\TriggerContainer.cs" />
-    <Compile Include="Assets\Scripts\Entities\Hosts\Host.cs" />
     <Compile Include="Assets\Scripts\Entities\Intervals\Interval.cs" />
     <Compile Include="Assets\Scripts\Entities\Intervals\MomentumInterval.cs" />
     <Compile Include="Assets\Scripts\Entities\Intervals\TempPropertyInterval.cs" />
@@ -102,11 +99,11 @@
     <Compile Include="Assets\Scripts\Entities\Models\Adapters\TotalDamageBoostAdapter.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Model.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Combat\ArmorPropertySet.cs" />
-    <Compile Include="Assets\Scripts\Entities\Models\Properties\Combat\CombatPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Combat\DamagePropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\CommonPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\MomentumAxisSet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\MomentumPropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\VectorBasedPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Coordinate.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\GameObject\GameObjectPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\MountPoint.cs" />
@@ -126,15 +123,12 @@
     <Compile Include="Assets\Scripts\Presets\AnimationPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\DatatablePreset.cs" />
     <Compile Include="Assets\Scripts\Presets\EffectPreset.cs" />
-    <Compile Include="Assets\Scripts\Presets\ModelPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\ModifierPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\PrefabPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\PropertyPreset.cs" />
     <Compile Include="Assets\Scripts\Presets\TriggerPreset.cs" />
     <Compile Include="Assets\Scripts\Utils\CoordinateUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\DamageUtil.cs" />
-    <Compile Include="Assets\Scripts\Utils\ImpactUtil.cs" />
-    <Compile Include="Assets\Scripts\Utils\LoggingUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\Model\CombatPropertySetUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\Model\CommonPropertySetUtil.cs" />
     <Compile Include="Assets\Scripts\Utils\Model\GetPropertyUtil.cs" />

@@ -15,34 +15,14 @@
         Current = current;
     }
 
-    public int Get(int value)
+    public bool ClaimValue(int value)
     {
-        if (Current >= value)
+        if (Current - value >= 0)
         {
-            return value;
+            Current -= value;
+            return true;
         }
-        else
-        {
-            return 0;
-        }
-    }
-
-    public void Fill(int value)
-    {
-        Current += value;
-        if (Current > Max)
-        {
-            Current = Max;
-        }
-        else if (Current <= 0)
-        {
-            Current = 0;
-        }
-    }
-
-    public bool IsEmpty()
-    {
-        return Current <= 0;
+        return false;
     }
 
     public override string ToString()

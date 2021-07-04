@@ -7,6 +7,6 @@
 
     public override void Modify(BattleHandler battleHandler, Model model)
     {
-        model.CommonPropertySet.HpStorage.Fill((int)Value);
+        model.CommonPropertySet.Hp += (int)Value;
     }
 }

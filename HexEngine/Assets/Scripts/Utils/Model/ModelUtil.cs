@@ -2,22 +2,7 @@
 
 public class ModelUtil
 {
-
-    public static float GetModelFullPropertyByFunction(Model model, Func<Model, float> getPropertyValueFunction)
-    {
-        float propertyValue = getPropertyValueFunction(model);
-        if (model == null || model.MountPoints == null)
-        {
-            return propertyValue;
-        }
-        foreach (MountPoint mountPoint in model.MountPoints)
-        {
-            propertyValue += GetModelFullPropertyByFunction(mountPoint.MountedModel, getPropertyValueFunction);
-        }
-        return propertyValue;
-    }
-
-    public static float GetModelFullPropertyByFunctionWithInputObjects(Model model, Func<Model, object[], float> getPropertyValueFunction, object[] inputObjects)
+    public static float GetFullPropertyByFunction(Model model, Func<Model, object[], float> getPropertyValueFunction, object[] inputObjects = null)
     {
         float propertyValue = getPropertyValueFunction(model, inputObjects);
         if (model == null || model.MountPoints == null)
@@ -26,7 +11,7 @@ public class ModelUtil
         }
         foreach (MountPoint mountPoint in model.MountPoints)
         {
-            propertyValue += GetModelFullPropertyByFunctionWithInputObjects(mountPoint.MountedModel, getPropertyValueFunction, inputObjects);
+            propertyValue += GetFullPropertyByFunction(mountPoint.MountedModel, getPropertyValueFunction, inputObjects);
         }
         return propertyValue;
     }

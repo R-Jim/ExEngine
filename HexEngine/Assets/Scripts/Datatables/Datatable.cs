@@ -7,20 +7,8 @@
         DataSets = dataSets;
     }
 
-    public object GetDataObject(object[] inputProperties)
+    public object GetDataValue(object[] inputProperties, int index = 0)
     {
-        return Mapping.MapProperty(this, DataSets[0], inputProperties);
-    }
-
-    public class DataSet
-    {
-        public object Preset;
-        public string[] Values;
-
-        public DataSet(object preset, string[] values)
-        {
-            Preset = preset;
-            Values = values;
-        }
+        return Mapping.MapProperty(this, DataSets[index], inputProperties);
     }
 }

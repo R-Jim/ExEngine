@@ -4,18 +4,19 @@ using System.Collections.Generic;
 public class Model
 {
     public CommonPropertySet CommonPropertySet { get; }
-    public CombatPropertySet CombatPropertySet { get; }
-    public GameObjectPropertySet GameObjectPropertySet { get; }
-    public MountPoint[] MountPoints;
+    public MountPoint[] MountPoints { get; }
     public TempPropertySet TempPropertySet { get; } = new TempPropertySet();
+
+    //Fixed data
+    public GameObjectPropertySet GameObjectPropertySet { get; }
+    public ModelDatatable ModelDatatable { get; }
 
     //For animation
     private readonly Queue<LoggingEvent> EventQueue = new Queue<LoggingEvent>();
 
-    public Model(CommonPropertySet commonPropertySet, CombatPropertySet combatPropertySet, GameObjectPropertySet gameObjectPropertySet, MountPoint[] mountPoints)
+    public Model(CommonPropertySet commonPropertySet, GameObjectPropertySet gameObjectPropertySet, MountPoint[] mountPoints)
     {
         CommonPropertySet = commonPropertySet;
-        CombatPropertySet = combatPropertySet ?? new CombatPropertySet();
         GameObjectPropertySet = gameObjectPropertySet;
         MountPoints = mountPoints;
         if (MountPoints != null)
@@ -48,6 +49,6 @@ public class Model
 
     public virtual bool IsRemovable()
     {
-        return CommonPropertySet.HpStorage.IsEmpty();
+        return CommonPropertySet.Hp < 0;
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-public class MomentumInterval : Interval
+﻿public class MomentumInterval : Interval
 {
     public MomentumInterval(BattleHandler battleHandler) : base(1, battleHandler)
     {
@@ -28,23 +26,11 @@ public class MomentumInterval : Interval
         Coordinate.Vector vectorDirection = momentumAxisSet.GetVectorDirection(momentumAxisSet.Value);
 
         momentumPropertySet.ConsumeMomentum(vectorDirection);
-        model.CommonPropertySet.SpeedAxisSet = momentumAxisSet;
 
         ModifyPropertyEffect modifyEffect = new ModifyPropertyEffect(new CoordinateModifier(vectorDirection));
 
-        //TODO replace offset with momentum calculated value
         Trigger trigger = new TargetTrigger(model, model, modifyEffect, 0);
-        modifyEffect.SetUp(trigger, PostEffectAction());
+        modifyEffect.SetUp(trigger);
         return trigger;
-    }
-
-    private Action<Effect> PostEffectAction()
-    {
-        return (effect) =>
-           {
-               Model model = effect.Trigger.Source;
-               CoordinateModifier coordinateModifier = (CoordinateModifier)((ModifyPropertyEffect)effect).Modifier;
-               model.CommonPropertySet.SpeedAxisSet.ConsumeValueByDirection((Coordinate.Vector)coordinateModifier.Value);
-           };
     }
 }

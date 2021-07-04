@@ -9,7 +9,7 @@ public class Effect
     {
     }
 
-    public void SetUp(Trigger trigger, Action<Effect> postEffect)
+    public void SetUp(Trigger trigger, Action<Effect> postEffect = null)
     {
         Trigger = trigger;
         PostEffect = postEffect;

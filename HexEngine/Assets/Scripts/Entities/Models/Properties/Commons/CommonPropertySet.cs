@@ -1,19 +1,20 @@
 ﻿public class CommonPropertySet
 {
-    public StoragePropertySet HpStorage;
-    public Coordinate Coordinate { get; }
-    public string MountType { get; }
+    public int Hp;
+    public VectorBasedPropertySet ArmorValuePropertySet;
+    public VectorBasedPropertySet DamageValuePropertySet;
+    public Coordinate Coordinate;
     public MountPoint MountedTo;
-    public MomentumPropertySet MomentumPropertySet;
-    public int Weight { get; }
-    public MomentumAxisSet SpeedAxisSet;
+    public MomentumPropertySet MomentumPropertySet { get; }
+    public Coordinate.Vector FacingDirection;
 
-    public CommonPropertySet(int hpMax, int hpCurrent, Coordinate coordinate, int weight, string mountType, MomentumPropertySet momentumPropertySet)
+    public CommonPropertySet(Coordinate coordinate)
     {
-        HpStorage = new StoragePropertySet(hpMax, hpCurrent);
+        Hp = 1;
         Coordinate = coordinate;
-        Weight = weight;
-        MountType = mountType;
-        MomentumPropertySet = momentumPropertySet;
+        ArmorValuePropertySet = new VectorBasedPropertySet();
+        DamageValuePropertySet = new VectorBasedPropertySet();
+        MomentumPropertySet = new MomentumPropertySet();
+        FacingDirection = Coordinate.Vector.XY;
     }
 }

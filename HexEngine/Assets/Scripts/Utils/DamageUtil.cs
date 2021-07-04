@@ -1,66 +1,40 @@
-﻿using System;
-using UnityEngine;
-
-public class DamageUtil
+﻿public class DamageUtil
 {
-    public static void DamageModel(Model effectedModel, Model sourceModel, float impactValue)
+    public static void DamageModel(Model sourceModel, Model effectedModel, Coordinate.Vector vector)
     {
-        int rawDamageValue = CombatPropertySetUtil.GetFullRawDamage(sourceModel, impactValue);
-        int trueDamageValue = CombatPropertySetUtil.GetFullTrueDamage(sourceModel, impactValue);
-
-        if (rawDamageValue != 0)
+        DamageValue damageValue = new DamageValue(CombatPropertySetUtil.GetFullDamage(sourceModel, vector));
+        ModelUtil.ProcessAllModelByFunctionWithInputObjects(effectedModel, DamageModelArmorWithValue, new object[] { damageValue, vector });
+        if (damageValue.Value > 0)
         {
-            ModelUtil.ProcessAllModelByFunctionWithInputObjects(effectedModel, DamageModelWithValue, new object[] { rawDamageValue, true });
-        }
-        if (trueDamageValue != 0)
-        {
-            ModelUtil.ProcessAllModelByFunctionWithInputObjects(effectedModel, DamageModelWithValue, new object[] { trueDamageValue, false });
+            effectedModel.CommonPropertySet.Hp -= damageValue.Value;
         }
     }
 
-    private static void DamageModelWithValue(Model effectedModel, object[] inputObjects)
+    private static void DamageModelArmorWithValue(Model effectedModel, object[] inputObjects)
     {
-        int fullDamageValue = (int)inputObjects[0];
-        bool isTrueDamage = (bool)inputObjects[1];
-        int initialHp = effectedModel.CommonPropertySet.HpStorage.Current;
-        int damageTaken = isTrueDamage ? GetReceivedTrueDamageValue(effectedModel, inputObjects) : GetReceivedRawDamageValue(effectedModel, inputObjects);
+        DamageValue damageValue = (DamageValue)inputObjects[0];
+        Coordinate.Vector vector = CoordinateUtil.RevertVector((Coordinate.Vector)inputObjects[1]);
+        int armorValue = effectedModel.CommonPropertySet.ArmorValuePropertySet.GetValue(vector);
 
-        effectedModel.CommonPropertySet.HpStorage.Fill(damageTaken);
-
-        Debug.Log(LoggingUtil.GetModelLoggingIdentifier(effectedModel) + "HP:" + initialHp + " + " + damageTaken + "/" + fullDamageValue + (isTrueDamage ? "(T)" : "") + "-> " + effectedModel.CommonPropertySet.HpStorage.Current);
+        int remainDamageValue = damageValue.Value - armorValue;
+        if (remainDamageValue < 0)
+        {
+            effectedModel.CommonPropertySet.ArmorValuePropertySet.AddValue(vector, -damageValue.Value);
+        }
+        else
+        {
+            effectedModel.CommonPropertySet.ArmorValuePropertySet.AddValue(vector, -armorValue);
+            damageValue.Value = remainDamageValue;
+        }
     }
 
-    public static int GetReceivedRawDamageValue(Model effectedModel, object[] inputObjects)
+    class DamageValue
     {
-        int rawDamageValue = (int)inputObjects[0];
-        if (effectedModel == null || rawDamageValue == 0)
-        {
-            return 0;
-        }
-        return (int)Math.Ceiling(GetDamageValueAfterAbsorbtion(effectedModel, rawDamageValue) * CombatPropertySetUtil.GetArmorNullifier(effectedModel));
-    }
+        public int Value;
 
-    public static int GetReceivedTrueDamageValue(Model effectedModel, object[] inputObjects)
-    {
-        int trueDamageValue = (int)inputObjects[0];
-        if (effectedModel == null || trueDamageValue == 0)
+        public DamageValue(int value)
         {
-            return 0;
+            Value = value;
         }
-        return GetDamageValueAfterAbsorbtion(effectedModel, trueDamageValue);
-    }
-
-    private static int GetDamageValueAfterAbsorbtion(Model effectedModel, int damageValue)
-    {
-        if (effectedModel == null)
-        {
-            return 0;
-        }
-        int totalArmorAbsobtion = CombatPropertySetUtil.GetFullArmorAbsorbtion(effectedModel);
-        if (totalArmorAbsobtion == 0)
-        {
-            return 0;
-        }
-        return (int)Math.Ceiling(damageValue * CombatPropertySetUtil.GetArmorAbsorbtion(effectedModel) / totalArmorAbsobtion);
     }
 }

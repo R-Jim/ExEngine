@@ -1,10 +1,12 @@
 ﻿public class RequestTrigger : Trigger
 {
     public const string TYPE = "request";
+    public int Value { get; }
 
-    public RequestTrigger(StorageModel source, string requestType, int value, int offset)
-        : base(source, TYPE, source.CommonPropertySet.Coordinate, new RequestEffect(requestType, value), offset)
+    public RequestTrigger(StorageModel source, int value, Effect effect, int offset)
+        : base(source, TYPE, source.CommonPropertySet.Coordinate, effect, offset)
     {
+        Value = value;
     }
 
     public override void Hook(BattleHandler battleHandler, Model model)
@@ -22,7 +24,7 @@
 
     private bool IsStorageHasValue()
     {
-        RequestEffect requestEffect = (RequestEffect)Effect;
-        return ((StorageModel)Source).StoragePropertySet.Get(requestEffect.Value) != 0;
+        StorageModel storageModel = (StorageModel)Source;
+        return storageModel.StoragePropertySet.ClaimValue(Value);
     }
 }

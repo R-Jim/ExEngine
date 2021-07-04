@@ -22,7 +22,7 @@ public class MountPoint
 
     public void Mount(Model model)
     {
-        if (TypeRegex.IsMatch(model.CommonPropertySet.MountType))
+        if (TypeRegex.IsMatch(model.ModelDatatable.Type))
         {
             MountedModel = model;
             model.CommonPropertySet.MountedTo = this;

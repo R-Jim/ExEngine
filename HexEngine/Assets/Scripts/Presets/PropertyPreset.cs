@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-public class PropertyPreset
+﻿public class PropertyPreset
 {
     public enum Preset
     {
+        CommonPropertySet,
         Vector,
         Coordinate,
         CombatProperty,
@@ -18,21 +16,21 @@ public class PropertyPreset
     {
         switch (preset)
         {
+            case Preset.CommonPropertySet: return GetCommonPropertySet(properties);
             case Preset.Vector: return GetVectorProperty(properties);
             case Preset.Coordinate: return GetCoordinateProperty(properties);
-            case Preset.CombatProperty: return GetCombatProperty(properties);
-            case Preset.Damage: return GetDamgeProperty(properties);
-            case Preset.Armor: return GetArmorProperty(properties);
-            case Preset.MountArray: return GetMountPointArrayProperty(properties);
             case Preset.Mount: return GetMountPointProperty(properties);
         };
         return null;
     }
 
-    public static MountPoint[] GetMountPointArrayProperty(object[] properties)
+    public static CommonPropertySet GetCommonPropertySet(object[] properties)
     {
-        return properties.Select(property => (MountPoint)property).ToArray();
+        return new CommonPropertySet(
+                (Coordinate)properties[0] //Coordinate
+            );
     }
+
 
     public static MountPoint GetMountPointProperty(object[] properties)
     {
@@ -44,24 +42,6 @@ public class PropertyPreset
         return mountPoint;
     }
 
-    public static CombatPropertySet GetCombatProperty(object[] properties)
-    {
-        List<DamagePropertySet> DamagePropertySets = new List<DamagePropertySet>();
-        List<ArmorPropertySet> ArmorPropertySets = new List<ArmorPropertySet>();
-        foreach (object property in properties)
-        {
-            if (property is DamagePropertySet)
-            {
-                DamagePropertySets.Add((DamagePropertySet)property);
-            }
-            else
-            {
-                ArmorPropertySets.Add((ArmorPropertySet)property);
-            }
-        }
-        return new CombatPropertySet(DamagePropertySets.ToArray(), ArmorPropertySets.ToArray());
-    }
-
     public static Coordinate.Vector GetVectorProperty(object[] properties)
     {
         return (Coordinate.Vector)properties[0];
@@ -70,23 +50,5 @@ public class PropertyPreset
     public static Coordinate GetCoordinateProperty(object[] properties)
     {
         return CoordinateUtil.GetCoordinate((Coordinate)properties[0], (Coordinate.Vector)properties[1], (int)properties[2]);
-    }
-
-    public static DamagePropertySet GetDamgeProperty(object[] properties)
-    {
-        return new DamagePropertySet(
-            (int)properties[0],     //base value
-            (float)properties[1],   //Impact modifier
-            (bool)properties[2]     //Is true damage
-            );
-    }
-
-    public static ArmorPropertySet GetArmorProperty(object[] properties)
-    {
-        return new ArmorPropertySet(
-            (int)properties[0],   //value
-            (float)properties[1], //Nullify modifier
-            (int)properties[2]    //Absorbtion value
-            );
     }
 }

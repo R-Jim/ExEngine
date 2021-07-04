@@ -11,7 +11,7 @@ public class BattleHandler : MonoBehaviour
     //Containers
     protected TriggerContainer TriggerContainer;
     protected ModelContainer ModelContainer;
-    public static Model SystemModel = new Model(new CommonPropertySet(100, 100, new Coordinate(1000, 1000, 1000), 0, "system", new MomentumPropertySet()), null, null, null);
+    public static Model SystemModel = new SystemModelDatatable().GetModel();
 
     // Start is called before the first frame update
     protected void Awake()

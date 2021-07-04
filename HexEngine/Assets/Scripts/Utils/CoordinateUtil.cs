@@ -47,4 +47,24 @@
             default: return 0;
         }
     }
+
+    public static Coordinate.Vector AdjustVector(Coordinate.Vector modelFacingDirection, Coordinate.Vector vector)
+    {
+        Coordinate.Vector adjustedVector = (int)vector - modelFacingDirection;
+        if (adjustedVector < 0)
+        {
+            adjustedVector += 6;
+        }
+        return adjustedVector;
+    }
+
+    public static Coordinate.Vector RevertVector(Coordinate.Vector vector)
+    {
+        Coordinate.Vector revertedVector = vector - 3;
+        if (revertedVector < 0)
+        {
+            revertedVector += 6;
+        }
+        return revertedVector;
+    }
 }
