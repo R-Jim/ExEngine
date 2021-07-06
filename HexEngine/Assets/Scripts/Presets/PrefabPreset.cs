@@ -8,6 +8,7 @@ public class PrefabPreset
         Cannon,
         Projectile,
         Dummy,
+        Alie,
     }
 
     public static GameObject GetPrefab(Preset prefabPreset)

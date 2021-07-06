@@ -22,14 +22,14 @@ public class ModelDatatable : Datatable
         ActionSets = actionSets;
     }
 
-    public Model GetModel()
+    public Model GetModel(object[] inputProperties)
     {
-        CommonPropertySet commonPropertySet = (CommonPropertySet)GetDataValue(new object[] { }, COMMON_PROPERTY_INDEX);
-        GameObjectPropertySet gameObjectPropertySet = (GameObjectPropertySet)GetDataValue(new object[] { }, GAMEOBJECT_PROPERTY_INDEX);
+        CommonPropertySet commonPropertySet = (CommonPropertySet)GetDataValue(inputProperties, COMMON_PROPERTY_INDEX);
+        GameObjectPropertySet gameObjectPropertySet = (GameObjectPropertySet)GetDataValue(inputProperties, GAMEOBJECT_PROPERTY_INDEX);
         List<MountPoint> MountPointList = new List<MountPoint>();
         for (int i = MOUNTPOINT_START_INDEX; i < DataSets.Length; i++)
         {
-            MountPointList.Add((MountPoint)GetDataValue(new object[] { }, i));
+            MountPointList.Add((MountPoint)GetDataValue(inputProperties, i));
         }
 
         return new Model(commonPropertySet, gameObjectPropertySet, MountPointList.ToArray());

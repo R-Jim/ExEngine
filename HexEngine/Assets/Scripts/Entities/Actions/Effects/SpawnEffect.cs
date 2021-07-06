@@ -14,7 +14,7 @@
 
     private void SpawnModel(BattleHandler battleHandler)
     {
-        Model model = ModelDatatable.GetModel();
+        Model model = ModelDatatable.GetModel(new object[] { });
         model.CommonPropertySet.Coordinate = Trigger.TriggerCoordinate;
         battleHandler.SpawnNewModel(model);
     }

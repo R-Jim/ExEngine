@@ -8,14 +8,8 @@ public class MountPoint
     public Coordinate RenderCoordinate { get; }
 
 
-    public MountPoint(string typeRegex, Coordinate coordinate) : this(null, typeRegex, coordinate)
+    public MountPoint(string typeRegex, Coordinate coordinate)
     {
-
-    }
-
-    public MountPoint(Model sourceModel, string typeRegex, Coordinate coordinate)
-    {
-        SourceModel = sourceModel;
         TypeRegex = new Regex(typeRegex);
         RenderCoordinate = coordinate;
     }

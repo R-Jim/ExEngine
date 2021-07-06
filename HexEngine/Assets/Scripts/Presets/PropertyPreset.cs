@@ -3,8 +3,10 @@
     public enum Preset
     {
         CommonPropertySet,
+        GameObjectPropertySet,
         Vector,
         Coordinate,
+        RelativeCoordinate,
         CombatProperty,
         Damage,
         Armor,
@@ -17,11 +19,20 @@
         switch (preset)
         {
             case Preset.CommonPropertySet: return GetCommonPropertySet(properties);
+            case Preset.GameObjectPropertySet: return GetGameObjectPropertySet(properties);
             case Preset.Vector: return GetVectorProperty(properties);
             case Preset.Coordinate: return GetCoordinateProperty(properties);
+            case Preset.RelativeCoordinate: return GetRelativeCoordinateProperty(properties);
             case Preset.Mount: return GetMountPointProperty(properties);
         };
         return null;
+    }
+
+    public static CommonPropertySet GetGameObjectPropertySet(object[] properties)
+    {
+        return new CommonPropertySet(
+                (Coordinate)properties[0] //Coordinate
+            );
     }
 
     public static CommonPropertySet GetCommonPropertySet(object[] properties)
@@ -34,10 +45,10 @@
 
     public static MountPoint GetMountPointProperty(object[] properties)
     {
-        MountPoint mountPoint = new MountPoint(properties[0] != null ? (Model)properties[0] : null, (string)properties[1], (Coordinate)properties[2]);
-        if (properties.Length == 4)
+        MountPoint mountPoint = new MountPoint((string)properties[0], (Coordinate)properties[1]);
+        if (properties.Length == 3)
         {
-            mountPoint.Mount((Model)properties[3]);
+            mountPoint.Mount((Model)properties[2]);
         }
         return mountPoint;
     }
@@ -48,6 +59,11 @@
     }
 
     public static Coordinate GetCoordinateProperty(object[] properties)
+    {
+        return new Coordinate((float)properties[0], (float)properties[1], (float)properties[2]);
+    }
+
+    public static Coordinate GetRelativeCoordinateProperty(object[] properties)
     {
         return CoordinateUtil.GetCoordinate((Coordinate)properties[0], (Coordinate.Vector)properties[1], (int)properties[2]);
     }
