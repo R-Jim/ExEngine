@@ -414,9 +414,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ModelLayerGameObject: {fileID: 1828344293}
-  FiringVectorDirectionPreset: 0
-  Ammo: 5
-  TargetSpacing: 2
 --- !u!4 &1225821240
 Transform:
   m_ObjectHideFlags: 0

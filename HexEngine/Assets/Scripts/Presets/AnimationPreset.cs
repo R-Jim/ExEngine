@@ -5,6 +5,7 @@ public class AnimationPreset
     public enum Preset
     {
         Cannon,
+        Alie,
     }
 
 
