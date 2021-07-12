@@ -64,7 +64,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Data\Action\Move.cs" />
     <Compile Include="Assets\Data\Alie\Main.cs" />
+    <Compile Include="Assets\Data\Armor\GuardBooster.cs" />
     <Compile Include="Assets\Scripts\Datatables\DataSet.cs" />
     <Compile Include="Assets\Scripts\Datatables\Datatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Mapping\Mapping.cs" />

@@ -28,10 +28,10 @@
         return null;
     }
 
-    public static CommonPropertySet GetGameObjectPropertySet(object[] properties)
+    public static GameObjectPropertySet GetGameObjectPropertySet(object[] properties)
     {
-        return new CommonPropertySet(
-                (Coordinate)properties[0] //Coordinate
+        return new GameObjectPropertySet(
+                (PrefabPreset.Preset)properties[0] //Coordinate
             );
     }
 
@@ -42,6 +42,13 @@
             );
     }
 
+
+    public static ArmorPropertySet GetArmorPropertySet(object[] properties)
+    {
+        return new ArmorPropertySet(
+                (int)properties[0]
+            );
+    }
 
     public static MountPoint GetMountPointProperty(object[] properties)
     {

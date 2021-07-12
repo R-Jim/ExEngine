@@ -4,7 +4,7 @@ public class ModelDatatable : Datatable
 {
     protected readonly int COMMON_PROPERTY_INDEX = 0;
     protected readonly int GAMEOBJECT_PROPERTY_INDEX = 1;
-    protected readonly int DAMAGE_PROPERTY_INDEX = 2; //From 2-> 7 cause of 6 sides of hexagon
+    protected readonly int ARMOR_OR_DAMAGE_PROPERTY_INDEX = 2; //From 2-> 7 cause of 6 sides of hexagon
     protected readonly int MOUNTPOINT_START_INDEX = 10;
     public string Name { get; }
     public string Description { get; }
@@ -33,6 +33,22 @@ public class ModelDatatable : Datatable
         }
 
         return new Model(commonPropertySet, gameObjectPropertySet, MountPointList.ToArray());
+    }
+
+    public VectorBasedPropertySet GetArmorVectorPropertySet()
+    {
+        if ((PropertyPreset.Preset)DataSets[ARMOR_OR_DAMAGE_PROPERTY_INDEX].Preset != PropertyPreset.Preset.Armor)
+        {
+            return null;
+        }
+        VectorBasedPropertySet armorVectorPropertySet = new VectorBasedPropertySet();
+        for (int i = 0; i < 5; i++)
+        {
+            Coordinate.Vector vector = (Coordinate.Vector)i;
+            ArmorPropertySet armorPropertySet = (ArmorPropertySet)GetDataValue(null, i + ARMOR_OR_DAMAGE_PROPERTY_INDEX);
+            armorVectorPropertySet.AddValue(vector, armorPropertySet.Value);
+        }
+        return armorVectorPropertySet;
     }
 
     public DamagePropertySet GetDamagePropertySet()
