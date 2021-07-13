@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 public class ModelDatatable : Datatable
 {
@@ -35,13 +36,14 @@ public class ModelDatatable : Datatable
         return new Model(commonPropertySet, gameObjectPropertySet, MountPointList.ToArray());
     }
 
-    public VectorBasedPropertySet GetArmorVectorPropertySet()
+    public IVectorBasedPropertySet GetArmorVectorPropertySet()
     {
         if ((PropertyPreset.Preset)DataSets[ARMOR_OR_DAMAGE_PROPERTY_INDEX].Preset != PropertyPreset.Preset.Armor)
         {
             return null;
         }
-        VectorBasedPropertySet armorVectorPropertySet = new VectorBasedPropertySet();
+
+        VectorBasedIntPropertySet armorVectorPropertySet = new VectorBasedIntPropertySet();
         for (int i = 0; i < 5; i++)
         {
             Coordinate.Vector vector = (Coordinate.Vector)i;
@@ -51,9 +53,22 @@ public class ModelDatatable : Datatable
         return armorVectorPropertySet;
     }
 
-    public DamagePropertySet GetDamagePropertySet()
+
+    public IVectorBasedPropertySet GetDamageVectorPropertySet()
     {
-        return null;
+        if ((PropertyPreset.Preset)DataSets[ARMOR_OR_DAMAGE_PROPERTY_INDEX].Preset != PropertyPreset.Preset.Damage)
+        {
+            return null;
+        }
+
+        VectorBasedDamagePropertySet damageVectorPropertySet = new VectorBasedDamagePropertySet();
+        for (int i = 0; i < 5; i++)
+        {
+            Coordinate.Vector vector = (Coordinate.Vector)i;
+            DamagePropertySet damagePropertySet = (DamagePropertySet)GetDataValue(null, i + ARMOR_OR_DAMAGE_PROPERTY_INDEX);
+            damageVectorPropertySet.AddValue(vector, damagePropertySet.Value);
+        }
+        return damageVectorPropertySet;
     }
 
     public class ActionSet

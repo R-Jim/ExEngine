@@ -18,6 +18,8 @@
     {
         switch (preset)
         {
+            case Preset.Armor: return GetArmorPropertySet(properties);
+            case Preset.Damage: return GetDamagePropertySet(properties);
             case Preset.CommonPropertySet: return GetCommonPropertySet(properties);
             case Preset.GameObjectPropertySet: return GetGameObjectPropertySet(properties);
             case Preset.Vector: return GetVectorProperty(properties);
@@ -42,11 +44,18 @@
             );
     }
 
+    public static DamagePropertySet GetDamagePropertySet(object[] properties)
+    {
+        return new DamagePropertySet(
+                (int)properties[0], // Damage value
+                (float)properties[1] // Impact modifier
+            );
+    }
 
     public static ArmorPropertySet GetArmorPropertySet(object[] properties)
     {
         return new ArmorPropertySet(
-                (int)properties[0]
+                (int)properties[0] // Armor value
             );
     }
 

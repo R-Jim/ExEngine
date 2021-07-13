@@ -15,7 +15,7 @@ public class CombatPropertySetUtil
         {
             return 0;
         }
-        VectorBasedPropertySet damagePropertySet = model.CommonPropertySet.DamageValuePropertySet;
+        VectorBasedIntPropertySet damagePropertySet = model.CommonPropertySet.DamageValuePropertySet;
 
         return damagePropertySet.GetValue(CoordinateUtil.AdjustVector(model.CommonPropertySet.FacingDirection, vector));
     }

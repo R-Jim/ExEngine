@@ -3,7 +3,7 @@
     public class GuardBooster : ModelDatatable
     {
         private static readonly string NAME = "Guard Booster";
-        private static readonly string DESCRIPTION = "Give 1/sides armor, move 1";
+        private static readonly string DESCRIPTION = "Give 1/half sides armor, move 1";
         private static readonly string TYPE = "armor";
 
         GuardBooster() : base(NAME, DESCRIPTION, TYPE, 10, GetProperties(), null)

@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{89CEF506-0C9C-6CD3-9A19-CDED14A25744}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -67,6 +68,7 @@
     <Compile Include="Assets\Data\Action\Move.cs" />
     <Compile Include="Assets\Data\Alie\Main.cs" />
     <Compile Include="Assets\Data\Armor\GuardBooster.cs" />
+    <Compile Include="Assets\Data\Melee\ShiftBlade.cs" />
     <Compile Include="Assets\Scripts\Datatables\DataSet.cs" />
     <Compile Include="Assets\Scripts\Datatables\Datatable.cs" />
     <Compile Include="Assets\Scripts\Datatables\Mapping\Mapping.cs" />
@@ -106,7 +108,9 @@
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\CommonPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\MomentumAxisSet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\MomentumPropertySet.cs" />
-    <Compile Include="Assets\Scripts\Entities\Models\Properties\Commons\VectorBasedPropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Vectors\IVectorBasedPropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Vectors\VectorBasedDamagePropertySet.cs" />
+    <Compile Include="Assets\Scripts\Entities\Models\Properties\Vectors\VectorBasedIntPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\Coordinate.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\GameObject\GameObjectPropertySet.cs" />
     <Compile Include="Assets\Scripts\Entities\Models\Properties\MountPoint.cs" />
@@ -747,7 +751,8 @@
       <HintPath>C:/Users/Radical/Documents/Projects/ExEngine/HexEngine/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup></ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
