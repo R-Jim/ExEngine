@@ -1,8 +1,7 @@
 ﻿public class CommonPropertySet
 {
     public int Hp;
-    public VectorBasedIntPropertySet ArmorValuePropertySet;
-    public VectorBasedIntPropertySet DamageValuePropertySet;
+    public VectorBasedIntPropertySet ArmorVectorValuePropertySet;
     public Coordinate Coordinate;
     public MountPoint MountedTo;
     public MomentumPropertySet MomentumPropertySet { get; }
@@ -12,8 +11,7 @@
     {
         Hp = 1;
         Coordinate = coordinate;
-        ArmorValuePropertySet = new VectorBasedIntPropertySet();
-        DamageValuePropertySet = new VectorBasedIntPropertySet();
+        ArmorVectorValuePropertySet = new VectorBasedIntPropertySet();
         MomentumPropertySet = new MomentumPropertySet();
         FacingDirection = Coordinate.Vector.XY;
     }

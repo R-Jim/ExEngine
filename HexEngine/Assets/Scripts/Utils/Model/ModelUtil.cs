@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 public class ModelUtil
 {
@@ -50,5 +51,23 @@ public class ModelUtil
             mountPoint = mountPoint.SourceModel.CommonPropertySet.MountedTo;
         }
         return false;
+    }
+
+    public static List<Model> GetAllModelInCoordinate(Model model, Coordinate coordinate)
+    {
+        List<Model> returnModelList = new List<Model>();
+        if (model.CommonPropertySet.Coordinate == coordinate)
+        {
+            returnModelList.Add(model);
+        }
+
+        foreach (MountPoint mountPoint in model.MountPoints)
+        {
+            if (mountPoint.MountedModel != null)
+            {
+                returnModelList.AddRange(GetAllModelInCoordinate(model, coordinate));
+            }
+        }
+        return returnModelList;
     }
 }

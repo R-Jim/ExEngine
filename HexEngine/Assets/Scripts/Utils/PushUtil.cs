@@ -3,28 +3,30 @@
     public static float Push(Model sourceModel, CoordinateModifier coordinateModifier, float impactValue, BattleHandler battleHandler)
     {
         Coordinate.Vector vectorValue = (Coordinate.Vector)coordinateModifier.Value;
-        Model model = GetModel(sourceModel, vectorValue, battleHandler);
-        if (model != null)
+        Coordinate destinationCoordinate = GetDestinationCoordinate(sourceModel, vectorValue);
+
+        Model occupiedModel = battleHandler.GetModel(destinationCoordinate);
+        if (occupiedModel != null)
         {
             return impactValue;
         }
+        // Push occupied model
+        float remainImpactValue = coordinateModifier.Modify(battleHandler, occupiedModel, impactValue);
 
-        float remainImpactValue = coordinateModifier.Modify(battleHandler, model, impactValue);
-
-        DamageEffectedModel(sourceModel, model, vectorValue);
+        DamageEffectedModel(sourceModel, occupiedModel, vectorValue, impactValue);
         return remainImpactValue;
     }
 
-    private static Model GetModel(Model sourceModel, Coordinate.Vector vectorValue, BattleHandler battleHandler)
+    private static Coordinate GetDestinationCoordinate(Model sourceModel, Coordinate.Vector vectorValue)
     {
-        Coordinate EffectedCoordinate = sourceModel.CommonPropertySet.Coordinate.Clone();
-        EffectedCoordinate.Add(CoordinateUtil.GetCoordinate(vectorValue));
-        return battleHandler.GetModel(EffectedCoordinate);
+        Coordinate destinationCoordinate = sourceModel.CommonPropertySet.Coordinate.Clone();
+        destinationCoordinate.Add(CoordinateUtil.GetCoordinate(vectorValue));
+        return destinationCoordinate;
     }
 
-    private static void DamageEffectedModel(Model sourceModel, Model effectedModel, Coordinate.Vector vector)
+    private static void DamageEffectedModel(Model sourceModel, Model effectedModel, Coordinate.Vector vector, float impactValue)
     {
-        DamageUtil.DamageModel(sourceModel, effectedModel, vector);
-        DamageUtil.DamageModel(effectedModel, sourceModel, CoordinateUtil.RevertVector(vector));
+        DamageUtil.DamageModel(sourceModel, effectedModel, vector, impactValue);
+        DamageUtil.DamageModel(effectedModel, sourceModel, CoordinateUtil.RevertVector(vector), impactValue);
     }
 }

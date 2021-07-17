@@ -38,17 +38,16 @@ public class ModelDatatable : Datatable
 
     public IVectorBasedPropertySet GetArmorVectorPropertySet()
     {
-        if ((PropertyPreset.Preset)DataSets[ARMOR_OR_DAMAGE_PROPERTY_INDEX].Preset != PropertyPreset.Preset.Armor)
-        {
-            return null;
-        }
-
         VectorBasedIntPropertySet armorVectorPropertySet = new VectorBasedIntPropertySet();
-        for (int i = 0; i < 5; i++)
+
+        if ((PropertyPreset.Preset)DataSets[ARMOR_OR_DAMAGE_PROPERTY_INDEX].Preset == PropertyPreset.Preset.Armor)
         {
-            Coordinate.Vector vector = (Coordinate.Vector)i;
-            ArmorPropertySet armorPropertySet = (ArmorPropertySet)GetDataValue(null, i + ARMOR_OR_DAMAGE_PROPERTY_INDEX);
-            armorVectorPropertySet.AddValue(vector, armorPropertySet.Value);
+            for (int i = 0; i < 5; i++)
+            {
+                Coordinate.Vector vector = (Coordinate.Vector)i;
+                ArmorPropertySet armorPropertySet = (ArmorPropertySet)GetDataValue(null, i + ARMOR_OR_DAMAGE_PROPERTY_INDEX);
+                armorVectorPropertySet.AddValue(vector, armorPropertySet.Value);
+            }
         }
         return armorVectorPropertySet;
     }
@@ -56,17 +55,16 @@ public class ModelDatatable : Datatable
 
     public IVectorBasedPropertySet GetDamageVectorPropertySet()
     {
-        if ((PropertyPreset.Preset)DataSets[ARMOR_OR_DAMAGE_PROPERTY_INDEX].Preset != PropertyPreset.Preset.Damage)
-        {
-            return null;
-        }
-
         VectorBasedDamagePropertySet damageVectorPropertySet = new VectorBasedDamagePropertySet();
-        for (int i = 0; i < 5; i++)
+
+        if ((PropertyPreset.Preset)DataSets[ARMOR_OR_DAMAGE_PROPERTY_INDEX].Preset == PropertyPreset.Preset.Damage)
         {
-            Coordinate.Vector vector = (Coordinate.Vector)i;
-            DamagePropertySet damagePropertySet = (DamagePropertySet)GetDataValue(null, i + ARMOR_OR_DAMAGE_PROPERTY_INDEX);
-            damageVectorPropertySet.AddValue(vector, damagePropertySet.Value);
+            for (int i = 0; i < 5; i++)
+            {
+                Coordinate.Vector vector = (Coordinate.Vector)i;
+                DamagePropertySet damagePropertySet = (DamagePropertySet)GetDataValue(null, i + ARMOR_OR_DAMAGE_PROPERTY_INDEX);
+                damageVectorPropertySet.AddValue(vector, damagePropertySet.Value);
+            }
         }
         return damageVectorPropertySet;
     }
