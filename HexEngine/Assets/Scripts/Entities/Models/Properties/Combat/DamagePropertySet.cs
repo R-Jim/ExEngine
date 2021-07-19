@@ -2,7 +2,6 @@
 
 public class DamagePropertySet
 {
-    //private readonly Dictionary<Coordinate.Vector, DamageProperty> VectorBasedDictionary = new Dictionary<Coordinate.Vector, DamageProperty>();
     public int Value { get; }
     public float ImpactValueModifier { get; }
 
@@ -17,16 +16,8 @@ public class DamagePropertySet
         return Value + (int)Math.Ceiling(impactValue * ImpactValueModifier);
     }
 
-    //public DamagePropertySet(DamageProperty[] damageProperties)
-    //{
-    //    for (int i = 0; i < damageProperties.Length; i++)
-    //    {
-    //        VectorBasedDictionary.Add((Coordinate.Vector)i, damageProperties[i]);
-    //    }
-    //}
-
-    //public DamageProperty GetValue(Coordinate.Vector vector)
-    //{
-    //    return VectorBasedDictionary.TryGetValue(vector, out DamageProperty damageProperty) ? damageProperty : new DamageProperty(0, 0);
-    //}
+    public bool IsEmpty()
+    {
+        return Value == 0 && ImpactValueModifier == 0;
+    }
 }

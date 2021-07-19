@@ -5,11 +5,19 @@ public class DamageUtil
     public static void DamageModel(Model sourceModel, Model effectedModel, Coordinate.Vector vector, float impactValue)
     {
         List<DamagePropertySet> damagePropertySetList = GetDamagePropertySets(sourceModel, vector);
-        for (int i = 0; i < damagePropertySetList.Count; i++)
+        if (damagePropertySetList.Count != 0)
         {
-            if (DamageModelArmor(damagePropertySetList[i], impactValue, vector, effectedModel))
+            for (int i = 0; i < damagePropertySetList.Count; i++)
             {
-                damagePropertySetList.RemoveAt(i--);
+                if (DamageModelArmor(damagePropertySetList[i], impactValue, vector, effectedModel))
+                {
+                    damagePropertySetList.RemoveAt(i--);
+                }
+            }
+
+            if (damagePropertySetList.Count == 0)
+            {
+                effectedModel.CommonPropertySet.Hp -= 1;
             }
         }
     }
@@ -22,7 +30,7 @@ public class DamageUtil
         foreach (Model modelItem in modelInCoordinateList)
         {
             DamagePropertySet damagePropertySet = (DamagePropertySet)modelItem.ModelDatatable.GetDamageVectorPropertySet().GetValue(vector);
-            if (damagePropertySet.Value != 0 && damagePropertySet.ImpactValueModifier != 0)
+            if (!damagePropertySet.IsEmpty())
             {
                 damagePropertySetList.Add(damagePropertySet);
             }
@@ -31,11 +39,11 @@ public class DamageUtil
     }
 
     // true if armor is broken
-    private static bool DamageModelArmor(DamagePropertySet damagePropertySet, float impactValue, Coordinate.Vector vector, Model effectedModel)
+    private static bool DamageModelArmor(DamagePropertySet damagePropertySet, float impactValue, Coordinate.Vector incomingVector, Model effectedModel)
     {
-        Coordinate.Vector armorDamageVector = CoordinateUtil.RevertVector(vector);
+        Coordinate.Vector armorVector = CoordinateUtil.RevertVector(incomingVector);
         VectorBasedIntPropertySet armorVectorValuePropertySet = effectedModel.CommonPropertySet.ArmorVectorValuePropertySet;
-        int armorValue = (int)armorVectorValuePropertySet.GetValue(armorDamageVector);
+        int armorValue = (int)armorVectorValuePropertySet.GetValue(armorVector);
         int totalDamage = damagePropertySet.GetDamageValue(impactValue);
 
         if (armorValue == 0)
@@ -43,7 +51,7 @@ public class DamageUtil
             return false;
         }
 
-        armorVectorValuePropertySet.AddValue(armorDamageVector, -totalDamage);
-        return (int)armorVectorValuePropertySet.GetValue(armorDamageVector) <= 0;
+        armorVectorValuePropertySet.AddValue(armorVector, -totalDamage);
+        return (int)armorVectorValuePropertySet.GetValue(armorVector) <= 0;
     }
 }
