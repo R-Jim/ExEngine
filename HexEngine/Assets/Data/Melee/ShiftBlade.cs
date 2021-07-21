@@ -1,4 +1,4 @@
-﻿namespace Assets.Data.Armor
+﻿namespace Melee
 {
     public class ShiftBlade : ModelDatatable
     {
@@ -6,7 +6,7 @@
         private static readonly string DESCRIPTION = "Deal damage on 1/half sides";
         private static readonly string TYPE = "melee";
 
-        ShiftBlade() : base(NAME, DESCRIPTION, TYPE, 10, GetProperties(), null)
+        public ShiftBlade() : base(NAME, DESCRIPTION, TYPE, 10, GetProperties(), null)
         {
 
         }

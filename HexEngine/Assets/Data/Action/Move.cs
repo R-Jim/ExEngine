@@ -1,4 +1,4 @@
-﻿namespace Assets.Data.Action
+﻿namespace Action
 {
     public class Move : Datatable
     {

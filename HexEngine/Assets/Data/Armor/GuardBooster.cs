@@ -1,4 +1,4 @@
-﻿namespace Assets.Data.Armor
+﻿namespace Armor
 {
     public class GuardBooster : ModelDatatable
     {
@@ -6,7 +6,7 @@
         private static readonly string DESCRIPTION = "Give 1/half sides armor, move 1";
         private static readonly string TYPE = "armor";
 
-        GuardBooster() : base(NAME, DESCRIPTION, TYPE, 10, GetProperties(), null)
+        public GuardBooster() : base(NAME, DESCRIPTION, TYPE, 10, GetProperties(), null)
         {
 
         }

@@ -1,4 +1,4 @@
-﻿namespace Assets.Data.Alie
+﻿namespace Alie
 {
     public class Main : ModelDatatable
     {
@@ -6,7 +6,7 @@
         private static readonly string DESCRIPTION = "Sell swords";
         private static readonly string TYPE = "human";
 
-        Main() : base(NAME, DESCRIPTION, TYPE, 10, GetProperties(), null)
+        public Main() : base(NAME, DESCRIPTION, TYPE, 10, GetProperties(), null)
         {
 
         }
